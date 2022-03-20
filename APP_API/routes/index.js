@@ -12,8 +12,11 @@ var ctrlUsers = require('../controllers/user');
 // router.post('/books',ctrlBooks.booksCreate); //creating
 
 
+var ctrlAddTrainer = require('../controllers/traineravailability');
+var ctrlGetTrainer = require('../controllers/traineravailability');
 
-
+router.post('/addtraineravailabletime',ctrlAddTrainer.trainerCreate); //creating
+router.get('/gettraineravailabletime',ctrlGetTrainer.trainerList);  //getting a list
 
 
 
