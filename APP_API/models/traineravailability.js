@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // const { Schema } = mongoose;
 
-const userSchema = new mongoose.Schema({
+const trainerAvailabilitySchema = new mongoose.Schema({
     available_id : {
         type: Number
     },
@@ -13,16 +13,18 @@ const userSchema = new mongoose.Schema({
     },
     start_time : {
         type: String,
-        default: Date.now
+        required: true
+        // default: Date.now
     },
     end_time : {
         type: String,
-        default: Date.now
+        required: true
+        // default: Date.now
     }
 });
 
 //create indexes
-module.exports = mongoose.model('Traineravailability', userSchema, 'available_time');
+module.exports = mongoose.model('Traineravailability', trainerAvailabilitySchema, 'available_time');
 
 
 
