@@ -4,17 +4,17 @@ var router = express.Router();
 // Users routes and controllers
 var ctrlUsers = require('../controllers/user');
 
+var ctrlTrainers = require('../controllers/trainer');
 
-// router.get('/books',ctrlUsers.booksLists);  //getting a list
-// router.get('/books/:bookid',ctrlBooks.booksReadOne);  //getting a single book
-// router.delete('/books/:bookid',ctrlBooks.booksDeleteOne); //deleting
-// router.put('/books/:bookid',ctrlBooks.booksUpdateOne); //updating
-// router.post('/books',ctrlBooks.booksCreate); //creating
+router
+    .route('/trainers') // what request url is called
+    .get(ctrlTrainers.trainersReadAll);
 
-
-
-
-
+router
+    .route('/trainers/:trainerid')
+    .get(ctrlTrainers.trainersReadOne)
+    .put(ctrlTrainers.trainersUpdateOne)
+    .delete(ctrlTrainers.trainersDeleteOne);
 
 
 module.exports = router;

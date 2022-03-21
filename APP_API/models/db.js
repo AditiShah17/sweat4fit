@@ -45,5 +45,6 @@ process.on('SIGTERM',()=>{
         process.exit(0);
     });
 });
+require('./trainers');
 
 //require('./'); // including the schema file.Hence, after connecting db we are telling to go to locationSchema file
