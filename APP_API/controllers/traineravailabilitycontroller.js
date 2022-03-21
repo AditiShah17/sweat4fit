@@ -5,7 +5,6 @@ const trainerAvailibility = mongoose.model("Traineravailability");
 const trainerAvailabilityCreate = function (req, res) {
   trainerAvailibility.create(
     {
-      available_id: req.body.available_id,
       trainer_id: req.body.trainer_id,
       day_id: req.body.day_id,
       start_time: req.body.start_time,
@@ -24,9 +23,21 @@ const trainerAvailabilityCreate = function (req, res) {
 
 //Get trainer Availability
 const trainerAvailabilityList = function (req, res) {
-  trainerAvailibility.find().exec(function (err, data) {
-    if (err) {
-      res.status(404).json(err);
+  if (!req.params.trainerid) {
+    res.status(404).json({
+      message: "Not found, id is required",
+    });
+    return;
+  }
+  trainerAvailibility.find({trainer_id : req.params.trainerid})
+  .exec((err, data) => {
+    if (!data) {
+      res.status(404).json({
+        message: "id not found",
+      });
+      return;
+    } else if (err) {
+      res.status(400).json(err);
       return;
     }
     res.status(200).json(data);
@@ -52,12 +63,10 @@ const trainerAvailabilityUpdate = function (req, res) {
       res.status(400).json(err);
       return;
     }
-      data.available_id = req.body.available_id;
-      data.trainer_id = req.body.trainer_id;
       data.day_id = req.body.day_id;
       data.start_time = req.body.start_time;
       data.end_time = req.body.end_time;
-      data.save((err, data) => {
+      data.exec((err, data) => {
       if (err) {
         res.status(404).json(err);
       } else {
@@ -67,10 +76,30 @@ const trainerAvailabilityUpdate = function (req, res) {
   });
 };
 
+//delete trainer availability
+const trainerAvailabilityDelete = function (req, res) {
+  trainerAvailibility.findByIdAndRemove(req.params.availableid).exec((err, data) => {
+    if (!data) {
+      res.status(404).json({
+        message: "id not found",
+      });
+      return;
+    } else if (err) {
+      res.status(400).json(err);
+      return;
+    }
+    res.status(200).json({
+      message: "Deleted",
+    });
+  });
+};
+
+
 module.exports = {
   trainerAvailabilityCreate,
   trainerAvailabilityList,
-  trainerAvailabilityUpdate
+  trainerAvailabilityUpdate,
+  trainerAvailabilityDelete
 };
 
 // module.exports.booksLists =  function(req, res){

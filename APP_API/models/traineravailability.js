@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 // const { Schema } = mongoose;
 
 const trainerAvailabilitySchema = new mongoose.Schema({
-    available_id : {
-        type: Number
-    },
     trainer_id : {
         type: Number
     },

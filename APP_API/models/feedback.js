@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
 const feedbackSchema = new mongoose.Schema({
-    feedback_id : {
-        type: Number
-    },
     trainer_id : {
         type: Number
     },
