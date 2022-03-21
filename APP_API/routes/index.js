@@ -1,20 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var passport = require("passport");
+var authUser = require('../middleware/authUser')
 
 // Users routes and controllers
 var ctrlUsers = require('../controllers/user');
 
+router.post('/register',ctrlUsers.userRegister);
 
-// router.get('/books',ctrlUsers.booksLists);  //getting a list
-// router.get('/books/:bookid',ctrlBooks.booksReadOne);  //getting a single book
-// router.delete('/books/:bookid',ctrlBooks.booksDeleteOne); //deleting
-// router.put('/books/:bookid',ctrlBooks.booksUpdateOne); //updating
-// router.post('/books',ctrlBooks.booksCreate); //creating
+router.post('/login',ctrlUsers.userLogin);
 
+router.post('/logout',ctrlUsers.userLogout);
 
-
-
-
+router.get('/userprofile', authUser , ctrlUsers.userProfile); 
 
 
 module.exports = router;
