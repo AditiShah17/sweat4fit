@@ -71,7 +71,7 @@ const userRegister = async function(req, res){
                 // const authToken = jwt.sign(data, JWT_SECRET);
 
                 res
-                .status(200)
+                .status(201)
                 .json({
                     // token: authToken,
                     user: userdata
@@ -82,7 +82,7 @@ const userRegister = async function(req, res){
 
 const userProfile = async function(req, res){
     try {
-        userId = req.user.id;
+        userId = req.user;
         const user = await User.findById(userId).select("-password");
         res.send(user);
     } catch (error) {
@@ -94,6 +94,80 @@ const userProfile = async function(req, res){
    
 }
 
+const userProfileUpdate = function(req, res){
+    userId = req.user;
+    console.log(userId);
+    if(!userId) {
+        res
+        .status(404)
+        .json({
+            "message" : "Not found, userid is required"
+        });
+        return;
+    }
+    User.findById(userId)
+    .exec((err, userdata) => {
+        if(!userdata){
+            res
+            .status(404)
+            .json({
+                "message" : "userid is not found"
+            });
+            return;
+        } else if(err) {
+            res
+            .status(404)
+            .json(err);
+            return;
+        }
+        userdata.firstname = req.body.firstname;
+        userdata.lastname= req.body.lastname;
+        userdata.gender = req.body.gender;
+        userdata.mobile_no = req.body.mobile_no;
+        userdata.save((err, userdata) => {
+                if(err){
+                    res
+                    .status(404)
+                    .json(err);
+                } else {
+                    res
+                    .status(200)
+                    .json(userdata);
+                }
+        });
+        
+    })
+};
+
+const userDelete =  function(req, res){
+    
+    userId = req.user;
+
+    if(userId){
+        User
+        .findByIdAndRemove(userId)
+        .exec ((err, userdata) => {
+            if(err){
+                res
+                .status(404)
+                .json(err);
+                return;
+            }
+            res
+            .status(204)
+            .json({
+                "message" : "User sucessfully deleted"
+            });
+        });
+    } else {
+        res
+        .status(404)
+        .json({
+            "message" : "No userid"
+        });
+    }
+}
+
 const userLogout =  function(req, res){
     req.logout();
     res.redirect("/");
@@ -103,5 +177,7 @@ module.exports = {
     userLogin,
     userRegister,
     userProfile,
+    userProfileUpdate,
+    userDelete,
     userLogout
 };
