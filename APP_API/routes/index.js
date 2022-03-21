@@ -8,7 +8,8 @@ var ctrlTrainers = require('../controllers/trainer');
 
 router
     .route('/trainers') // what request url is called
-    .get(ctrlTrainers.trainersReadAll);
+    .get(ctrlTrainers.trainersReadAll)
+    .post(ctrlTrainers.trainerCreate);
 
 router
     .route('/trainers/:trainerid')
@@ -17,6 +18,10 @@ router
     .delete(ctrlTrainers.trainersDeleteOne);
 
 
+// presently working on this.    
+router
+    .route('/approveTrainer')
+    .get(ctrlTrainers.approveTrainers);
 
 
 //trainer availability controller

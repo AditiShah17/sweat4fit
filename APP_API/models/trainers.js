@@ -10,11 +10,11 @@ var trainerSchema = new mongoose.Schema(
         approve: String,
         description:{
             type: String,
-            required:true
+            required:[true,"Please provide description."]
         },
         skills:{
             type:[String],
-            required:true,
+            required:[true,"Atleast one skill is needed."],
         },
         experience:{
             type:Number,
