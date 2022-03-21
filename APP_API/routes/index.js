@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var passport = require("passport");
+var authUser = require('../middleware/authUser')
 
 // Users routes and controllers
 var ctrlUsers = require('../controllers/user');
 
+router.post('/register',ctrlUsers.userRegister);
+
+router.post('/login',ctrlUsers.userLogin);
 var ctrlTrainers = require('../controllers/trainer');
 
 router
@@ -23,7 +28,9 @@ router
     .route('/approveTrainer')
     .get(ctrlTrainers.approveTrainers);
 
+router.post('/logout',ctrlUsers.userLogout);
 
+router.get('/userprofile', authUser , ctrlUsers.userProfile); 
 //trainer availability controller
 var ctrlTrainerAvailability = require('../controllers/traineravailabilitycontroller');
 var ctrlFeedback = require('../controllers/feedbackcontroller');
