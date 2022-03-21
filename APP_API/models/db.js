@@ -47,4 +47,5 @@ process.on('SIGTERM',()=>{
 });
 require('./trainers');
 
-//require('./'); // including the schema file.Hence, after connecting db we are telling to go to locationSchema file
+require('./traineravailability');
+require('./feedback'); // including the schema file.Hence, after connecting db we are telling to go to locationSchema file
