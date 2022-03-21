@@ -19,8 +19,9 @@ router.delete('/user', authUser , ctrlUsers.userDelete);
 var ctrlTrainers = require('../controllers/trainer');
 
 router
-    .route('/trainers')
-    .get(ctrlTrainers.trainersReadAll);
+    .route('/trainers') // what request url is called
+    .get(ctrlTrainers.trainersReadAll)
+    .post(ctrlTrainers.trainerCreate);
 
 router
     .route('/trainers/:trainerid')
@@ -29,6 +30,10 @@ router
     .delete(ctrlTrainers.trainersDeleteOne);
 
 
+// presently working on this.    
+router
+    .route('/approveTrainer')
+    .get(ctrlTrainers.approveTrainers);
 
 //Availability Routes and Controller
 var ctrlTrainerAvailability = require('../controllers/traineravailabilitycontroller');
