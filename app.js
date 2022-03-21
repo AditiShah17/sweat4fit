@@ -13,6 +13,7 @@ var usersRouter = require('./APP_SERVER/routes/users');
 var apiRouter = require('./APP_API/routes/index');
 
 var app = express();
+// DB connection 
 
 
 // view engine setup
