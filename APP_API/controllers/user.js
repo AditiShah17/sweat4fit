@@ -82,7 +82,9 @@ const userRegister = async function(req, res){
 
 const userProfile = async function(req, res){
     try {
-        userId = req.user.id;
+        console.log("inside try2");
+        userId = req.user;
+        console.log("userid" + userId);
         const user = await User.findById(userId).select("-password");
         res.send(user);
     } catch (error) {
@@ -91,7 +93,6 @@ const userProfile = async function(req, res){
         .status(500)
         .send("Internal Server Error");
     }
-   
 }
 
 const userLogout =  function(req, res){

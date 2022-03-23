@@ -63,10 +63,11 @@ const trainerAvailabilityUpdate = function (req, res) {
       res.status(400).json(err);
       return;
     }
+    console.log("id=" + req.body.day_id);
       data.day_id = req.body.day_id;
       data.start_time = req.body.start_time;
       data.end_time = req.body.end_time;
-      data.exec((err, data) => {
+      data.save((err, data) => {
       if (err) {
         res.status(404).json(err);
       } else {

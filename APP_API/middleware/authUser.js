@@ -4,14 +4,17 @@ const JWT_SECRET = 'sweat4FitAPI';
 const authUser = (req, res, next)=>{
     // Get the user from the JWT Token and add id to req object
     const token = req.header('auth-token');
+
+    console.log("tokan =" + token);
     if(!token){
         res.status(401).send({
             error: "Please authenticate using a valid token"
         })
     }
     try {
+        console.log("inside try");
         const data = jwt.verify(token, JWT_SECRET)
-        req.user = data.user;
+        req.user = data.id;
         next();
     }
     catch (error) {
