@@ -26,7 +26,14 @@ router
 // presently working on this.    
 router
     .route('/approveTrainer')
-    .get(ctrlTrainers.approveTrainers);
+        .get(ctrlTrainers.checkPendingTrainers);
+    
+router
+    .route('/approveTrainer/:trainerid')
+        .put(ctrlTrainers.approveTrainerProfile);
+
+
+
 
 router.post('/logout',ctrlUsers.userLogout);
 
