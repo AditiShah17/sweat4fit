@@ -170,7 +170,7 @@ const trainersDeleteOne = function(req,res){
     
 };
 
-// ************************************************************All Admin API controller methods ****************************************
+// *******************************************************All Admin API controller methods *********************************
 
 
 // this will get all the request which are not approve yet.
