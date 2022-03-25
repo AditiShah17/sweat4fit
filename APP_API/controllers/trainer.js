@@ -8,7 +8,7 @@ const trainerCreate = function(req,res)
   // converting string into an array. 
   var getskills = req.body.skills;
   var skills = getskills.split(",");
-  console.log("###########",skills);
+  
     trainerModel
         .create(
             {
@@ -23,7 +23,7 @@ const trainerCreate = function(req,res)
             },(err,trainercreated)=>{
                 res
                     .status(200)
-                    .json(trainerCreate);
+                    .json(trainercreated);
             });
 };
 

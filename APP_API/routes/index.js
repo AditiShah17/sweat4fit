@@ -8,11 +8,14 @@ var ctrlUsers = require('../controllers/user');
 
 router.post('/register',ctrlUsers.userRegister);
 router.post('/login',ctrlUsers.userLogin);
-router.post('/logout',ctrlUsers.userLogout);
+router.post('/logout', authUser,  ctrlUsers.userLogout);
 router.get('/userprofile', authUser , ctrlUsers.userProfile); 
 router.put('/userprofile', authUser , ctrlUsers.userProfileUpdate); 
 router.delete('/user', authUser , ctrlUsers.userDelete); 
 
+router.post('/forgotPassword',ctrlUsers.forgotPassword);
+router.get('/userFetch/:id', ctrlUsers.userFetch);
+router.put('/reset-password', authUser, ctrlUsers.resetPassword);
 
 
 // Trainer Routes and Controller
@@ -31,9 +34,9 @@ router
 
 
 // presently working on this.    
-router
-    .route('/approveTrainer')
-    .get(ctrlTrainers.approveTrainers);
+// router
+//     .route('/approveTrainer')
+//     .get(ctrlTrainers.approveTrainers);
 
 //Availability Routes and Controller
 var ctrlTrainerAvailability = require('../controllers/traineravailabilitycontroller');

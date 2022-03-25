@@ -12,6 +12,8 @@ const authUser = (req, res, next)=>{
     try {
         const data = jwt.verify(token, JWT_SECRET)
         req.user = data.id;
+        // let payload = {_id: req.user}
+        // jwt.sign(payload, JWT_SECRET, {expiresIn: '1d'})
         next();
     }
     catch (error) {
@@ -19,7 +21,10 @@ const authUser = (req, res, next)=>{
             error: "No token"
         })
     }
+   
 
 }
 
-module.exports = authUser;
+module.exports = {
+    authUser
+};
