@@ -34,9 +34,16 @@ router
 
 
 // presently working on this.    
-// router
-//     .route('/approveTrainer')
-//     .get(ctrlTrainers.approveTrainers);
+router
+    .route('/approveTrainer')
+        .get(ctrlTrainers.checkPendingTrainers);
+    
+router
+    .route('/approveTrainer/:trainerid')
+        .put(ctrlTrainers.approveTrainerProfile);
+
+
+
 
 //Availability Routes and Controller
 var ctrlTrainerAvailability = require('../controllers/traineravailabilitycontroller');

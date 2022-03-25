@@ -23,9 +23,10 @@ const trainerCreate = function(req,res)
             },(err,trainercreated)=>{
                 res
                     .status(200)
-                    .json(trainercreated);
+                    .json(trainerCreated);
             });
 };
+
 
 
 const trainersReadAll = function(req,res){
@@ -169,7 +170,55 @@ const trainersDeleteOne = function(req,res){
     
 };
 
+// *******************************************************All Admin API controller methods *********************************
 
+
+// this will get all the request which are not approve yet.
+const checkPendingTrainers = function(req,res)
+{
+
+    trainerModel
+    // it runs asynchronous. so after checking the approve status it will run this method.
+        .find({approve:'No'})
+        .exec((err,allTrainerWithNoStatus)=>{
+            if(!allTrainerWithNoStatus)
+            {
+                res
+                    .status(200)
+                    .json({"message":"No pending requests to approve it."})
+                    return;
+            }
+            else
+            {
+                res
+                .status(200)
+                .json(allTrainerWithNoStatus);
+            }
+           
+        })
+}
+
+const approveTrainerProfile = function(req,res){
+
+    if(req.params.trainerid)
+    {
+        trainerModel
+            .findById(req.params.trainerid)
+            .exec((err,trainer)=>{
+                trainer.approve = req.body.approve;
+            trainer.save(function(err,data){
+                res
+                    .status(200)
+                    .json(data);
+            })
+            })
+
+
+    }
+
+
+
+};
 
 module.exports=
 {
@@ -177,5 +226,7 @@ module.exports=
     trainersReadAll,
     trainersReadOne,
     trainersUpdateOne,
-    trainersDeleteOne
+    trainersDeleteOne,
+    checkPendingTrainers,
+    approveTrainerProfile
 }
