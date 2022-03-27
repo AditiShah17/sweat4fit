@@ -1,12 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-import Footer from './Components/Footer';
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import Footer from "./Components/Footer";
+import About from "./Components/About";
+import Trainers from "./Components/Trainers";
+import Schedule from "./Components/Schedule";
+import ContactUs from "./Components/ContactUs";
+
+import "./css/navbar.css";
+import "./css/footer.css";
+import "./css/home.css";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-   <>
-   <Footer/>
-   </>
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/trainers">
+            <Trainers />
+          </Route>
+          <Route path="/schedule">
+            <Schedule />
+          </Route>
+          <Route path="/contactus">
+            <ContactUs />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
