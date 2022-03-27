@@ -42,7 +42,7 @@ var userSchema = new mongoose.Schema({
         default: 0
     },
     createdDate : {
-        type: String,
+        type: Date,
         default: Date.now
     }
 });
