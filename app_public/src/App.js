@@ -12,6 +12,7 @@ import ContactUs from "./Components/ContactUs";
 import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
+import "./css/about.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 

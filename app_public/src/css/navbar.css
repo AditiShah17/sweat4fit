@@ -3,6 +3,9 @@
     background-color: #1E1E1E;
     display: block ruby;
     color: white;
+    width: 100%;
+    /* position: fixed; */
+    z-index: 1;
 }
 
 .navbar-topbar-phone{
@@ -25,7 +28,34 @@
     /* position: fixed; */
     z-index: 1;
     width: 100%;
+    /* margin-top: 1.9rem; */
 }
+
+.navbar-brand img{
+    width: 10rem;
+}
+
+#navbarSupportedContent{
+    justify-content: end;
+}
+
+.navbar-nav{
+    margin-right: 2rem;
+}
+
+.navbar-nav a{
+    color: #ffffff !important;
+}
+
+.navbar-nav a:hover{
+    color: #FF5656 !important;
+}
+
+.navbar-nav a.active{
+    /* color: #b8c72d !important; */
+}
+
+
 .search-btn{
     background-color: white;
     color: #FF5656;
