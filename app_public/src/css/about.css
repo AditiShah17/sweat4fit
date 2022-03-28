@@ -1,0 +1,37 @@
+
+.heroimage-div{
+    position: relative;
+  text-align: center;
+  color: white;
+}
+
+.heroimage-div img{
+    width: 100%;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #FF5656;
+    font-weight: bold;
+}
+
+.about-description-div{
+    display: flex;
+    width: 80%;
+    margin: 3rem auto 5rem auto;
+}
+
+.about-decription-text div{
+    margin-top: 3rem;
+}
+
+.about-decription-image img{
+    border: 5px solid #FF5656;
+    border-radius: 20px;
+    margin-top: 3rem;
+    width: 20rem;
+}

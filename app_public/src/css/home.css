@@ -1,0 +1,66 @@
+#root{
+    background-color: black;
+    color: white;
+}
+
+h2{
+    font-weight: bold;
+}
+
+.carousel-div{
+
+    margin-bottom: 5rem;
+}
+
+/* descriptions and video */
+.home-description-div{
+    display: flex;
+    margin: 2rem;
+    margin: 4rem 2rem;
+    height: 25rem;
+    margin-bottom: 5rem;
+}
+
+.home-description-div div{
+    width: 50%;
+}
+
+.home-description_description{
+    margin: auto 1rem auto 1rem;
+}
+
+
+/* testimonial */
+.testimonial-div{
+    text-align: center;
+    margin: 0 5rem 5rem 5rem;
+}
+
+.testimonial-item{
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 25rem;
+}
+
+
+/* expert trainers */
+.expert-trainers-div{
+    text-align: center;
+    margin: 5rem;
+    color: black;
+}
+
+.expert-trainers-item{
+    text-align: center;
+}
+
+.expert-trainers-item div{
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+.expert-trainers-div .slide{
+    padding-bottom: 4rem;
+}

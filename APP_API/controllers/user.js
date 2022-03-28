@@ -92,7 +92,6 @@ const userProfile = async function(req, res){
         .status(500)
         .send("Internal Server Error");
     }
-   
 }
 
 const userProfileUpdate = function(req, res){
