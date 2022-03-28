@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
 // DB connection 
 require('./APP_API/models/db');
 
@@ -13,8 +12,6 @@ var usersRouter = require('./APP_SERVER/routes/users');
 var apiRouter = require('./APP_API/routes/index');
 
 var app = express();
-// DB connection 
-
 
 // view engine setup
 app.set('views', path.join(__dirname,'APP_SERVER','views'));
