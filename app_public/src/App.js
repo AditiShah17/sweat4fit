@@ -9,6 +9,8 @@ import Trainers from "./Components/Trainers";
 import Schedule from "./Components/Schedule";
 import ContactUs from "./Components/ContactUs";
 
+import Checking from "./Components/Checking";
+
 import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
@@ -33,9 +35,13 @@ function App() {
           <Route path="/contactus">
             <ContactUs />
           </Route>
+          <Route path="/checking">
+            <Checking />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
+         
         </Switch>
         <Footer />
       </Router>
