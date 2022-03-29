@@ -8,6 +8,9 @@ import About from "./Components/About";
 import Trainers from "./Components/Trainers";
 import Schedule from "./Components/Schedule";
 import ContactUs from "./Components/ContactUs";
+import Login from "./Components/Login";
+import ForgotPassword from "./Components/ForgotPassword";
+import UserProfile from "./Components/UserProfile";
 
 import Checking from "./Components/Checking";
 
@@ -18,6 +21,9 @@ import "./css/about.css";
 import "./css/trainers.css";
 import "./css/schedule.css";
 import "./css/contactus.css";
+import "./css/login.css";
+import "./css/forgotpassword.css";
+import "./css/userprofile.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -41,6 +47,15 @@ function App() {
           </Route>
           <Route path="/checking">
             <Checking />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/forgotpassword">
+            <ForgotPassword />
+          </Route>
+          <Route path="/userprofile">
+            <UserProfile />
           </Route>
           <Route path="/">
             <Home />
