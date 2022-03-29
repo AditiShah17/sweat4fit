@@ -3,10 +3,11 @@ const userFeedbacks = mongoose.model("Feedbacks");
 
 //Add trainer availability
 const feedbackCreate = function (req, res) {
+  userId = req.user;
   userFeedbacks.create(
     {
       trainer_id: req.body.trainer_id,
-      trainee_id: req.body.trainee_id,
+      trainee_id: userId,
       rating: req.body.rating,
       review: req.body.review,
     },
@@ -25,7 +26,7 @@ const feedbackCreate = function (req, res) {
 const feedbackList = function (req, res) {
   if (!req.params.trainerid) {
     res.status(404).json({
-      message: "Not found, id is required",
+      message: "Not found, TrainerId is required",
     });
     return;
   }
@@ -33,7 +34,7 @@ const feedbackList = function (req, res) {
   .exec((err, data) => {
     if (!data) {
       res.status(404).json({
-        message: "id not found",
+        message: "Trainer id not found",
       });
       return;
     } else if (err) {
@@ -49,7 +50,7 @@ const feedbackDelete = function (req, res) {
   userFeedbacks.findByIdAndRemove(req.params.feedbackid).exec((err, data) => {
     if (!data) {
       res.status(404).json({
-        message: "id not found",
+        message: "Feedback id not found",
       });
       return;
     } else if (err) {
@@ -66,37 +67,4 @@ module.exports = {
   feedbackCreate,
   feedbackList,
   feedbackDelete,
-  //   trainerAvailabilityUpdate,
 };
-
-// module.exports.booksLists =  function(req, res){
-//     res
-//     .status(200)
-//     .json({
-//         "status": "success"
-//     });
-// }
-
-// module.exports.booksReadOne =  function(req, res){
-//     res
-//     .status(200)
-//     .json({
-//         "status": "success"
-//     });
-// }
-
-// module.exports.booksDeleteOne =  function(req, res){
-//     res
-//     .status(200)
-//     .json({
-//         "status": "success"
-//     });
-// }
-
-// module.exports.booksCreate =  function(req, res){
-//     res
-//     .status(200)
-//     .json({
-//         "status": "success"
-//     });
-// }

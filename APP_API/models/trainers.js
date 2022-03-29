@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var trainerSchema = new mongoose.Schema(
     {
         user_id:
-        {
-            type:Number,
-            required: true
+        { 
+            type: Schema.Types.ObjectId, 
+            ref:'User' 
         },
         approve: {
             type:String,
-            enum:['yes,','no'],
-            default:'no'
+            enum: ['Yes','No'],
+            default:'No'
         },
         description:{
             type: String,
@@ -24,8 +25,9 @@ var trainerSchema = new mongoose.Schema(
             type:Number,
             min:0
         },
-        age:Number,
-        document_file:String
-    });
+        age:{type: Number},
+        document_file: {type: String}
+    },
+    { timestamps: {createdAt:true, updatedAt:false} });
 
     mongoose.model('trainerModel',trainerSchema,'trainers');

@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 const feedbackSchema = new mongoose.Schema({
     trainer_id : {
-        type: Number
+        type: Schema.Types.ObjectId, 
+        ref:'trainerModel' 
     },
     trainee_id : {
-        type: Number
+        type: Schema.Types.ObjectId, 
+        ref:'User' 
     },
     rating : {
         type: Number,

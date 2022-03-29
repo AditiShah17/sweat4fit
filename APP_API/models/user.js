@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
+    // profile image
     firstname : {
         type: String,
         required: [true, 'Please Enter Your Firstname']
@@ -40,11 +41,8 @@ var userSchema = new mongoose.Schema({
         type: Number,
         enum: [0, 1],
         default: 0
-    },
-    createdDate : {
-        type: Date,
-        default: Date.now
     }
-});
+},
+{ timestamps: true });
 
 module.exports =mongoose.model('User',userSchema,'users');

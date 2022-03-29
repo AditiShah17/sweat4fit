@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
-// const { Schema } = mongoose;
+var Schema = mongoose.Schema;
 
 const trainerAvailabilitySchema = new mongoose.Schema({
-    trainer_id : {
-        type: Number
+    trainer_id : { 
+        type: Schema.Types.ObjectId, 
+        ref:'trainerModel' 
     },
     day_id : {
         type: Number
     },
     start_time : {
-        type: String,
+        type: Date,
         required: true
         // default: Date.now
     },

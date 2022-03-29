@@ -168,18 +168,16 @@ const userDelete =  function(req, res){
     }
 }
 
-const userLogout =  function(req, res){
+// const userLogout =  function(req, res){
     
-    req.logout();
-    // destroy session data
+//     userId = req.user;
+
+//     if(userId){
+//         let payload = {_id: userId}
+//         const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '1d'})
+//     }
     
-    res
-    .redirect('/login')
-    .json({
-        "message" : "User Logout"
-    });
-    
-}
+// }
 
 const forgotPassword = async function(req, res){
     //Generate and set password reset token
@@ -353,7 +351,7 @@ module.exports = {
     userProfile,
     userProfileUpdate,
     userDelete,
-    userLogout,
+    // userLogout,
     forgotPassword,
     resetPassword,
     generatePasswordReset,

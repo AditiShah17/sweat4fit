@@ -2,36 +2,84 @@ const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const trainerModel = mongoose.model('trainerModel');
 
-const trainerCreate = function(req,res)
+const trainerCreate = async function(req,res)
 {
-
-  // converting string into an array. 
-  var getskills = req.body.skills;
-  var skills = getskills.split(",");
-  
-    trainerModel
-        .create(
-            {
-                user_id:req.body.user_id,
-                approve: req.body.approve,
-                description:req.body.description,
-                skills:skills,
-                experience: req.body.experience,
-                age:req.body.age,
-                document_file:req.body.document_file
-
-            },(err,trainercreated)=>{
-                res
-                    .status(200)
-                    .json(trainerCreated);
+    userId = req.user;
+    if(!userId){
+        res
+        .status(404)
+        .json({
+            "message" : "Please login again!!"
+        });
+        return;
+    }
+    else
+    {
+        const document_file = req.files;
+        // check if photos are available
+        if (!document_file) {
+            res.status(400).send({
+                status: false,
+                data: 'No document is selected.'
             });
+        } else {
+            
+            // // send response
+            // res.send({
+            //     status: 200,
+            //     message: 'Documents are uploaded.',
+                
+            // });
+
+            // converting string into an array. 
+            var getskills = req.body.skills;
+            var skills = getskills.split(",");
+        
+            trainerModel.create(
+                    {
+                        user_id:userId,
+                        approve: req.body.approve,
+                        description:req.body.description,
+                        skills:skills,
+                        experience: req.body.experience,
+                        age:req.body.age,
+                        // Give document name in mongoos
+                        // document_file:req.body.document_file
+
+                    },(err,trainercreated)=>{
+                        if (err) {
+                            res
+                            .status(400)
+                            .json(err);
+                        } 
+                        else {
+                        res
+                            .status(200)
+                            .json({
+                                tranier: trainercreated
+                            });
+                        }
+                });
+        }
+    }
 };
 
 
 
 const trainersReadAll = function(req,res){
 
-    trainerModel
+    userId = req.user;
+    if(!userId){
+        res
+        .status(404)
+        .json({
+            "message" : "Please login again!!"
+        });
+        return;
+    }
+    else
+    {
+        trainerModel
         .find()
         .exec((err,allTrainers)=>{
             if(!allTrainers)
@@ -50,11 +98,11 @@ const trainersReadAll = function(req,res){
            
 
         });
+    }
 
 };
 const trainersReadOne = function(req,res){
-
-    if(req.params && req.params.trainerid)
+    if(req.params.trainerid)
     {
         trainerModel
         .findById(req.params.trainerid)
@@ -100,7 +148,6 @@ const trainersReadOne = function(req,res){
 
 const trainersUpdateOne = function(req,res){
 
-
     if(req.params && req.params.trainerid)
     {
         trainerModel
@@ -123,18 +170,30 @@ const trainersUpdateOne = function(req,res){
 
             else
             {
+                var getskills = req.body.skills;
+                var skills = getskills.split(",");
+
                 trainer.experience=req.body.experience;
-                trainer.skill=req.body.skill;
+                trainer.skills=skills;
                 trainer.description=req.body.description;
                 trainer.age=req.body.age;
-                trainer_document=req.body.document_file;
+                trainer.document_file=req.body.document_file;
 
-                trainer.save(function(err,trainer)
-                {
-                    res
+                trainer.save((err,trainer) => {
+                    if(err)
+                    {
+                        res
+                            .status(404)
+                            .json(err)
+                        return;
+                    }
+                    else
+                    {
+                        res
                         .status(200)
-                        .json(trainer);
-                })
+                        .json(trainer) 
+                    }
+                });
 
             }
            
