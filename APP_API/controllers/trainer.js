@@ -80,8 +80,8 @@ const trainersReadAll = function(req,res){
     else
     {
         trainerModel
-        .find()
-        .exec((err,allTrainers)=>{
+         .find()
+       .exec((err,allTrainers)=>{
             if(!allTrainers)
             {
                 res
@@ -89,16 +89,16 @@ const trainersReadAll = function(req,res){
                     .json({"message":"No trainers found."});
                     return;
             }
-            else
-            {
+          else
+           {
                 res
                 .status(200)
                 .json(allTrainers)
-            }
+           }
            
 
         });
-    }
+  }
 
 };
 const trainersReadOne = function(req,res){

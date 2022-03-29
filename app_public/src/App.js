@@ -10,13 +10,15 @@ import Schedule from "./Components/Schedule";
 import ContactUs from "./Components/ContactUs";
 
 import Checking from "./Components/Checking";
+import Register from "./Components/Register";
 
 import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
 import "./css/about.css";
-
+import "./css/register.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 function App() {
   return (
@@ -38,6 +40,9 @@ function App() {
           </Route>
           <Route path="/checking">
             <Checking />
+          </Route>
+          <Route path="/register">
+            <Register/>
           </Route>
           <Route path="/">
             <Home />
