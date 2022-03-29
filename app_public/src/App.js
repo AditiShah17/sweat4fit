@@ -15,6 +15,9 @@ import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
 import "./css/about.css";
+import "./css/trainers.css";
+import "./css/schedule.css";
+import "./css/contactus.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 

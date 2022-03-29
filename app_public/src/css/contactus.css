@@ -1,0 +1,22 @@
+.contactus-div{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 3rem 0 3rem 0;
+}
+
+.contactus-form form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contactus-form, .contactus-map{
+    width: 50%;
+}
+
+.contactus-map{
+text-align: center;
+}
