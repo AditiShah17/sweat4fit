@@ -7,13 +7,13 @@ export default function Navbar(props) {
       <div className="navbar-topbar">
         <div className="navbar-topbar-phone">(613)123-654 | sweat4fit@gmail.com</div>
         <div className="navbar-topbar-social">
-          <Link className="links" to="/">
+          <Link className="links" to="/userprofile">
             My Account
           </Link>
           <Link className="links" to="/login">
             Login
           </Link>
-          <Link className="nav-link" to="/register">
+          <Link className="links" to="/register">
             Register
           </Link>
           <a className="links" href="/login">
