@@ -27,7 +27,7 @@ const userLogin = async function(req, res){
             res
             .status(400)
             .json({
-                error: "Incorrect password"
+                Message: "Incorrect password"
             });
         }
         const data = {

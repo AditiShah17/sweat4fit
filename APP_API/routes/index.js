@@ -40,7 +40,7 @@ var ctrlTrainers = require('../controllers/trainer');
 
 router
     .route('/trainers') // what request url is called
-    .get(authUser, ctrlTrainers.trainersReadAll)
+    .get( ctrlTrainers.trainersReadAll)
     .post(authUser, upload_files.array('document_file', 8), ctrlTrainers.trainerCreate);
 
 router

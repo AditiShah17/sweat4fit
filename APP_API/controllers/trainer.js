@@ -68,37 +68,27 @@ const trainerCreate = async function(req,res)
 
 const trainersReadAll = function(req,res){
 
-    userId = req.user;
-    if(!userId){
-        res
-        .status(404)
-        .json({
-            "message" : "Please login again!!"
-        });
-        return;
-    }
-    else
-    {
-        trainerModel
-         .find()
-       .exec((err,allTrainers)=>{
-            if(!allTrainers)
-            {
-                res
-                    .status(500)
-                    .json({"message":"No trainers found."});
-                    return;
-            }
-          else
-           {
-                res
-                .status(200)
-                .json(allTrainers)
-           }
-           
 
-        });
-  }
+    trainerModel
+        .find()
+    .exec((err,allTrainers)=>{
+        if(!allTrainers)
+        {
+            res
+                .status(500)
+                .json({"message":"No trainers found."});
+                return;
+        }
+        else
+        {
+            res
+            .status(200)
+            .json(allTrainers)
+        }
+        
+
+    });
+
 
 };
 const trainersReadOne = function(req,res){

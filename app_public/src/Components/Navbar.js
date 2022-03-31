@@ -13,7 +13,7 @@ export default function Navbar(props) {
           <Link className="links" to="/login">
             Login
           </Link>
-          <Link className="nav-link" to="/register">
+          <Link className="links" to="/register">
             Register
           </Link>
           <a className="links" href="/login">
