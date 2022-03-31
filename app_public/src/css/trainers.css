@@ -27,3 +27,14 @@
     color: #fff;
     box-shadow: inset 15rem 0 0 0 #FF5656;;
 }
+
+@media (max-width: 768px) {
+    .trainer-item .card{
+        width: 90% !important;
+    }
+
+    .trainer-item .card:hover{
+        color: #fff;
+        box-shadow: inset 35rem 0 0 0 #FF5656;;
+    }
+}

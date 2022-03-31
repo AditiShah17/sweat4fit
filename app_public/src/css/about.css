@@ -21,6 +21,7 @@
 
 .about-description-div{
     display: flex;
+
     width: 80%;
     margin: 3rem auto 5rem auto;
 }
@@ -34,4 +35,21 @@
     border-radius: 20px;
     margin-top: 3rem;
     width: 20rem;
+}
+
+@media (max-width: 768px) {
+    .about-description-div{
+        flex-wrap: wrap-reverse;
+        width: 90%;
+    }
+    
+    .about-description-div h2{
+        text-align: center;
+    }
+
+    .about-decription-image{
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0;
+    }
 }
