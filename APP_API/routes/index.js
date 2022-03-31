@@ -57,7 +57,7 @@ const profile_Image = multer({ storage: profile_storage });
 // Users routes and controllers
 var ctrlUsers = require('../controllers/user');
 
-router.post('/register',ctrlUsers.userRegister);
+router.route('/register').post(ctrlUsers.userRegister);
 router.post('/login',ctrlUsers.userLogin);
 // router.post('/logout', authUser,  ctrlUsers.userLogout);
 

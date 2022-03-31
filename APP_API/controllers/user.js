@@ -123,9 +123,9 @@ const userProfile = async function(req, res){
     gfs.find().toArray((err, files) => {
         console.log(files);
         if (!files || files.length === 0) {
-            return res.status(200).json({
+            return res.status(400).json({
                 success: false,
-                message: 'No files available'
+                message: 'Please Upload Image profile'
             });
         }
         files.map(file => {
