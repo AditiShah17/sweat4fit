@@ -6,10 +6,25 @@ export default function Navbar(props) {
     <>
       <div className="navbar-topbar">
         <div className="navbar-topbar-phone">(613)123-654 | sweat4fit@gmail.com</div>
-        <div className="navbar-topbar-social">My Account | Logout  |
-          <img src="../images/icons/fb.png" alt="" />
-          <img src="../images/icons/tweet.png" alt="" />
-          <img src="../images/icons/insta.png" alt="" />
+        <div className="navbar-topbar-social">
+          <Link className="links" to="/userprofile">
+            My Account
+          </Link>
+          <Link className="links" to="/login">
+            Login
+          </Link>
+          <Link className="links" to="/register">
+            Register
+          </Link>
+          <a className="links" href="/login">
+            <img src="../images/icons/fb.png" alt="" />
+          </a>
+          <a className="links" href="#">
+            <img src="../images/icons/tweet.png" alt="" />
+          </a>
+          <a className="links" href="/login">
+            <img src="../images/icons/insta.png" alt="" />
+          </a>
         </div>
       </div>
       <nav className="navbar navbar-expand-lg navbar-dark">

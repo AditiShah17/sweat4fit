@@ -27,6 +27,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// CORS
+app.use(function (req, res, next) {
+  /*var err = new Error('Not Found');
+   err.status = 404;
+   next(err);*/
+  req.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  req.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
+ 
+  // Website you wish to allow to connect
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+ 
+  // Request methods you wish to allow
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+ 
+  // Request headers you wish to allow
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
+  next();
+ 
+});
+
+
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
