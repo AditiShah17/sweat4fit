@@ -73,10 +73,10 @@ function App() {
           <Route path="/forgotpassword">
             <ForgotPassword />
           </Route>
-          {/* <Route path="/userprofile">
+          <Route path="/userprofile">
             <UserProfile />
-          </Route> */}
-          {/* </Route> */ }
+          </Route>
+          
           <Route path="/editprofile">
             <EditProfile />
           </Route>
