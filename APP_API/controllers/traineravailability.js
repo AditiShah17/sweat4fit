@@ -4,7 +4,7 @@ const trainerModel = mongoose.model('trainerModel');
 
 //Add trainer availability
 const trainerAvailabilityCreate = function (req, res) {
-  userId = req.user;
+  const userId = req.user;
 
   trainerModel
       .find({user_id : userId})

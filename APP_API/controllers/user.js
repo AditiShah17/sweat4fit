@@ -6,6 +6,23 @@ const _ = require('passport-local-mongoose');
 const JWT_SECRET = 'sweat4FitAPI';
 const fetch = require('node-fetch');
 
+
+const mongoConfig = require('../models/db');
+const connect = mongoConfig.connect;
+
+let gfs;
+var filePath;
+
+const userId = function(id){
+    const userid = id;
+    filePath = "uploads/profile_image/"+ userid;
+   
+    gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+        bucketName: filePath
+    });
+}
+
+
 const userLogin = async function(req, res){
  
     const email = req.body.email;
@@ -19,16 +36,18 @@ const userLogin = async function(req, res){
         .json({
             error: "Email invalid"
         });
+        return;
     }
     else
     {
         const passwordCompare = await bcrypt.compare(req.body.password, user.password );
         if(!passwordCompare){
             res
-            .status(400)
+            .status(404)
             .json({
-                error: "Incorrect password"
+                "Message": "Incorrect password"
             });
+            return;
         }
         const data = {
             id: user.id
@@ -63,6 +82,7 @@ const userRegister = async function(req, res){
                 res
                 .status(400)
                 .json(err);
+                return;
             } else {
 
                 // const data = {
@@ -82,20 +102,62 @@ const userRegister = async function(req, res){
 };
 
 const userProfile = async function(req, res){
-    try {
-        userId = req.user;
-        const user = await User.findById(userId).select("-password");
-        res.send(user);
-    } catch (error) {
-        console.error(error.message);
+
+    userId(req.user);
+    console.log(filePath);
+
+
+    const userid = req.user;
+    console.log(userid);
+    if(!userid) {
         res
-        .status(500)
-        .send("Internal Server Error");
+        .status(404)
+        .json({
+            "message" : "Not found, userid is required"
+        });
+        return;
+    }
+    else
+    {
+        
+    gfs.find().toArray((err, files) => {
+        console.log(files);
+        if (!files || files.length === 0) {
+            return res.status(200).json({
+                success: false,
+                message: 'No files available'
+            });
+        }
+        files.map(file => {
+            if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
+                file.isFile = true;
+            } else {
+                file.isFile = false;
+            }
+        });  
+   
+        const user = User.findById(userid)
+        .select("-password")
+        .exec((err, userdata) => {
+            if(err){
+                res
+                .status(404)
+                .json(err);
+                return;
+            } else {
+                res
+                .status(200)
+                .json({userdata,files});
+            }
+        });
+    }); 
+    
     }
 }
 
 const userProfileUpdate = function(req, res){
-    userId = req.user;
+   
+    const userId = req.user;
     console.log(userId);
     if(!userId) {
         res
@@ -104,44 +166,60 @@ const userProfileUpdate = function(req, res){
             "message" : "Not found, userid is required"
         });
         return;
-    }
-    User.findById(userId)
-    .exec((err, userdata) => {
-        if(!userdata){
-            res
-            .status(404)
-            .json({
-                "message" : "userid is not found"
-            });
-            return;
-        } else if(err) {
-            res
-            .status(404)
-            .json(err);
-            return;
-        }
-        userdata.firstname = req.body.firstname;
-        userdata.lastname= req.body.lastname;
-        userdata.gender = req.body.gender;
-        userdata.mobile_no = req.body.mobile_no;
-        userdata.save((err, userdata) => {
-                if(err){
-                    res
-                    .status(404)
-                    .json(err);
+    }else{
+
+         User.findById(userId)
+        .exec((err, userdata) => {
+
+            if(!userdata){
+                res
+                .status(404)
+                .json({
+                    "message" : "userid is not found"
+                });
+                return;
+            } else if(err) {
+                res
+                .status(404)
+                .json(err);
+                return;
+            }else{
+                const profile_image = req.file;
+                if (!profile_image) {
+                    res.status(400).send({
+                        status: false,
+                        data: 'No profile image is selected.'
+                    });
                 } else {
-                    res
-                    .status(200)
-                    .json(userdata);
+                
+                userdata.firstname = req.body.firstname;
+                userdata.lastname= req.body.lastname;
+                userdata.gender = req.body.gender;
+                userdata.mobile_no = req.body.mobile_no;
+                userdata.save((err, userdata) => {
+                        if(err){
+                            res
+                            .status(404)
+                            .json(err);
+                            return;
+                        } else {
+                            res
+                            .status(200)
+                            .json({
+                                User: userdata,
+                                Message: "Profile Image Uploaded"
+                            });
+                        }
+                });
                 }
-        });
-        
-    })
+            }
+        })
+    }
 };
 
 const userDelete =  function(req, res){
     
-    userId = req.user;
+    const userId = req.user;
 
     if(userId){
         User
@@ -222,7 +300,7 @@ const forgotPassword = async function(req, res){
             // };
 
             // sgMail.send(mailOptions, (error, result) => {
-                if (error) return res.status(500).json({message: err.message});
+                if (err) return res.status(500).json({message: err.message});
 
                 res.status(200).json({
                     message: 'A reset email has been sent to ' + email + '.'});
@@ -256,12 +334,12 @@ const userFetch = function(req, res){
 
 const resetPassword = async function(req, res){
     
-    userId = req.user;
+    const userId = req.user;
     console.log(userId);
 
     const user = User.findById(userId);
 
-    const url = 'http://localhost:3000/api/userFetch/'+userId;
+    const url = 'http://localhost:5000/api/userFetch/'+userId;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -312,6 +390,7 @@ const resetPassword = async function(req, res){
                 .json({
                     error: "Your Current password is Incorrect."
                 });
+                return;
             }
             else{
                 userdata.password= secNewPass;
@@ -346,6 +425,7 @@ const resetPassword = async function(req, res){
 
 
 module.exports = {
+    userId,
     userLogin,
     userRegister,
     userProfile,

@@ -15,11 +15,11 @@ var trainerSchema = new mongoose.Schema(
         },
         description:{
             type: String,
-            required:[true,"Please provide description."]
+            // required:[true,"Please provide description."]
         },
         skills:{
             type:[String],
-            required:[true,"Atleast one skill is needed."],
+            // required:[true,"Atleast one skill is needed."],
         },
         experience:{
             type:Number,
