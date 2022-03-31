@@ -15,14 +15,16 @@ h2{
 /* descriptions and video */
 .home-description-div{
     display: flex;
+    flex-wrap: wrap;
     margin: 2rem;
     margin: 4rem 2rem;
-    height: 25rem;
+
     margin-bottom: 5rem;
+    justify-content: center;
 }
 
 .home-description-div div{
-    width: 50%;
+    width: 32rem;
 }
 
 .home-description_description{
@@ -52,6 +54,10 @@ h2{
     color: black;
 }
 
+.home-description_video{
+    height: 30rem;
+}
+
 .expert-trainers-item{
     text-align: center;
 }
@@ -63,4 +69,27 @@ h2{
 
 .expert-trainers-div .slide{
     padding-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .home-description_description{
+        text-align: center;
+    }
+
+    .testimonial-div{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .testimonial-item{
+        width: 70%;  
+    }
+
+    .expert-trainers-div .card{
+        width: 90% !important;
+    }
+
+    .expert-trainers-div{
+        margin: 0;
+    }
 }
