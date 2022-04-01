@@ -36,11 +36,6 @@ export default function Login(props) {
     //console.log("#########",res.data.Message)
     return (
         <>
-            <div className="heroimage-div">
-                <img src="../images/covers/contactus_main.jpg" alt="" />
-                <div className="centered">Login</div>
-            </div>
-
             <div className="login-div">
                 <div className="login-form">
                     <Form onSubmit={loginSuccess}>

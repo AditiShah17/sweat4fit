@@ -10,3 +10,9 @@
  margin: 1rem;
  margin-left: 0;
 }
+
+@media (max-width: 768px) {
+    .login-div{
+        width: 95%;
+    }
+}

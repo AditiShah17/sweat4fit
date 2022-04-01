@@ -30,7 +30,8 @@ export default function AddTrainerDocuments(props) {
                                 
                                 <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Document to upload : - </Form.Label>
-                                    <Form.Control type="file" size="lg" required />
+                                    <Form.Control type="file" size="lg" accept=".doc,.pdf" multiple required />
+                                    <Form.Label style={{color : "red"}}>Please Select maximum 5 files.</Form.Label>
                                 </Form.Group>
 
                                 <input type="submit" className="update-btn" value="Add" />

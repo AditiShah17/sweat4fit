@@ -5,7 +5,7 @@ export default function Navbar(props) {
   return (
     <>
       <div className="navbar-topbar">
-        <div className="navbar-topbar-phone">(613)123-654 | sweat4fit@gmail.com</div>
+        <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">123-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
         <div className="navbar-topbar-social">
           <Link className="links" to="/userprofile">
             My Account
@@ -87,7 +87,7 @@ export default function Navbar(props) {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex">
+            {/* <form className="d-flex">
               <input
                 className="form-control me-2"
                 type="search"
@@ -97,7 +97,7 @@ export default function Navbar(props) {
               <button className="search-btn" type="submit">
                 Search
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </nav>

@@ -82,16 +82,36 @@ const userRegister = async function(req, res){
 };
 
 const userProfile = async function(req, res){
-    try {
-        userId = req.user;
-        const user = await User.findById(userId).select("-password");
-        res.send(user);
-    } catch (error) {
-        console.error(error.message);
+    
+    const userid = req.user;
+    console.log(userid);
+    if(!userid) {
         res
-        .status(500)
-        .send("Internal Server Error");
+        .status(404)
+        .json({
+            "message" : "Not found, userid is required"
+        });
+        return;
     }
+    else
+    {
+        const user = User.findById(userid)
+        .select("-password")
+        .exec((err, userdata) => {
+            if(err){
+                res
+                .status(404)
+                .json(err);
+                return;
+            } else {
+                res
+                .status(200)
+                .json({userdata});
+            }
+        });
+    
+    }
+      
 }
 
 const userProfileUpdate = function(req, res){

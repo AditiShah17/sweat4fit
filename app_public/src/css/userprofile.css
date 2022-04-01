@@ -61,3 +61,17 @@ height: 3px;
     color: white !important;
     background-color: #FF5656;
 }
+
+@media (max-width: 768px) {
+    .userprofile-div{
+        width: 95%;
+    }
+
+    .userprofile-div .card-body{
+        width: 95%;
+    }
+    .userprofile-div .nav-link{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

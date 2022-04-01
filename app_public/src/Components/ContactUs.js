@@ -11,12 +11,12 @@ export default function ContactUs(props) {
     <>
       <div className="heroimage-div">
         <img src="../images/covers/contactus_main.jpg" alt="" />
-        <div class="centered">SCHEDULE</div>
+        <div class="centered">CONTACT US</div>
       </div>
 
       <div className="contactus-div">
-        <div className="contactus-form">
-          <Form>
+        <div className="contactus-form-div">
+          <Form className="contactus-form-form">
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control type="name" placeholder="Enter your Name" />

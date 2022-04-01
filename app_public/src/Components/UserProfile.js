@@ -3,15 +3,51 @@ import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function UserProfile(props) {
+
+    console.log("in userprofile function");
+
+    const api = 'http://localhost:5000/api/userprofile';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDM3MTdhOTg3YjMzYzE5YzNlOGJjYiIsImlhdCI6MTY0ODc3MDg4OX0.vz3u4R1zl2qccBT_5RxMpclsOkSW28-bkC11Gbp8Hcg';
+
+    console.log("$tokon= "+ `${token}`);
+    axios.get(api, { headers: { "Authorization": `Bearer ${token}`} })
+        .then(res => {
+
+            console.log(res.data);
+
+        }).catch(err => alert(err.response.data.Message));
+
+
+        // const instance = axios.create({
+        //     baseURL: 'http://localhost:5000/api/userprofile',
+        //     headers: {'Authorization': 'Bearer '+token}
+        //   });
+          
+        //   instance.get('/path')
+        //   .then(response => {
+        //       return response.data;
+        //   })
+
+    //     const api = 'your api';
+    //     const token = JSON.parse(sessionStorage.getItem('data'));
+    //     const token = user.data.id; /*take only token and save in token variable*/
+    //     axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
+    //         .then(res => {
+    //             console.log(res.data);
+    // .catch ((error) => {
+    //                 console.log(error)
+    //             });
+
     return (
         <>
-            <p className="userprofile-heading">User Profile</p>
+            {/* <p className="userprofile-heading">User Profile</p>
 
             <div className="userprofile-div">
 
@@ -36,7 +72,7 @@ export default function UserProfile(props) {
                     </Card.Body>
                 </Card>
 
-            </div>
+            </div> */}
 
         </>
     );

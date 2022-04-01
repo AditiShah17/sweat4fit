@@ -1,3 +1,7 @@
+#root{
+    min-width: 375px;
+}
+
 .navbar-topbar{
     height: 1.9rem;
     background-color: #1E1E1E;
@@ -14,13 +18,13 @@
     width: 40%;
 }
 
-.navbar-topbar-social .links{
+.navbar-topbar .links{
     margin-left: 1rem;
     text-decoration: none;
     color: white;
 }
 
-.navbar-topbar-social .links:hover{
+.navbar-topbar .links:hover{
     color: #FF5656;
 }
 
@@ -78,4 +82,13 @@
 .search-btn:hover{
     background-color: #FF5656;
     color: black;
+}
+
+@media (max-width: 768px) {
+    .navbar-topbar-phone{
+        display: none;
+    }
+    .navbar-topbar-social{
+        width: 100%;
+    }
 }
