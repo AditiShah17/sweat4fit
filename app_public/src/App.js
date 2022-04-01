@@ -40,10 +40,12 @@ import "./css/edittraineravailability.css";
 
 
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 
 
 function App() {
+
   return (
     <>
       <Router>
@@ -52,9 +54,9 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/trainers">
+          <PrivateRoute path="/trainers" >
             <Trainers />
-          </Route>
+          </PrivateRoute>
           <Route path="/schedule">
             <Schedule />
           </Route>
