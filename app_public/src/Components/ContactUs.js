@@ -22,7 +22,7 @@ export default function ContactUs(props) {
 
       <div className="contactus-div">
         <div className="contactus-form">
-          <Form>
+          <Form onSubmit={popUp}>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control type="name" placeholder="Enter your Name" required/>
@@ -43,7 +43,7 @@ export default function ContactUs(props) {
               <Form.Control as= "textarea" rows={8} placeholder="Enter Message" required/>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={popUp}>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>

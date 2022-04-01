@@ -16,6 +16,9 @@ export default function Navbar(props) {
           <Link className="links" to="/register">
             Register
           </Link>
+          <Link className="links" to="/logout">
+            Logout
+          </Link>
           <a className="links" href="/login">
             <img src="../images/icons/fb.png" alt="" />
           </a>
@@ -63,11 +66,6 @@ export default function Navbar(props) {
               <li className="nav-item">
                 <Link className="nav-link" to="/schedule">
                   Schedule
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/checking">
-                  checking
                 </Link>
               </li>
               {/* <li className="nav-item dropdown">

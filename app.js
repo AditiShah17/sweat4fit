@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 require('./APP_API/models/db');
 
 // var indexRouter = require('./APP_SERVER/routes/index');
-var usersRouter = require('./APP_SERVER/routes/users');
+//var usersRouter = require('./APP_SERVER/routes/users');
 var apiRouter = require('./APP_API/routes/index');
 
 var app = express();
@@ -50,7 +50,7 @@ app.use(function (req, res, next) {
 
 
 // app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

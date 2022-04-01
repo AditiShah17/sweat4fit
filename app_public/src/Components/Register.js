@@ -52,7 +52,7 @@ const getDetails = (event)=>
     </div>
     <div className="form-group">
       <label htmlFor="mobileno">Mobile No:</label>
-      <input type="number" className="form-control" name="mobileno" pattern="[659][0-9]{10}" required/>
+      <input type="number" className="form-control" name="mobileno" required/>
     </div>
     <div className="form-group">
       <label htmlFor="password">Password(Minimun 8 characters):</label>
