@@ -1,10 +1,33 @@
 const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const trainerModel = mongoose.model('trainerModel');
+const mongoConfig = require('../models/db');
+const connect = mongoConfig.connect;
+
+let gfs;
+var filePath;
+
+const userId = function(id){
+    const userId = id;
+    filePath = "uploads/"+ userId;  
+    gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+        bucketName: filePath
+    });
+}
+
+
+// connect.once('open', () => {
+//     console.log(filePath);
+//     // initialize stream
+//     gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+//         bucketName: filePath
+//     });
+// });
+
 
 const trainerCreate = async function(req,res)
 {
-    userId = req.user;
+    const userId = req.user;
     if(!userId){
         res
         .status(404)
@@ -23,13 +46,6 @@ const trainerCreate = async function(req,res)
                 data: 'No document is selected.'
             });
         } else {
-            
-            // // send response
-            // res.send({
-            //     status: 200,
-            //     message: 'Documents are uploaded.',
-                
-            // });
 
             // converting string into an array. 
             var getskills = req.body.skills;
@@ -42,10 +58,7 @@ const trainerCreate = async function(req,res)
                         description:req.body.description,
                         skills:skills,
                         experience: req.body.experience,
-                        age:req.body.age,
-                        // Give document name in mongoos
-                        // document_file:req.body.document_file
-
+                        age:req.body.age
                     },(err,trainercreated)=>{
                         if (err) {
                             res
@@ -56,7 +69,8 @@ const trainerCreate = async function(req,res)
                         res
                             .status(200)
                             .json({
-                                tranier: trainercreated
+                                tranier: trainercreated,
+                                message: 'Documents are uploaded.'
                             });
                         }
                 });
@@ -68,72 +82,99 @@ const trainerCreate = async function(req,res)
 
 const trainersReadAll = function(req,res){
 
-
-    trainerModel
+    const userId = req.user;
+    if(!userId){
+        res
+        .status(404)
+        .json({
+            "message" : "Please login again!!"
+        });
+        return;
+    }
+    else
+    {
+        trainerModel
         .find()
-    .exec((err,allTrainers)=>{
-        if(!allTrainers)
+        .populate({'path':'user_id'})
+        .exec((err,allTrainers)=>{
+            
+            if(!allTrainers)
+            {
+                res
+                    .status(500)
+                    .json({"message":"No trainers found."});
+                    return;
+            }
+            else
+            {
+                
+                  res
+                  .status(200)
+                  .json(allTrainers)
+            }
+        });
+        
+    }
+
+};
+const trainersReadOne = function(req,res){
+    userId(req.user);
+    console.log(filePath);
+
+    gfs.find().toArray((err, files) => {
+        if (!files || files.length === 0) {
+            return res.status(200).json({
+                success: false,
+                message: 'No files available'
+            });
+        }
+        files.map(file => {
+            if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
+                file.isFile = true;
+            } else {
+                file.isFile = false;
+            }
+        });       
+        if(req.params.trainerid)
         {
-            res
-                .status(500)
-                .json({"message":"No trainers found."});
-                return;
+            trainerModel
+            .findById(req.params.trainerid)
+            //.select('decription skill')  if you want to show specific fields
+            .exec((err,trainer)=>{     //trainer ---- The data which we are fetching from database. it is an object
+                if(!trainer)
+                {
+                    res
+                        .status(404)
+                        .json({"message":"trainer id is not found."});
+                    return;
+                }
+                else if(err)
+                {
+                    res
+                        .status(404)
+                        .json(err)
+                    return;
+                }
+                else
+                {
+                    res
+                    .status(200)
+                    .json({trainer, files}) 
+                }
+            
+            });
         }
         else
         {
             res
-            .status(200)
-            .json(allTrainers)
+                .status(404)
+                .json({
+                    "message":"No trainer id in request."
+                })
         }
-        
 
     });
-
-
 };
-const trainersReadOne = function(req,res){
-    if(req.params.trainerid)
-    {
-        trainerModel
-        .findById(req.params.trainerid)
-        //.select('decription skill')  if you want to show specific fields
-        .exec((err,trainer)=>{     //trainer ---- The data which we are fetching from database. it is an object
-            if(!trainer)
-            {
-                res
-                    .status(404)
-                    .json({"message":"trainer id is not found."});
-                return;
-            }
-            else if(err)
-            {
-                res
-                    .status(404)
-                    .json(err)
-                return;
-            }
-            else
-            {
-                res
-                .status(200)
-                .json(trainer) 
-            }
-          
-        });
-    }
-    else
-    {
-        res
-            .status(404)
-            .json({
-                "message":"No trainer id in request."
-            })
-    }
-
-  
-};
-
-
 
 
 const trainersUpdateOne = function(req,res){
@@ -271,6 +312,7 @@ const approveTrainerProfile = function(req,res){
 
 module.exports=
 {
+    // userId,
     trainerCreate,
     trainersReadAll,
     trainersReadOne,

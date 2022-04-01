@@ -45,6 +45,11 @@ process.on('SIGTERM',()=>{
         process.exit(0);
     });
 });
+module.exports = {
+    mongoURI: dbURI,
+    connect: mongoose.createConnection(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+};
+
 require('./trainers');
 require('./user'); 
 require('./traineravailability');

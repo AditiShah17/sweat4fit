@@ -2,23 +2,24 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
     // profile image
+    profileImage: {type: String},
     firstname : {
         type: String,
-        required: [true, 'Please Enter Your Firstname']
+        // required: [true, 'Please Enter Your Firstname']
     },
     lastname : {
         type: String,
-        required: [true, 'Please Enter Your Lastname']
+        // required: [true, 'Please Enter Your Lastname']
     },
     email : {
         type: String,
-        required: [true, 'Please Enter Your Email'],
+        // required: [true, 'Please Enter Your Email'],
         unique: [true, 'Email is already exists'],
     },
     gender : {
         type: String,
         enum: ['Male', 'Female', 'Others'],
-        required: [true, 'Please select gender']
+        // required: [true, 'Please select gender']
     },
     mobile_no : {
         type: String,
@@ -32,16 +33,11 @@ var userSchema = new mongoose.Schema({
     },
     password : {
         type: String,
-        require: true
+        // require: true
     },
     role_id : {
         type: Number
-     }
-    // active_user : {
-    //     type: Number,
-    //     enum: [0, 1],
-    //     default: 0
-    // }
+    }
 },
 { timestamps: true });
 

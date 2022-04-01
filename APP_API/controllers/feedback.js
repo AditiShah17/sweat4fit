@@ -3,7 +3,7 @@ const userFeedbacks = mongoose.model("Feedbacks");
 
 //Add trainer availability
 const feedbackCreate = function (req, res) {
-  userId = req.user;
+  const userId = req.user;
   userFeedbacks.create(
     {
       trainer_id: req.body.trainer_id,
