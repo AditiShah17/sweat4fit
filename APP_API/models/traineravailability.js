@@ -10,7 +10,7 @@ const trainerAvailabilitySchema = new mongoose.Schema({
         type: Number
     },
     start_time : {
-        type: Date,
+        type: String,
         required: true
         // default: Date.now
     },

@@ -22,8 +22,8 @@ export default function UserProfile(props) {
 
     console.log("in userprofile function");
 
-    const api = 'http://localhost:5000/api/userprofile';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDhhZGJmYzUzMThiNzg0Njg3ODA1MiIsImlhdCI6MTY0ODkzMzQwNn0.SMU4MxTmNTRcHDlLu-wUwb_Dacg04Y2uLjR1rrbsDUc';
+    const api = '/api/userprofile';
+    const token = sessionStorage.getItem('userData');
 
     console.log("$tokon= " + `${token}`);
 

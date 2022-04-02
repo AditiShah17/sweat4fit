@@ -13,7 +13,7 @@ export default function EditProfile(props) {
 
 
     const api = 'http://localhost:5000/api/userprofile';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDYyMmZiZTZmNGM0NmI2OGYyNDI5NiIsImlhdCI6MTY0ODc3MjYzNH0.i3CMcz91vudQSuGNYY5khpw_4Tohc4GXmylFlfIr2Ac';
+    const token = sessionStorage.getItem('userData');
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -39,9 +39,6 @@ export default function EditProfile(props) {
             });
         // this.setState({firstname: fname, lastname: lname, gender: gender, mobile_no: mobile});
     }, [])
-
-
-
 
 
     const updateClicked = (event) => {
