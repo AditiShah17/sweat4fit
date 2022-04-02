@@ -122,12 +122,12 @@ const userProfile = async function(req, res){
         
     gfs.find().toArray((err, files) => {
         console.log(files);
-        if (!files || files.length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: 'Please Upload Image profile'
-            });
-        }
+        // if (!files || files.length === 0) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Please Upload Image profile'
+        //     });
+        // }
         files.map(file => {
             if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
                 file.isFile = true;
@@ -185,13 +185,13 @@ const userProfileUpdate = function(req, res){
                 .json(err);
                 return;
             }else{
-                const profile_image = req.file;
-                if (!profile_image) {
-                    res.status(400).send({
-                        status: false,
-                        data: 'No profile image is selected.'
-                    });
-                } else {
+                // const profile_image = req.file;
+                // if (!profile_image) {
+                //     res.status(400).send({
+                //         status: false,
+                //         data: 'No profile image is selected.'
+                //     });
+                // } else {
                 
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
@@ -213,7 +213,7 @@ const userProfileUpdate = function(req, res){
                         }
                 });
                 }
-            }
+            // }
         })
     }
 };

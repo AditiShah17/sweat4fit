@@ -9,25 +9,34 @@ const trainerAvailabilityCreate = function (req, res) {
   trainerModel
       .find({user_id : userId})
       .exec((err,Trainer)=>{    
-      
-      const trainer_id = Trainer[0]._id.toString();
 
-      trainerAvailibility.create(
-          {
-            trainer_id: trainer_id,
-            day_id: req.body.day_id,
-            start_time: req.body.start_time,
-            end_time: req.body.end_time,
-          },
-          (err, data) => {
-            console.log("data= " + data);
-            if (err) {
-              res.status(400).json(err);
-            } else {
-              res.status(200).json(data);
+        console.log(!Trainer[0]);
+
+      if(Trainer[0]){
+        const trainer_id = Trainer[0]._id.toString();
+      
+        trainerAvailibility.create(
+            {
+              trainer_id: trainer_id,
+              day_id: req.body.day_id,
+              start_time: req.body.start_time,
+              end_time: req.body.end_time,
+            },
+            (err, data) => {
+              console.log("data= " + data);
+              if (err) {
+                res.status(400).json(err);
+              } else {
+                res.status(200).json(data);
+              }
             }
-          }
-        );
+          );
+      }else{
+        res.status(400).json({
+          Message: "Please create your trainer profile"
+        });
+      }
+     
   }); 
 
 };

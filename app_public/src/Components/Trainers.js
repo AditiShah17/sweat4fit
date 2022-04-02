@@ -1,28 +1,49 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import { Link,  useHistory } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function Trainers(props) {
 
+  let history = useHistory();
 
-  const[text,settext]=useState("Inderpreet");
-  useEffect(()=>
-    {
-      console.log("%%%%%%%%%%%%%");
-        axios.get('/api/trainers').then(function(response)
-             {
-                console.log("########",response.data);
-                console.log("checking");
-                settext(response.data[0].description);
+  const [alldata, setData] = useState([]);
 
-            })
+  const api = 'http://localhost:5000/api/trainers/';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDYyMmZiZTZmNGM0NmI2OGYyNDI5NiIsImlhdCI6MTY0ODc2NDk4MH0.J9OfvR43I0Iq4vESN39zGtqrvkr5oLFe6W59lOhd4oE';
+
+  console.log("$tokon= " + `${token}`);
+
+
+  React.useEffect(() => {
+
+    axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
+      .then(res => {
+
+        console.log("data=", res.data);
+
+        setData(res.data);
+
+      }).catch((error) => {
+        console.log(error)
+      });
+
+  }, [])
+
+  console.log("alldata=", alldata);
+
+  function trainerDescriptionFn(trainerid) {
+    console.log("Trainer id=", trainerid);
+
+    history.push({
+      pathname: '/trainerdetails',
+      id: trainerid
     });
 
-
-
+  }
 
 
   return (
@@ -34,110 +55,20 @@ export default function Trainers(props) {
 
       <div className="trainers-div">
 
-        
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>{text}</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+        {alldata.map(data => (
+          <div className="trainer-item" onClick={() => trainerDescriptionFn(data._id)}>
+            <Card style={{ width: "15rem" }}>
+              <Card.Img variant="top" src="../images/trainers/1.jpg" />
+              <Card.Body>
+                <Card.Title>{data.user_id.email}</Card.Title>
+                <Card.Text>
+                  {data.description}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
 
-        {/* <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <div className="trainer-item">
-          <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="../images/trainers/1.jpg" />
-            <Card.Body>
-              <Card.Title>Trainer Name</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the Trainer Name and make up
-                the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div> */}
       </div>
     </>
   );

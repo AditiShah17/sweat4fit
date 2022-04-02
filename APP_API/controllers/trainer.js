@@ -139,6 +139,7 @@ const trainersReadOne = function(req,res){
         {
             trainerModel
             .findById(req.params.trainerid)
+            .populate({'path':'user_id'})
             //.select('decription skill')  if you want to show specific fields
             .exec((err,trainer)=>{     //trainer ---- The data which we are fetching from database. it is an object
                 if(!trainer)

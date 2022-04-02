@@ -15,7 +15,6 @@ import ScrollToTop from "./Components/ScrollToTop";
 import UserProfile from "./Components/UserProfile";
 import EditProfile from "./Components/EditProfile";
 import ResetPassword from "./Components/ResetPassword";
-import TrainerProfile from "./Components/TrainerProfile";
 import AddTrainerDocuments from "./Components/AddTrainerDocuments";
 import EditTrainerAvailability from "./Components/EditTrainerAvailability";
 import TrainerDetails from "./Components/TrainerDetails";
@@ -36,7 +35,6 @@ import "./css/forgotpassword.css";
 import "./css/userprofile.css";
 import "./css/editprofile.css";
 import "./css/resetpassword.css";
-import "./css/trainerprofile.css";
 import "./css/addtrainerdocuments.css";
 import "./css/edittraineravailability.css";
 import "./css/trainerdetails.css";
@@ -87,9 +85,6 @@ function App() {
           </Route>
           <Route path="/resetpassword">
             <ResetPassword />
-          </Route>
-          <Route path="/trainerprofile">
-            <TrainerProfile />
           </Route>
           <Route path="/addtrainerdocuments">
             <AddTrainerDocuments />
