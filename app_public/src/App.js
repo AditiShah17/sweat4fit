@@ -19,8 +19,9 @@ import AddTrainerDocuments from "./Components/AddTrainerDocuments";
 import EditTrainerAvailability from "./Components/EditTrainerAvailability";
 import TrainerDetails from "./Components/TrainerDetails";
 
-import Checking from "./Components/Checking";
+
 import Register from "./Components/Register";
+import Logout from "./Components/Logout";
 
 import "./css/navbar.css";
 import "./css/footer.css";
@@ -42,10 +43,12 @@ import "./css/trainerdetails.css";
 
 
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./PrivateRouteTrainer";
+import PrivateRouteSchedule from "./PrivateRouteSchedule";
 
 function App() {
+
   return (
     <>
       <Router>
@@ -55,23 +58,23 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/trainers">
+          <PrivateRoute path="/trainers" >
             <Trainers />
-          </Route>
-          <Route path="/schedule">
+          </PrivateRoute>
+          <PrivateRouteSchedule path="/schedule">
             <Schedule />
-          </Route>
+          </PrivateRouteSchedule>
           <Route path="/contactus">
             <ContactUs />
-          </Route>
-          <Route path="/checking">
-            <Checking />
           </Route>
           <Route path="/register">
             <Register/>
             </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/logout">
+            <Logout />
           </Route>
           <Route path="/forgotpassword">
             <ForgotPassword />

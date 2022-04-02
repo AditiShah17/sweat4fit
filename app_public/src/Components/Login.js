@@ -6,12 +6,15 @@ import axios from "axios";
 
 
 
+
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 
 export default function Login(props) {
+
+   
 
     let history = useHistory();
     const loginSuccess = (event) => {
@@ -25,15 +28,16 @@ export default function Login(props) {
                 email,
                 password
             }).then(res => {
-                
-               history.push('/home');
-                console.log(res.data);
+                if(res.data.token)
+                {
+                    alert("You have successfully login");
+                    history.push('/home');
+                    let responseJson = res.data.token;
+                    sessionStorage.setItem('userData',responseJson);
+                }
 
-            }).catch(err => alert(err.response.data.Message));
+            }).catch(err =>history.push('/login'))
     }
-
-
-    //console.log("#########",res.data.Message)
     return (
         <>
             <div className="login-div">

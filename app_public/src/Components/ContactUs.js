@@ -7,6 +7,12 @@ import { Button } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function ContactUs(props) {
+
+  const popUp = (event)=>
+  {
+    
+    alert("your query has been submitted");
+  }
   return (
     <>
       <div className="heroimage-div">
@@ -15,26 +21,26 @@ export default function ContactUs(props) {
       </div>
 
       <div className="contactus-div">
-        <div className="contactus-form-div">
-          <Form className="contactus-form-form">
+        <div className="contactus-form">
+          <Form onSubmit={popUp}>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="name" placeholder="Enter your Name" />
+              <Form.Control type="name" placeholder="Enter your Name" required/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter Email" />
+              <Form.Control type="email" placeholder="Enter Email" required/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicSubject">
               <Form.Label>Subject</Form.Label>
-              <Form.Control type="Subject" placeholder="Enter Subject" />
+              <Form.Control type="Subject" placeholder="Enter Subject" required/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicMessage">
               <Form.Label>Message</Form.Label>
-              <Form.Control type="message" placeholder="Enter Message" />
+              <Form.Control as= "textarea" rows={8} placeholder="Enter Message" required/>
             </Form.Group>
 
             <Button variant="primary" type="submit">
