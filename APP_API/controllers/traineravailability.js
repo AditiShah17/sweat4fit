@@ -3,16 +3,19 @@ const trainerAvailibility = mongoose.model("Traineravailability");
 const trainerModel = mongoose.model('trainerModel');
 
 //Add trainer availability
-const trainerAvailabilityCreate = function (req, res) {
+const trainerAvailabilityCreate =  function (req, res) {
   const userId = req.user;
 
-  trainerModel
+console.log(req.body);
+
+   trainerModel
       .find({user_id : userId})
       .exec((err,Trainer)=>{    
       
       const trainer_id = Trainer[0]._id.toString();
 
-      trainerAvailibility.create(
+
+       trainerAvailibility.create(
           {
             trainer_id: trainer_id,
             day_id: req.body.day_id,
@@ -34,25 +37,38 @@ const trainerAvailabilityCreate = function (req, res) {
 
 //Get trainer Availability
 const trainerAvailabilityDetail = function (req, res) {
-  if (!req.params.trainerid) {
+  const userId = req.user;
+  if (!userId) {
     res.status(404).json({
       message: "Not found, id is required",
     });
     return;
-  }
-  trainerAvailibility.find({trainer_id : req.params.trainerid})
-  .exec((err, data) => {
-    if (!data) {
-      res.status(404).json({
-        message: "Trainer not found",
+  }else{
+    trainerModel
+      .find({user_id : userId})
+      .exec((err,Trainer)=>{    
+      
+      const trainer_id = Trainer[0]._id.toString();
+
+
+      trainerAvailibility
+      .find({trainer_id : trainer_id})
+      .populate('day_id')
+      .exec((err, data) => {
+        if (!data) {
+          res.status(404).json({
+            message: "Trainer not found",
+          });
+          return;
+        } else if (err) {
+          res.status(400).json(err);
+          return;
+        }
+        res.status(200).json(data);
       });
-      return;
-    } else if (err) {
-      res.status(400).json(err);
-      return;
-    }
-    res.status(200).json(data);
-  });
+    });
+  }
+  
 };
 
 //Update trainer Availibity

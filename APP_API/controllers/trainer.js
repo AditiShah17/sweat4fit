@@ -119,16 +119,11 @@ const trainersReadAll = function(req,res){
 };
 const trainersReadOne = function(req,res){
     userId(req.user);
-    console.log(filePath);
-
+    
     gfs.find().toArray((err, files) => {
-        if (!files || files.length === 0) {
-            return res.status(200).json({
-                success: false,
-                message: 'No files available'
-            });
-        }
+    
         files.map(file => {
+            console.log(file);
             if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
                 file.isFile = true;
             } else {
@@ -139,6 +134,7 @@ const trainersReadOne = function(req,res){
         {
             trainerModel
             .findById(req.params.trainerid)
+            .populate({'path':'user_id'})
             //.select('decription skill')  if you want to show specific fields
             .exec((err,trainer)=>{     //trainer ---- The data which we are fetching from database. it is an object
                 if(!trainer)
