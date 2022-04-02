@@ -119,16 +119,11 @@ const trainersReadAll = function(req,res){
 };
 const trainersReadOne = function(req,res){
     userId(req.user);
-    console.log(filePath);
-
+    
     gfs.find().toArray((err, files) => {
-        if (!files || files.length === 0) {
-            return res.status(200).json({
-                success: false,
-                message: 'No files available'
-            });
-        }
+    
         files.map(file => {
+            console.log(file);
             if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
                 file.isFile = true;
             } else {

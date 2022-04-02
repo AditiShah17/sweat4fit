@@ -100,10 +100,10 @@ router
 //Availability Routes and Controller
 var ctrlTrainerAvailability = require('../controllers/traineravailability');
 
-router.post('/addtraineravailability',authUser, ctrlTrainerAvailability.trainerAvailabilityCreate); //creating trainer availability
-router.get('/gettraineravailability/:trainerid',authUser, ctrlTrainerAvailability.trainerAvailabilityDetail);  //getting a list trainer availability
-router.put('/updatetraineravailability/:availableid', authUser, ctrlTrainerAvailability.trainerAvailabilityUpdate); // update trainer availability
-router.delete('/deletetraineravailability/:availableid',authUser, ctrlTrainerAvailability.trainerAvailabilityDelete); // delete feedback
+router.route('/addtraineravailability').post(authUser, ctrlTrainerAvailability.trainerAvailabilityCreate); //creating trainer availability
+router.route('/gettraineravailability').get(authUser, ctrlTrainerAvailability.trainerAvailabilityDetail);  //getting a list trainer availability
+router.route('/updatetraineravailability/:availableid').put(authUser, ctrlTrainerAvailability.trainerAvailabilityUpdate); // update trainer availability
+router.route('/deletetraineravailability/:availableid').delete(authUser, ctrlTrainerAvailability.trainerAvailabilityDelete); // delete feedback
 
 //Feedback Routes and Controller
 var ctrlFeedback = require('../controllers/feedback');
