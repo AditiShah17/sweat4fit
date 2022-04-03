@@ -18,6 +18,8 @@ import {
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function Schedule(props) {
+ 
+
   return (
     <>
       <div className="heroimage-div">
@@ -31,25 +33,25 @@ export default function Schedule(props) {
             <Col className="schedule-days-nav">
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="monday">MONDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f6f">MONDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="tuesday">TUESDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f70">TUESDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="wednesday">WEDNESDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f71">WEDNESDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="thursday">THURSDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f72">THURSDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="friday">FRIDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f73">FRIDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="saturday">SATURDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f74">SATURDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="sunday">SUNDAY</Nav.Link>
+                  <Nav.Link eventKey="6248d908713b62f7cd3b1f75">SUNDAY</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>

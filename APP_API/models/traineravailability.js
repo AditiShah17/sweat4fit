@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 const trainerAvailabilitySchema = new mongoose.Schema({
     trainer_id : { 
         type: Schema.Types.ObjectId, 
-        ref:'User' 
+        ref:'trainerModel' 
     },
     day_id : {
         type: Schema.Types.ObjectId, 
