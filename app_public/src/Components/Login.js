@@ -14,8 +14,6 @@ import axios from "axios";
 
 export default function Login(props) {
 
-   
-
     let history = useHistory();
     const loginSuccess = (event) => {
         event.preventDefault();
@@ -23,7 +21,7 @@ export default function Login(props) {
         const password = event.target.password.value;
 
 
-        axios.post("http://localhost:5000/api/login",
+        axios.post("/api/login",
             {
                 email,
                 password
@@ -34,17 +32,14 @@ export default function Login(props) {
                     history.push('/home');
                     let responseJson = res.data.token;
                     sessionStorage.setItem('userData',responseJson);
+
+                    window.location.reload();
                 }
 
             }).catch(err =>history.push('/login'))
     }
     return (
         <>
-            <div className="heroimage-div">
-                <img src="../images/covers/contactus_main.jpg" alt="" />
-                <div className="centered">Login</div>
-            </div>
-
             <div className="login-div">
                 <div className="login-form">
                     <Form onSubmit={loginSuccess}>

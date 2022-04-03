@@ -52,7 +52,7 @@ height: 3px;
     color: black !important;
     background-color: white;
     border: 5px solid #FF5656;
-    width: 10rem;
+    width: 11rem;
     margin: 1rem;
     border-radius: 5px;
 }
@@ -60,4 +60,18 @@ height: 3px;
 .userprofile-div .nav-link:hover{
     color: white !important;
     background-color: #FF5656;
+}
+
+@media (max-width: 768px) {
+    .userprofile-div{
+        width: 95%;
+    }
+
+    .userprofile-div .card-body{
+        width: 95%;
+    }
+    .userprofile-div .nav-link{
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

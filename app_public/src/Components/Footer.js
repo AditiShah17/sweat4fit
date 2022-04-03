@@ -17,10 +17,7 @@ export default function Footer() {
                 </Link>
               </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exerc esse cillum dolore
-                Lorem ipsum dolor sit amet.
+                At Seat4fit, we believe in coaching that delivers holistic fitness—for the body, mind, and beyond. Whether you’re looking for a straightforward diet and exercise plan to fulfill your fitness goals or want to have fun and achieve mental wellness while getting fit, Sweat4fit is for you!
               </p>
             </div>
 
@@ -31,24 +28,29 @@ export default function Footer() {
 
               <ul className="list-unstyled">
                 <li>
-                <Link className="nav-link" aria-current="page" to="/about">
-                  About
-                </Link>
+                  <Link className="nav-link" aria-current="page" to="/">
+                    Home
+                  </Link>
                 </li>
                 <li>
-                <Link className="nav-link" aria-current="page" to="/trainers">
-                  Trainers
-                </Link>
+                  <Link className="nav-link" aria-current="page" to="/about">
+                    About
+                  </Link>
                 </li>
                 <li>
-                <Link className="nav-link" aria-current="page" to="/schedule">
-                  Schedule
-                </Link>
+                  <Link className="nav-link" aria-current="page" to="/trainers">
+                    Trainers
+                  </Link>
                 </li>
                 <li>
-                <Link className="nav-link" aria-current="page" to="/contactus">
-                  Contact Us
-                </Link>
+                  <Link className="nav-link" aria-current="page" to="/schedule">
+                    Schedule
+                  </Link>
+                </li>
+                <li>
+                  <Link className="nav-link" aria-current="page" to="/contactus">
+                    Contact Us
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -71,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-copyright text-center py-3">          
+        <div className="footer-copyright text-center py-3">
           <p>© 2022 Copyright: <a href="/">Sweat4Fit</a> ADITI SHAH | JIGAR DONDA | INDERPREET SINGH</p>
         </div>
       </footer>

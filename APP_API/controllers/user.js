@@ -103,9 +103,9 @@ const userRegister = async function(req, res){
 
 const userProfile = async function(req, res){
 
-    userId(req.user);
-    console.log(filePath);
-
+    // userId(req.user);
+    // console.log(filePath);
+    const baseUrl = "http://localhost:5000/api/userprofile/";
 
     const userid = req.user;
     console.log(userid);
@@ -120,21 +120,16 @@ const userProfile = async function(req, res){
     else
     {
         
-    gfs.find().toArray((err, files) => {
-        console.log(files);
-        if (!files || files.length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: 'Please Upload Image profile'
-            });
-        }
-        files.map(file => {
-            if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
-                file.isFile = true;
-            } else {
-                file.isFile = false;
-            }
-        });  
+    // gfs.find().toArray((err, files) => {
+    //     console.log(files);
+        
+    //     files.map(file => {
+    //         if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
+    //             file.isFile = true;
+    //         } else {
+    //             file.isFile = false;
+    //         }
+    //     });  
    
         const user = User.findById(userid)
         .select("-password")
@@ -145,14 +140,22 @@ const userProfile = async function(req, res){
                 .json(err);
                 return;
             } else {
+                // const image_filename = files[0].filename;
+                // const content_type = files[0].contentType;
                 res
                 .status(200)
-                .json({userdata,files});
+                .json({
+                   user: userdata
+                    // image: {
+                    //     data: baseUrl + image_filename,
+                    //     contentType: 'image/png'
+                    });
             }
         });
-    }); 
+    // }); 
     
     }
+      
 }
 
 const userProfileUpdate = function(req, res){
@@ -185,12 +188,6 @@ const userProfileUpdate = function(req, res){
                 return;
             }else{
                 const profile_image = req.file;
-                if (!profile_image) {
-                    res.status(400).send({
-                        status: false,
-                        data: 'No profile image is selected.'
-                    });
-                } else {
                 
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
@@ -211,7 +208,7 @@ const userProfileUpdate = function(req, res){
                             });
                         }
                 });
-                }
+                
             }
         })
     }

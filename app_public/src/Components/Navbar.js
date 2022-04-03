@@ -1,24 +1,60 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 export default function Navbar(props) {
+
+
+  let isauth = false;
+
+  if (sessionStorage.getItem('userData')) {
+    isauth = true;
+    // return (<Route {...rest} render={()=>isauth?(children):(<Redirect to={'/trainers'}/>)}/>);
+
+  }
+
+  console.log("is auth=", isauth);
+
+  const history = useHistory();
+
+  function reload() {
+
+  }
+
   return (
     <>
       <div className="navbar-topbar">
-        <div className="navbar-topbar-phone">(613)123-654 | sweat4fit@gmail.com</div>
+        <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">123-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
         <div className="navbar-topbar-social">
-          <Link className="links" to="/userprofile">
-            My Account
-          </Link>
-          <Link className="links" to="/login">
-            Login
-          </Link>
-          <Link className="links" to="/register">
-            Register
-          </Link>
-          <Link className="links" to="/logout">
-            Logout
-          </Link>
+
+
+
+          {isauth == true ? (
+            <>
+              <Link className="links" to="/userprofile">
+                My Account
+              </Link>
+              <Link onClick={reload} className="links" to="/logout">
+                Logout
+              </Link>
+            </>
+            
+          ) : (
+
+            <>
+              <Link className="links" to="/login">
+                Login
+              </Link>
+              <Link className="links" to="/register">
+                Register
+              </Link>
+            </>
+          )}
+
+
+
+
+
           <a className="links" href="/login">
             <img src="../images/icons/fb.png" alt="" />
           </a>
@@ -85,7 +121,7 @@ export default function Navbar(props) {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex">
+            {/* <form className="d-flex">
               <input
                 className="form-control me-2"
                 type="search"
@@ -95,7 +131,7 @@ export default function Navbar(props) {
               <button className="search-btn" type="submit">
                 Search
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </nav>

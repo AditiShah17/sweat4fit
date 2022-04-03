@@ -47,3 +47,11 @@
     font-weight: bold;
 }
 
+@media (max-width: 768px) {
+    .footer-links-div{
+        text-align: center;
+    }
+    .footer-social-div{
+        text-align: center;
+    }
+}

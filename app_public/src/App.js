@@ -10,13 +10,14 @@ import Schedule from "./Components/Schedule";
 import ContactUs from "./Components/ContactUs";
 import Login from "./Components/Login";
 import ForgotPassword from "./Components/ForgotPassword";
+import ScrollToTop from "./Components/ScrollToTop";
 
 import UserProfile from "./Components/UserProfile";
 import EditProfile from "./Components/EditProfile";
 import ResetPassword from "./Components/ResetPassword";
-import TrainerProfile from "./Components/TrainerProfile";
 import AddTrainerDocuments from "./Components/AddTrainerDocuments";
 import EditTrainerAvailability from "./Components/EditTrainerAvailability";
+import TrainerDetails from "./Components/TrainerDetails";
 
 
 import Register from "./Components/Register";
@@ -35,9 +36,10 @@ import "./css/forgotpassword.css";
 import "./css/userprofile.css";
 import "./css/editprofile.css";
 import "./css/resetpassword.css";
-import "./css/trainerprofile.css";
 import "./css/addtrainerdocuments.css";
 import "./css/edittraineravailability.css";
+import "./css/trainerdetails.css";
+
 
 
 
@@ -50,6 +52,7 @@ function App() {
   return (
     <>
       <Router>
+      <ScrollToTop />
         <Navbar />
         <Switch>
           <Route path="/about">
@@ -86,14 +89,14 @@ function App() {
           <Route path="/resetpassword">
             <ResetPassword />
           </Route>
-          <Route path="/trainerprofile">
-            <TrainerProfile />
-          </Route>
           <Route path="/addtrainerdocuments">
             <AddTrainerDocuments />
           </Route>
           <Route path="/edittraineravailability">
             <EditTrainerAvailability />
+          </Route>
+          <Route path="/trainerdetails">
+            <TrainerDetails />
           </Route>
           <Route path="/">
             <Home />

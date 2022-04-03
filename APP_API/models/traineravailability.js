@@ -4,19 +4,20 @@ var Schema = mongoose.Schema;
 const trainerAvailabilitySchema = new mongoose.Schema({
     trainer_id : { 
         type: Schema.Types.ObjectId, 
-        ref:'trainerModel' 
+        ref:'User' 
     },
     day_id : {
-        type: Number
+        type: Schema.Types.ObjectId, 
+        ref:'Days'
     },
     start_time : {
-        type: Date,
-        required: true
+        type: String,
+        // required: true
         // default: Date.now
     },
     end_time : {
         type: String,
-        required: true
+        // required: true
         // default: Date.now
     }
 });

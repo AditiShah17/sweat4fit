@@ -1,10 +1,10 @@
 var createError = require('http-errors');
+const bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const bodyParser = require('body-parser');
 // DB connection 
 require('./APP_API/models/db');
 
@@ -13,6 +13,10 @@ require('./APP_API/models/db');
 var apiRouter = require('./APP_API/routes/index');
 
 var app = express();
+
+
+// var cors = require('cors');
+// app.use(cors);
 
 // view engine setup
 app.set('views', path.join(__dirname,'APP_SERVER','views'));

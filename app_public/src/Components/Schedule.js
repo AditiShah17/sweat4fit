@@ -28,7 +28,7 @@ export default function Schedule(props) {
       <div className="schedule-div">
         <Tab.Container id="left-tabs-example" defaultActiveKey="monday">
           <Row>
-            <Col sm={3}>
+            <Col className="schedule-days-nav">
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="monday">MONDAY</Nav.Link>

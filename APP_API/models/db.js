@@ -54,3 +54,4 @@ require('./trainers');
 require('./user'); 
 require('./traineravailability');
 require('./feedback');
+require('./day');

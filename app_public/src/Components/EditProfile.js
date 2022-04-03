@@ -1,14 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
-export default function UserProfile(props) {
+export default function EditProfile(props) {
+
+
+    const api = 'http://localhost:5000/api/userprofile';
+    const token = sessionStorage.getItem('userData');
+
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [gender, setGender] = useState("");
+    const [mobile, setMobile] = useState("");
+
+    console.log(gender);
+
+    React.useEffect(() => {
+        axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
+            .then(res => {
+
+                console.log("data=", res.data);
+
+                // setImage(res.data.files[0].filename);
+                setFname(res.data.user.firstname);
+                setLname(res.data.user.lastname);
+                setGender(res.data.user.gender);
+                setMobile(res.data.user.mobile_no);
+
+            }).catch((error) => {
+                console.log(error)
+            });
+        // this.setState({firstname: fname, lastname: lname, gender: gender, mobile_no: mobile});
+    }, [])
+
+
+    const updateClicked = (event) => {
+
+        var body = {
+            firstname: event.target.fname.value,
+            lastname: event.target.lname.value,
+            gender: event.target.gender.value,
+            mobile_no: event.target.phone.value
+        }
+
+        console.log("login form data= ", body);
+
+        event.preventDefault();
+
+        axios({
+            method: 'post',
+            url: api,
+            data: body,
+            headers: { "Authorization": `Bearer ${token}` }
+        }).then(res => {
+
+            console.log("data=", res.data);
+
+        }).catch((err) => {
+            console.log("in catch");
+            console.log(err)
+        });
+    }
     return (
         <>
             <p className="editprofile-heading">Edit Profile</p>
@@ -18,26 +77,26 @@ export default function UserProfile(props) {
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Text>
-                            <form>
-                                <Form.Group controlId="formFileLg" className="mb-3">
+                            <form onSubmit={updateClicked}>
+                                {/* <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Profile Photo : - </Form.Label>
-                                    <Form.Control type="file" size="lg" accept="image/*" required />
-                                </Form.Group>
+                                    <Form.Control type="file" size="lg" name="imageselect" accept="image/*" required />
+                                </Form.Group> */}
 
-                                <p>First Name : - <span><input type="Text" id="text" name="text" placeholder="Enter First Name" required/></span></p>
-                                <p>Last Name : - <span><input type="Text" id="text" name="text" placeholder="Enter Last Name" required/></span></p>
+                                <p>First Name : - <span><input type="Text" id="text" name="fname" placeholder="Enter First Name" defaultValue={fname} required /></span></p>
+                                <p>Last Name : - <span><input type="Text" id="text" name="lname" placeholder="Enter Last Name" required defaultValue={lname} /></span></p>
 
                                 {/* <p>Email : - <span><input type="email" id="email" name="email" placeholder="Enter Email" /></span></p> */}
                                 <p>Gender : -
                                     <span>
-                                        <input type="radio" id="male" name="gender" value="MALE" checked />
+                                        <input type="radio" id="male" name="gender" value="Male" required/>
                                         <label for="male">Male</label>
-                                        <input type="radio" id="female" name="gender" value="FEMALE" />
+                                        <input type="radio" id="female" name="gender" value="Female" />
                                         <label for="female">Female</label>
                                     </span></p>
                                 <p>Mobile number : -
                                     <span>
-                                        <input type="tel" id="phone" name="phone" placeholder="1234567890" pattern="[0-9]{10}" required />
+                                        <input type="tel" id="phone" name="phone" placeholder="1234567890" pattern="[0-9]{10}" defaultValue={mobile} required />
                                         <small>Format: 1234567890</small>
                                     </span></p>
                                 <input type="submit" className="update-btn" value="Update" />

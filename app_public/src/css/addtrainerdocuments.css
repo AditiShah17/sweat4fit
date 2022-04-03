@@ -26,3 +26,9 @@
 .addtrainerdocuments-div textarea{
     width: 20rem !important;
 }
+
+@media (max-width: 768px) {
+    .addtrainerdocuments-div{
+        width: 95%;
+    }
+}
