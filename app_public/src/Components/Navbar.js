@@ -94,6 +94,9 @@ export default function Navbar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
+              <Link className="nav-link" to="/chat">
+                  Chat
+              </Link>
               <button className="search-btn" type="submit">
                 Search
               </button>

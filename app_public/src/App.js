@@ -17,10 +17,12 @@ import ResetPassword from "./Components/ResetPassword";
 import TrainerProfile from "./Components/TrainerProfile";
 import AddTrainerDocuments from "./Components/AddTrainerDocuments";
 import EditTrainerAvailability from "./Components/EditTrainerAvailability";
+import Chat from "./Components/Chat/Chat";
 
 import Checking from "./Components/Checking";
 import Register from "./Components/Register";
 
+import "./css/chat.css";
 import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
@@ -91,6 +93,9 @@ function App() {
           </Route>
           <Route path="/edittraineravailability">
             <EditTrainerAvailability />
+          </Route>
+          <Route path="/chat">
+            <Chat />
           </Route>
           <Route path="/">
             <Home />
