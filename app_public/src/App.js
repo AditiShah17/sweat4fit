@@ -19,10 +19,12 @@ import AddTrainerDocuments from "./Components/AddTrainerDocuments";
 import EditTrainerAvailability from "./Components/EditTrainerAvailability";
 import TrainerDetails from "./Components/TrainerDetails";
 
+import Chat from "./Components/Chat/Chat";
 
 import Register from "./Components/Register";
 import Logout from "./Components/Logout";
 
+import "./css/chat.css";
 import "./css/navbar.css";
 import "./css/footer.css";
 import "./css/home.css";
@@ -97,6 +99,9 @@ function App() {
           </Route>
           <Route path="/trainerdetails">
             <TrainerDetails />
+          </Route>
+          <Route path="/chat">
+            <Chat />
           </Route>
           <Route path="/">
             <Home />
