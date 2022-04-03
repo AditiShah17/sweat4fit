@@ -12,7 +12,7 @@ import axios from "axios";
 export default function EditProfile(props) {
 
 
-    const api = 'http://localhost:5000/api/userprofile';
+    const api = '/api/userprofile';
     const token = sessionStorage.getItem('userData');
 
     const [fname, setFname] = useState("");

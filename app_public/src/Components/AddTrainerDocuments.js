@@ -17,7 +17,7 @@ export default function AddTrainerDocuments(props) {
 
     const location = useLocation();
 
-    const addtrainerdocumentapi = 'http://localhost:5000/api/trainers';
+    const addtrainerdocumentapi = '/api/trainers';
     console.log("doc api=", addtrainerdocumentapi);
 
 
