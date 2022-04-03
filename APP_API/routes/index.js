@@ -96,6 +96,9 @@ router
     .route('/approveTrainer/:trainerid')
         .put(authUser, ctrlTrainers.approveTrainerProfile);
 
+//Availability Routes and Controller
+var ctrlDaysAvailability = require('../controllers/day');
+router.route('/schedule/:dayid').get(authUser, ctrlDaysAvailability.daysAvailabilityByTrainerDetail); // update trainer availability
 
 //Availability Routes and Controller
 var ctrlTrainerAvailability = require('../controllers/traineravailability');
