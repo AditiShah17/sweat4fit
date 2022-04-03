@@ -23,7 +23,7 @@ export default function Login(props) {
         const password = event.target.password.value;
 
 
-        axios.post("http://localhost:5000/api/login",
+        axios.post("/api/login",
             {
                 email,
                 password

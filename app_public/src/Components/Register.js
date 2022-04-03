@@ -16,7 +16,7 @@ const getDetails = (event)=>
     const gender = event.target.inlineRadioOptions.value;
     const role_id= event.target.role.value;
     
-    axios.post('http://localhost:5000/api/register',{
+    axios.post('/api/register',{
         firstname: fName,
         lastname:lName,
         email:email,

@@ -14,6 +14,15 @@ var apiRouter = require('./APP_API/routes/index');
 
 var app = express();
 
+var cors = require('cors');
+app.use(cors);
+
+
+
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname,'APP_SERVER','views'));
 app.set('view engine', 'pug');
@@ -22,36 +31,27 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(express.static(path.join(__dirname,'app_public/build')));
+
+
 // for parsing application/json
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// CORS
-app.use(function (req, res, next) {
-  /*var err = new Error('Not Found');
-   err.status = 404;
-   next(err);*/
-  req.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  req.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
- 
-  // Website you wish to allow to connect
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
- 
-  // Request methods you wish to allow
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-  // Request headers you wish to allow
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
-  next();
- 
-});
-
 
 // app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/api', apiRouter);
+
+
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname+'/app_server/build/index.html'));
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
