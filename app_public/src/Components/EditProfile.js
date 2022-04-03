@@ -29,10 +29,10 @@ export default function EditProfile(props) {
                 console.log("data=", res.data);
 
                 // setImage(res.data.files[0].filename);
-                setFname(res.data.userdata.firstname);
-                setLname(res.data.userdata.lastname);
-                setGender(res.data.userdata.gender);
-                setMobile(res.data.userdata.mobile_no);
+                setFname(res.data.user.firstname);
+                setLname(res.data.user.lastname);
+                setGender(res.data.user.gender);
+                setMobile(res.data.user.mobile_no);
 
             }).catch((error) => {
                 console.log(error)

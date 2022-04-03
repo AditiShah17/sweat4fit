@@ -12,8 +12,33 @@ import axios from "axios";
 export default function EditTrainerAvailability(props) {
 
 
-    const api = 'http://localhost:5000/api/addtraineravailability';
     const token = sessionStorage.getItem('userData');
+
+    console.log("$tokon= " + `${token}`);
+
+
+    const getavailabilityapi = 'http://localhost:5000/api/gettraineravailability';
+
+    const [traineravailability, setAvailability] = useState([]);
+
+    React.useEffect(() => {
+
+        axios.get(getavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
+            .then(res => {
+
+                console.log("get availability data=", res.data);
+                setAvailability(res.data);
+
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }, [])
+
+
+
+
+    const addavailabilityapi = 'http://localhost:5000/api/addtraineravailability';
 
     const addavailability = (event) => {
 
@@ -27,15 +52,34 @@ export default function EditTrainerAvailability(props) {
 
         axios({
             method: 'post',
-            url: api,
+            url: addavailabilityapi,
             data: body,
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {
 
             console.log("add availability data=", res.data);
+            alert("Added Successfully");
+            window.location.reload();
 
         }).catch((err) => {
+
             console.log(err)
+        });
+    }
+
+
+    function deleteavailability(availabilityid) {
+        const deleteavailabilityapi = 'http://localhost:5000/api/deletetraineravailability/' + availabilityid;
+        console.log("api= ",deleteavailabilityapi);
+
+        axios.delete(deleteavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
+        .then(res => {
+
+            alert("Availability Deleted Successfully")
+            window.location.reload();
+
+        }).catch((error) => {
+            console.log(error)
         });
     }
 
@@ -48,27 +92,21 @@ export default function EditTrainerAvailability(props) {
 
                 <div className="edittraineravailability-display">
                     <p className="edittraineravailability-div-heading">Availability</p>
-                    <div className="edittraineravailability-items">
-                        <Card>
-                            <Card.Header as="h5">MONDAY</Card.Header>
-                            <Card.Body>
-                                <Card.Text>12:00PM - 03:00PM</Card.Text>
 
-                                <Button variant="primary">Delete</Button>
-                            </Card.Body>
-                        </Card>
-                    </div>
+                    {traineravailability.map(data => (
+                        <div className="edittraineravailability-items">
+                            <Card>
+                                <Card.Header as="h5">{data.day_id.day_name}</Card.Header>
+                                <Card.Body>
+                                    <Card.Text>{data.start_time} -{data.end_time}</Card.Text>
 
-                    <div className="edittraineravailability-items">
-                        <Card>
-                            <Card.Header as="h5">TUESDAY</Card.Header>
-                            <Card.Body>
-                                <Card.Text>12:00PM - 03:00PM</Card.Text>
+                                    <Button onClick={() => deleteavailability(data._id)} variant="primary">Delete</Button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    ))}
 
-                                <Button variant="primary">Delete</Button>
-                            </Card.Body>
-                        </Card>
-                    </div>
+
                 </div>
 
                 <div className="edittraineravailability-addavailability">
@@ -91,13 +129,13 @@ export default function EditTrainerAvailability(props) {
 
                         <p>Enter Start Time : -
                             <span>
-                                <input type="time" id="appt" name="starttime" min="09:00" max="18:00" required />
+                                <input type="time" id="appt" name="starttime" min="00:00" max="24:00" required />
                             </span>
                         </p>
 
                         <p>Enter End Time : -
                             <span>
-                                <input type="time" id="appt" name="endtime" min="09:00" max="18:00" required />
+                                <input type="time" id="appt" name="endtime" min="00:00" max="24:00" required />
                             </span>
                         </p>
 

@@ -103,8 +103,8 @@ const userRegister = async function(req, res){
 
 const userProfile = async function(req, res){
 
-    userId(req.user);
-    console.log(filePath);
+    // userId(req.user);
+    // console.log(filePath);
     const baseUrl = "http://localhost:5000/api/userprofile/";
 
     const userid = req.user;
@@ -120,16 +120,16 @@ const userProfile = async function(req, res){
     else
     {
         
-    gfs.find().toArray((err, files) => {
-        console.log(files);
+    // gfs.find().toArray((err, files) => {
+    //     console.log(files);
         
-        files.map(file => {
-            if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
-                file.isFile = true;
-            } else {
-                file.isFile = false;
-            }
-        });  
+    //     files.map(file => {
+    //         if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
+    //             file.isFile = true;
+    //         } else {
+    //             file.isFile = false;
+    //         }
+    //     });  
    
         const user = User.findById(userid)
         .select("-password")
@@ -140,19 +140,19 @@ const userProfile = async function(req, res){
                 .json(err);
                 return;
             } else {
-                const image_filename = files[0].filename;
-                const content_type = files[0].contentType;
+                // const image_filename = files[0].filename;
+                // const content_type = files[0].contentType;
                 res
                 .status(200)
                 .json({
-                   user: userdata,
-                    image: {
-                        data: baseUrl + image_filename,
-                        contentType: 'image/png'
-                    }});
+                   user: userdata
+                    // image: {
+                    //     data: baseUrl + image_filename,
+                    //     contentType: 'image/png'
+                    });
             }
         });
-    }); 
+    // }); 
     
     }
       

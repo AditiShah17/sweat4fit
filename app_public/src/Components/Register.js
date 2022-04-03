@@ -15,10 +15,6 @@ export default function Register() {
     const gender = event.target.inlineRadioOptions.value;
     const role_id = event.target.role.value;
 
-
-
-
-
   axios.post('http://localhost:5000/api/register', {
     firstname: fName,
     lastname: lName,
@@ -34,7 +30,7 @@ export default function Register() {
       console.log('posting data', res.request.status);
     }
 
-  }).catch(err => console.log("@@@@@@@@@@@@@@", err.Status));
+  }).catch(err => console.log("@@@@@@@@@@@@", err.Status));
   }
 
   return (
@@ -77,8 +73,8 @@ export default function Register() {
         <div className="form-group">
           <label htmlFor="roleid">Role:</label>
           <select name="role" required>
-            <option value="1">Trainee</option>
-            <option value="2">Trainer</option>
+            <option value="2">Trainee</option>
+            <option value="1">Trainer</option>
           </select>
 
         </div>

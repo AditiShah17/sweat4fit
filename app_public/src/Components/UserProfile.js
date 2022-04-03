@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link,  useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ export default function UserProfile(props) {
 
     console.log("in userprofile function");
 
-    const api = '/api/userprofile';
+    const api = 'http://localhost:5000/api/userprofile';
     const token = sessionStorage.getItem('userData');
 
     console.log("$tokon= " + `${token}`);
@@ -34,18 +34,32 @@ export default function UserProfile(props) {
                 console.log("data=", res.data);
 
                 // setImage(res.data.files[0].filename);
-                setFname(res.data.userdata.firstname);
-                setLname(res.data.userdata.lastname);
-                setRole(res.data.userdata.role_id);
-                setEmail(res.data.userdata.email);
-                setGender(res.data.userdata.gender);
-                setMobile(res.data.userdata.mobile_no);
-
+                setFname(res.data.user.firstname);
+                setLname(res.data.user.lastname);
+                setRole(res.data.user.role_id);
+                setEmail(res.data.user.email);
+                setGender(res.data.user.gender);
+                setMobile(res.data.user.mobile_no);
+                
+                setId(res.data.user._id);
             }).catch((error) => {
                 console.log(error)
             });
 
     }, [])
+
+
+    let history = useHistory();
+
+    const [uderid, setId] = useState([]);
+
+    // function addtrainerbtnclick() {
+    //     history.push({
+    //         pathname: '/addtrainerdocuments',
+    //         id: uderid
+    //       });
+    // }
+
 
     return (
         <>
@@ -77,8 +91,8 @@ export default function UserProfile(props) {
                         </Link>
                         {role == 1 ? (
                             <>
-                                <Link className="nav-link" aria-current="page" to="/addtrainerdocuments">
-                                    Add Trainer Details
+                                <Link className="nav-link" to="/addtrainerdocuments">
+                                    Trainer Details
                                 </Link>
                                 <Link className="nav-link" aria-current="page" to="/edittraineravailability">
                                     Edit Availability

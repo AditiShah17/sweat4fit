@@ -53,7 +53,6 @@ const upload_files = multer({ storage: storage });
 
 const profile_Image = multer({ storage: profile_storage });
 
-
 // Users routes and controllers
 var ctrlUsers = require('../controllers/user');
 

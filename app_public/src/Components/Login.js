@@ -32,6 +32,8 @@ export default function Login(props) {
                     history.push('/home');
                     let responseJson = res.data.token;
                     sessionStorage.setItem('userData',responseJson);
+
+                    window.location.reload();
                 }
 
             }).catch(err =>history.push('/login'))
