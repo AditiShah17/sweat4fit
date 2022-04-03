@@ -7,6 +7,15 @@ const crypto = require('crypto');
 var path = require('path');
 const mongoConfig = require('../models/db');
 
+
+
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+  
+
+
+
 // create storage engine
 const storage = new GridFsStorage({
     url: mongoConfig.mongoURI,
