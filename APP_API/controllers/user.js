@@ -5,23 +5,8 @@ var jwt = require('jsonwebtoken');
 const _ = require('passport-local-mongoose');
 const JWT_SECRET = 'sweat4FitAPI';
 const fetch = require('node-fetch');
-
-
-const mongoConfig = require('../models/db');
-const connect = mongoConfig.connect;
-
-let gfs;
-var filePath;
-
-const userId = function(id){
-    const userid = id;
-    filePath = "uploads/profile_image/"+ userid;
-   
-    gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-        bucketName: filePath
-    });
-}
-
+const fs = require('fs');
+var path = require('path');
 
 const userLogin = async function(req, res){
  
@@ -85,29 +70,22 @@ const userRegister = async function(req, res){
                 return;
             } else {
 
-                // const data = {
-                //     id: userdata.id
-                // }
-
-                // const authToken = jwt.sign(data, JWT_SECRET);
-
                 res
                 .status(201)
                 .json({
-                    // token: authToken,
                     user: userdata
                 });
             }
         });
 };
 
+
 const userProfile = async function(req, res){
 
-    userId(req.user);
-    console.log(filePath);
-    const baseUrl = "http://localhost:5000/api/userprofile/";
-
     const userid = req.user;
+
+    const baseUrl = "./public/data/uploads/"+userid+'/';
+
     console.log(userid);
     if(!userid) {
         res
@@ -119,18 +97,11 @@ const userProfile = async function(req, res){
     }
     else
     {
-        
-    gfs.find().toArray((err, files) => {
-        console.log(files);
-    
-        files.map(file => {
-            if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
-                file.isFile = true;
-            } else {
-                file.isFile = false;
-            }
-        });  
-   
+        var files=fs.readdirSync(baseUrl);
+        for(var i=0;i<files.length;i++){
+            var filename=path.join(baseUrl,files[i]);
+        }
+            
         const user = User.findById(userid)
         .select("-password")
         .exec((err, userdata) => {
@@ -140,19 +111,18 @@ const userProfile = async function(req, res){
                 .json(err);
                 return;
             } else {
-                const image_filename = files[0].filename;
-                const content_type = files[0].contentType;
+                
                 res
                 .status(200)
                 .json({
-                   user: userdata,
-                    image: {
-                        data: baseUrl + image_filename,
-                        contentType: 'image/png'
-                    }});
+                    user: userdata,
+                    image_path: filename
+                });
             }
         });
-    }); 
+        
+        
+    // }); 
     
     }
 }
@@ -242,16 +212,6 @@ const userDelete =  function(req, res){
     }
 }
 
-// const userLogout =  function(req, res){
-    
-//     userId = req.user;
-
-//     if(userId){
-//         let payload = {_id: userId}
-//         const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '1d'})
-//     }
-    
-// }
 
 const forgotPassword = async function(req, res){
     //Generate and set password reset token
@@ -421,13 +381,11 @@ const resetPassword = async function(req, res){
 
 
 module.exports = {
-    userId,
     userLogin,
     userRegister,
     userProfile,
     userProfileUpdate,
     userDelete,
-    // userLogout,
     forgotPassword,
     resetPassword,
     generatePasswordReset,

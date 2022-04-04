@@ -4,16 +4,16 @@ const trainerModel = mongoose.model('trainerModel');
 const mongoConfig = require('../models/db');
 const connect = mongoConfig.connect;
 
-let gfs;
-var filePath;
+// let gfs;
+// var filePath;
 
-const userId = function(id){
-    const userId = id;
-    filePath = "uploads/"+ userId;  
-    gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-        bucketName: filePath
-    });
-}
+// const userId = function(id){
+//     const userId = id;
+//     filePath = "uploads/"+ userId;  
+//     gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+//         bucketName: filePath
+//     });
+// }
 
 
 // connect.once('open', () => {
@@ -118,18 +118,18 @@ const trainersReadAll = function(req,res){
 
 };
 const trainersReadOne = function(req,res){
-    userId(req.user);
+    // userId(req.user);
     
-    gfs.find().toArray((err, files) => {
+    // gfs.find().toArray((err, files) => {
     
-        files.map(file => {
-            console.log(file);
-            if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
-                file.isFile = true;
-            } else {
-                file.isFile = false;
-            }
-        });       
+    //     files.map(file => {
+    //         console.log(file);
+    //         if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
+    //             file.isFile = true;
+    //         } else {
+    //             file.isFile = false;
+    //         }
+    //     });       
         if(req.params.trainerid)
         {
             trainerModel
@@ -169,7 +169,7 @@ const trainersReadOne = function(req,res){
                 })
         }
 
-    });
+    // });
 };
 
 

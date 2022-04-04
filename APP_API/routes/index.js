@@ -2,54 +2,40 @@ var express = require('express');
 var router = express.Router();
 var authUser = require('../middleware/authUser')
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage').GridFsStorage;
-const crypto = require('crypto');
 var path = require('path');
-const mongoConfig = require('../models/db');
+var fs = require('fs');
 
-// create storage engine
-const storage = new GridFsStorage({
-    url: mongoConfig.mongoURI,
-    file: (req, file) => {
+const file_storage = multer.diskStorage({
+    destination: function (req, file, cb) {
         userId = req.user;
-        return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
-                if (err) {
-                    return reject(err);
-                }
-                const filename = buf.toString('hex') + path.extname(file.originalname);
-                const fileInfo = {
-                    filename: filename,
-                    bucketName: 'uploads/' + userId
-                };
-                resolve(fileInfo);
-            });
-        });
+        var dir = './public/data/uploads/'+userId+'/';
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+        cb(null,dir);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = '-' + Date.now() + '-'
+        cb(null, file.originalname + uniqueSuffix + path.extname(file.originalname))
     }
-});
+  })
 
-// create storage engine
-const profile_storage = new GridFsStorage({
-    url: mongoConfig.mongoURI,
-    file: (req, file) => {
+const profile_storage = multer.diskStorage({
+    destination: function (req, file, cb) {
         userId = req.user;
-        return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
-                if (err) {
-                    return reject(err);
-                }
-                const filename = buf.toString('hex') + path.extname(file.originalname);
-                const fileInfo = {
-                    filename: filename,
-                    bucketName: 'uploads/profile_image/' + userId 
-                };
-                resolve(fileInfo);
-            });
-        });
+        var dir = './public/data/uploads/'+userId+'/profileImage';
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+        cb(null,dir);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = '-' + Date.now() + '-'
+        cb(null, file.originalname + uniqueSuffix + path.extname(file.originalname))
     }
-});
+  })
 
-const upload_files = multer({ storage: storage });
+const upload_files = multer({ storage: file_storage });
 
 const profile_Image = multer({ storage: profile_storage });
 
