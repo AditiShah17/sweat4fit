@@ -3,14 +3,15 @@ var router = express.Router();
 var authUser = require('../middleware/authUser')
 const multer = require('multer');
 var path = require('path');
+const mongoConfig = require('../models/db');
 var fs = require('fs');
 
 const file_storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        userId = req.user;
+        var userId = req.user;
         var dir = './public/data/uploads/'+userId+'/';
         if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+            fs.mkdirSync(dir, { recursive: true });
         }
         cb(null,dir);
     },
@@ -22,10 +23,10 @@ const file_storage = multer.diskStorage({
 
 const profile_storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        userId = req.user;
-        var dir = './public/data/uploads/'+userId+'/profileImage';
+        var userId = req.user;
+        var dir = './public/data/uploads/'+userId+'/profileImage/';
         if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+            fs.mkdirSync(dir, { recursive: true });
         }
         cb(null,dir);
     },

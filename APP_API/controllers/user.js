@@ -97,11 +97,16 @@ const userProfile = async function(req, res){
     }
     else
     {
-        var files=fs.readdirSync(baseUrl);
-        for(var i=0;i<files.length;i++){
-            var filename=path.join(baseUrl,files[i]);
-        }
-            
+        if(fs.existsSync(path)){
+            var files=fs.readdirSync(baseUrl);
+            if(files){
+                for(var i=0;i<files.length;i++){
+                    var filename=path.join(baseUrl,files[i]);
+                } 
+            }
+        }else{
+            var filename = './public/images/profile.png';
+        }      
         const user = User.findById(userid)
         .select("-password")
         .exec((err, userdata) => {
@@ -121,9 +126,6 @@ const userProfile = async function(req, res){
             }
         });
         
-        
-    // }); 
-    
     }
       
 }

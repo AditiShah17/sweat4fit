@@ -14,20 +14,19 @@ import {
   Nav,
 } from "react-bootstrap";
 import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
+import { Link, useHistory } from "react-router-dom";
+
 
 export default function Schedule(props) {
 
 
   const [schedulebyday, setScheduleByDay] = useState([]);
+  const [dayselecteed, SetDayselected] = useState("Please Select a Day");
 
   console.log('outside function');
   // console.log("type==", typeof (schedulebyday));
 
   function setdayidonclick(dayid) {
-
 
     console.log('inside function');
     console.log("dayid=", dayid);
@@ -43,6 +42,8 @@ export default function Schedule(props) {
         console.log("schedule by day data=", res.data);
         setScheduleByDay(res.data);
 
+        SetDayselected(res.data.schedule[0].day_id.day_name);
+
       }).catch((error) => {
         console.log(error)
       });
@@ -51,6 +52,17 @@ export default function Schedule(props) {
   }
 
   console.log("res data= ", schedulebyday);
+
+  let history = useHistory();
+
+  function trainerDescriptionFn(trainerid) {
+    console.log("Trainer id=", trainerid);
+
+    history.push({
+      pathname: '/trainerdetails',
+      id: trainerid
+    });
+  }
 
   return (
 
@@ -98,16 +110,19 @@ export default function Schedule(props) {
                   {Object.keys(schedulebyday).length > 0 ? (
                     <>
                       {console.log("inside if condition with cards")}
+                      <h2 className="day-name">{dayselecteed}</h2>
                       {schedulebyday.schedule.map(data => (
-                        <div className="schedule-items">
-                          <Card>
-                            <Card.Header as="h5">{data.trainer_id.user_id.firstname} {data.trainer_id.user_id.lastname}</Card.Header>
-                            <Card.Body>
-                              <Card.Text>Availability</Card.Text>
-                              <Card.Text>{data.start_time} - {data.end_time}</Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </div>
+                        <>
+                          <div onClick={() => trainerDescriptionFn(data.trainer_id._id)} className="schedule-items">
+                            <Card>
+                              <Card.Header as="h5">{data.trainer_id.user_id.firstname} {data.trainer_id.user_id.lastname}</Card.Header>
+                              <Card.Body>
+                                <Card.Text>Availability</Card.Text>
+                                <Card.Text>{data.start_time} - {data.end_time}</Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </div>
+                        </>
                       ))}
 
                     </>
@@ -115,7 +130,7 @@ export default function Schedule(props) {
                   ) : (
 
                     <>
-                      {console.log("please select day")}
+                      <h2 className="day-name">{dayselecteed}</h2>
                     </>
                   )}
 

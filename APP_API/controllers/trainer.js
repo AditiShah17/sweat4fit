@@ -155,7 +155,7 @@ const trainersReadOne = function(req,res){
                 {
                     res
                     .status(200)
-                    .json({trainer, files}) 
+                    .json({trainer}) 
                 }
             
             });

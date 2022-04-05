@@ -11,7 +11,7 @@ import axios from "axios";
 
 export default function UserProfile(props) {
 
-    // const [image, setImage] = useState("");
+    const [image, setImage] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [role, setRole] = useState("");
@@ -33,7 +33,7 @@ export default function UserProfile(props) {
 
                 console.log("data=", res.data);
 
-                // setImage(res.data.files[0].filename);
+                setImage(res.data.image_path);
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
                 setRole(res.data.user.role_id);
@@ -48,17 +48,11 @@ export default function UserProfile(props) {
 
     }, [])
 
+    console.log("image==", image);
 
     let history = useHistory();
 
     const [uderid, setId] = useState([]);
-
-    // function addtrainerbtnclick() {
-    //     history.push({
-    //         pathname: '/addtrainerdocuments',
-    //         id: uderid
-    //       });
-    // }
 
 
     return (
@@ -68,7 +62,7 @@ export default function UserProfile(props) {
             <div className="userprofile-div">
 
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="" />
+                    <Card.Img variant="top" src={image} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
                     <hr />
                     <Card.Body>
                         <Card.Title>{fname} {lname}</Card.Title>

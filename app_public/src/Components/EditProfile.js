@@ -28,7 +28,6 @@ export default function EditProfile(props) {
 
                 console.log("data=", res.data);
 
-                // setImage(res.data.files[0].filename);
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
                 setGender(res.data.user.gender);
@@ -44,6 +43,7 @@ export default function EditProfile(props) {
     const updateClicked = (event) => {
 
         var body = {
+            profileImage : event.target.imageselect.files,
             firstname: event.target.fname.value,
             lastname: event.target.lname.value,
             gender: event.target.gender.value,
@@ -78,10 +78,10 @@ export default function EditProfile(props) {
                     <Card.Body>
                         <Card.Text>
                             <form onSubmit={updateClicked}>
-                                {/* <Form.Group controlId="formFileLg" className="mb-3">
+                                <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Profile Photo : - </Form.Label>
                                     <Form.Control type="file" size="lg" name="imageselect" accept="image/*" required />
-                                </Form.Group> */}
+                                </Form.Group>
 
                                 <p>First Name : - <span><input type="Text" id="text" name="fname" placeholder="Enter First Name" defaultValue={fname} required /></span></p>
                                 <p>Last Name : - <span><input type="Text" id="text" name="lname" placeholder="Enter Last Name" required defaultValue={lname} /></span></p>

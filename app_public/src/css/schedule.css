@@ -20,12 +20,24 @@
     border-color: #FF5656 !important;
 }
 
+.schedule-items .card:hover{
+    background-color: #FF5656 !important;
+    color: white !important;
+}
+
 .schedule-items .card{
     background-color: black !important;
     color: white !important;
     border: 5px solid #FF5656;
     margin-top: 1rem;
     /* margin: 2rem; */
+}
+
+
+.day-name{
+    color: #FF5656;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .btn-primary{
