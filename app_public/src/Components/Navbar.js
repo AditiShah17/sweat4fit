@@ -25,7 +25,7 @@ export default function Navbar(props) {
   return (
     <>
       <div className="navbar-topbar">
-        <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">123-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
+        <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">(123)-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
         <div className="navbar-topbar-social">
 
 
@@ -56,13 +56,13 @@ export default function Navbar(props) {
 
 
 
-          <a className="links" href="/login">
+          <a className="links" href="https://www.facebook.com/" target="_blank">
             <img src="../images/icons/fb.png" alt="" />
           </a>
-          <a className="links" href="#">
+          <a className="links" href="https://twitter.com/login?lang=en" target="_blank">
             <img src="../images/icons/tweet.png" alt="" />
           </a>
-          <a className="links" href="/login">
+          <a className="links" href="https://www.instagram.com/?hl=en" target="_blank">
             <img src="../images/icons/insta.png" alt="" />
           </a>
         </div>
@@ -105,17 +105,6 @@ export default function Navbar(props) {
                   Schedule
                 </Link>
               </li>
-              {/* <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </Link>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><Link className="dropdown-item" to="#">Action</Link></li>
-                  <li><Link className="dropdown-item" to="#">Another action</Link></li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><Link className="dropdown-item" to="#">Something else here</Link></li>
-                </ul>
-              </li> */}
               <li className="nav-item">
                 <Link className="nav-link" to="/contactus">
                   Contact Us
@@ -124,8 +113,8 @@ export default function Navbar(props) {
 
               {isauth == true  ? (
                 <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/chat">
+                  <li className="nav-item chat-btn">
+                    <Link className="nav-link chat-btn-link" to="/chat">
                       Chat
                     </Link>
                   </li>

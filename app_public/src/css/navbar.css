@@ -58,8 +58,12 @@
     margin-right: 2rem;
 }
 
+.nav-item{
+    font-weight: bold;
+}
+
 .navbar-nav a{
-    color: #ffffff !important;
+    color: white !important;
 }
 
 .navbar-nav a:hover{
@@ -70,17 +74,21 @@
     /* color: #b8c72d !important; */
 }
 
-
-.search-btn{
-    background-color: white;
-    color: #FF5656;
-    border-radius: 5px;
-    width: 45%;
-    transition: 0.3s;
+.nav-chat-item{
+    height: 2rem;
 }
 
-.search-btn:hover{
+.chat-btn{
+    width: 5rem;
+    text-align: center;
+    font-weight: bold;
     background-color: #FF5656;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+.chat-btn:hover{
+    background-color: #ffffff;
     color: black;
 }
 

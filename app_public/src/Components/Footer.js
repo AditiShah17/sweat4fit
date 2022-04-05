@@ -60,13 +60,13 @@ export default function Footer() {
 
               <ul className="list-unstyled">
                 <li>
-                  <a className="nav-link" href="https://www.facebook.com/"><img src="../images/icons/fb.png" alt="" />Facebook</a>
+                  <a className="nav-link" href="https://www.facebook.com/" target="_blank"><img src="../images/icons/fb.png" alt="" />Facebook</a>
                 </li>
                 <li>
-                  <a className="nav-link" href="https://twitter.com/login?lang=en"><img src="../images/icons/tweet.png" alt="" />Twitter</a>
+                  <a className="nav-link" href="https://twitter.com/login?lang=en" target="_blank"><img src="../images/icons/tweet.png" alt="" />Twitter</a>
                 </li>
                 <li>
-                  <a className="nav-link" href="https://www.instagram.com/?hl=en"><img src="../images/icons/insta.png" alt="" />Instagram</a>
+                  <a className="nav-link" href="https://www.instagram.com/?hl=en" target="_blank"><img src="../images/icons/insta.png" alt="" />Instagram</a>
                 </li>
               </ul>
             </div>

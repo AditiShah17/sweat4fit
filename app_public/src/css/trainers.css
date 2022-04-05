@@ -17,6 +17,7 @@
     box-shadow: inset 0 0 0 0 #FF5656;
     color: black;
     transition: color .2s ease-in-out, box-shadow .2s ease-in-out;
+    height: 30rem;
 }
 
 .card-img-top{

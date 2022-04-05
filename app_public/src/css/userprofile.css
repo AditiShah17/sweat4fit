@@ -1,7 +1,7 @@
 .userprofile-heading{
     margin: 4rem;
     color: #FF5656;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     text-align: center;
 }
@@ -12,6 +12,7 @@
     color: white;
     border: 5px solid #FF5656;
     border-radius: 10px;
+    font-size: 1.2rem;
 }
 
 .userprofile-div .card{
@@ -48,13 +49,16 @@ height: 3px;
     width: 10rem;
 }
 
+
 .userprofile-div .nav-link{
     color: black !important;
     background-color: white;
     border: 5px solid #FF5656;
-    width: 11rem;
-    margin: 1rem;
+    width: 100%;
+    margin-top: 1rem;
     border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .userprofile-div .nav-link:hover{
