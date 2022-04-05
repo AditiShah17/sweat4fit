@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const _ = require('passport-local-mongoose');
 const JWT_SECRET = 'sweat4FitAPI';
+const trainerModel = mongoose.model('trainerModel');
 const fetch = require('node-fetch');
 
 
@@ -120,39 +121,64 @@ const userProfile = async function(req, res){
     else
     {
         
-    // gfs.find().toArray((err, files) => {
-    //     console.log(files);
-        
-    //     files.map(file => {
-    //         if (file.contentType === 'image/png' || file.contentType === 'image/jpeg' || file.contentType === 'image/jpg') {
-    //             file.isFile = true;
-    //         } else {
-    //             file.isFile = false;
-    //         }
-    //     });  
-   
         const user = User.findById(userid)
+
         .select("-password")
+
         .exec((err, userdata) => {
+
             if(err){
+
                 res
+
                 .status(404)
+
                 .json(err);
+
                 return;
+
             } else {
-                // const image_filename = files[0].filename;
-                // const content_type = files[0].contentType;
-                res
-                .status(200)
-                .json({
-                   user: userdata
-                    // image: {
-                    //     data: baseUrl + image_filename,
-                    //     contentType: 'image/png'
+
+                trainerModel
+
+                .find({user_id: userid})
+
+                .exec((err,trainer)=>{
+
+                    if(trainer)
+
+                    {
+                        
+                        trainer_id  = trainer[0]._id.toString();
+
+                    }
+
+                    else
+                    {
+
+                        trainer_id = null;
+
+                    }
+
+                    res
+
+                    .status(200)
+
+                    .json({
+
+                        user: userdata,
+
+                        // image_path: filename,
+
+                        trainer_id: trainer_id
+
                     });
+
+                });
+
             }
+
         });
-    // }); 
     
     }
       

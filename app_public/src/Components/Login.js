@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useDebugValue, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { Link,  useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 
 
@@ -11,11 +12,12 @@ import axios from "axios";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
-
 export default function Login(props) {
+
 
     let history = useHistory();
     const loginSuccess = (event) => {
+
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
@@ -26,17 +28,16 @@ export default function Login(props) {
                 email,
                 password
             }).then(res => {
-                if(res.data.token)
-                {
+                if (res.data.token) {
                     alert("You have successfully login");
                     history.push('/home');
-                    let responseJson = res.data.token;
-                    sessionStorage.setItem('userData',responseJson);
 
-                    window.location.reload();
+                    let responseJson = res.data.token;
+                    sessionStorage.setItem('userData', responseJson);
+
                 }
 
-            }).catch(err =>history.push('/login'))
+            }).catch(err => history.push('/login'))
     }
     return (
         <>

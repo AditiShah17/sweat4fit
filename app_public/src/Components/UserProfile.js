@@ -11,6 +11,8 @@ import axios from "axios";
 
 export default function UserProfile(props) {
 
+
+   // sessionStorage.setItem('trainer_id',responseJson);
     // const [image, setImage] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -18,12 +20,13 @@ export default function UserProfile(props) {
     const [email, setEmail] = useState("");
     const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState("");
-
+    const[trainer,setTrainerId]= useState("");
 
     console.log("in userprofile function");
 
     const api = '/api/userprofile';
     const token = sessionStorage.getItem('userData');
+    
 
     console.log("$tokon= " + `${token}`);
 
@@ -31,8 +34,8 @@ export default function UserProfile(props) {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("data=", res.data);
-
+                console.log("data====", res.data.trainer_id);
+                sessionStorage.setItem('trainerid',res.data.trainer_id);
                 // setImage(res.data.files[0].filename);
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
@@ -40,7 +43,7 @@ export default function UserProfile(props) {
                 setEmail(res.data.user.email);
                 setGender(res.data.user.gender);
                 setMobile(res.data.user.mobile_no);
-                
+                setTrainerId(res.data.trainer_id);
                 setId(res.data.user._id);
             }).catch((error) => {
                 console.log(error)
@@ -89,17 +92,23 @@ export default function UserProfile(props) {
                         <Link className="nav-link" aria-current="page" to="/resetpassword">
                             Reset Password
                         </Link>
-                        {role == 1 ? (
+                        {trainer ==  null? (
                             <>
                                 <Link className="nav-link" to="/addtrainerdocuments">
-                                    Trainer Details
+                                    Trainer's ADD Details
                                 </Link>
-                                <Link className="nav-link" aria-current="page" to="/edittraineravailability">
-                                    Edit Availability
-                                </Link>
+                                
                             </>
                         ) : (
-                            console.log("Hello I am traineeeee")
+                            <>
+                            <Link className="nav-link" to="/edittrainer">
+                            Trainer Edit Details
+                        </Link>
+                        <Link className="nav-link" aria-current="page" to="/edittraineravailability">
+                            Edit Availability
+                        </Link>
+                            </>
+                            
                         )}
 
 

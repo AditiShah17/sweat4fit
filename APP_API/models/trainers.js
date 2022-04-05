@@ -22,10 +22,10 @@ var trainerSchema = new mongoose.Schema(
             // required:[true,"Atleast one skill is needed."],
         },
         experience:{
-            type:Number,
+            type:String,
             min:0
         },
-        age:{type: Number},
+        age:{type: String},
         document_file: {type: String}
     },
     { timestamps: {createdAt:true, updatedAt:false} });

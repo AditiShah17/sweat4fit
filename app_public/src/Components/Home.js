@@ -62,7 +62,7 @@ export default function Home(props) {
             </b>
           </h2>
           <p>
-          Weightlifting, also called Olympic weightlifting, is an athletic discipline in the modern Olympic programme in which the athlete attempts a maximum-weight single lift of a barbell loaded with weight plates.
+          If there is one word that best sums up the state of fitness today, it's “personalized.” The reason is simple. Everyone starts different and everyone has different goals. Women want to lose weight, men want to build muscle and both want to look their best. No matter what your goal, be it weight loss or bulking up, you will have a hard time achieving those without a proper workout routine.
           </p>
         </div>
         <div className="home-description_video">
@@ -91,7 +91,7 @@ export default function Home(props) {
                 alt=""
               />
               <p>
-                Me and my friend have been having joint session with a professional trainer on Sweat4fit for the past 10 weeks. I can't recommend him enough, He listened to what we both wanted and has worked with us both to set our individual targets. Over the past 10 weeks he has learnt what both our strangths and weaknesses are and set us program for us.
+                Me and my friend have been having joint session with a professional trainer on Sweat4fit for the past 3 weeks. I can't recommend him enough, He listened to what we both wanted and has worked with us both to set our individual targets. Over the past 10 weeks he has learnt what both our strangths and weaknesses are and set us program for us.
               </p>
               <img
                 style={{ width: "2rem" }}
