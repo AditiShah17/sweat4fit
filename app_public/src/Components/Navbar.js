@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
@@ -120,6 +121,18 @@ export default function Navbar(props) {
                   Contact Us
                 </Link>
               </li>
+
+              {isauth == true  ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/chat">
+                      Chat
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <></>
+              )}
             </ul>
             {/* <form className="d-flex">
               <input

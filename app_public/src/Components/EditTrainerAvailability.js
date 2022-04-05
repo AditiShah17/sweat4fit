@@ -59,7 +59,7 @@ export default function EditTrainerAvailability(props) {
 
             console.log("add availability data=", res.data);
             alert("Added Successfully");
-            window.location.reload();
+            // window.location.reload();
 
         }).catch((err) => {
 
@@ -76,7 +76,7 @@ export default function EditTrainerAvailability(props) {
         .then(res => {
 
             alert("Availability Deleted Successfully")
-            window.location.reload();
+            // window.location.reload();
 
         }).catch((error) => {
             console.log(error)

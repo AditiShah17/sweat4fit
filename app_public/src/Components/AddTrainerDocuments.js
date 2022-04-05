@@ -15,6 +15,12 @@ export default function AddTrainerDocuments(props) {
 
     const token = sessionStorage.getItem('userData');
 
+
+
+
+
+
+
     const location = useLocation();
 
     const addtrainerdocumentapi = 'http://localhost:5000/api/trainers';
@@ -23,20 +29,33 @@ export default function AddTrainerDocuments(props) {
 
     const addtrainerdocuments = (event) => {
 
+        // const formData = new FormData();
 
-        const reqFiles = [];
 
-        for (var i = 0; i < event.target.files.length; i++) {
-            reqFiles.push(event.target.files[i].filename)
-        }
+        const reqFiles = event.target.files.files;
+
+        const formData = new FormData();
+        const files = document.getElementById("files");
+        // const document_files = [];
+        //         for (const key of Object.keys(reqFiles)) {
+        //             console.log(reqFiles[key]);
+        //             document_files.push(reqFiles[key]);
+        //         }
+
+        //         console.log("files array=", reqFiles);
+        //         console.log(document_files);
+
+
 
         var body = {
             experience: event.target.experience.value,
             skills: event.target.skills.value,
             description: event.target.description.value,
             age: event.target.age.value,
-            document_file: reqFiles
+            // document_file: document_files
+
         }
+
 
         event.preventDefault();
 
@@ -75,11 +94,13 @@ export default function AddTrainerDocuments(props) {
 
                                 <p>Age : - <span><input type="Number" id="age" name="age" placeholder="Enter your Age" required /></span></p>
 
-                                <Form.Group controlId="formFileLg" className="mb-3">
+                                {/* <input type="file" id="files" size="lg" name="files" accept=".doc,.docx,.pdf" multiple required /> */}
+
+                                {/* <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Document to upload : - </Form.Label>
-                                    <Form.Control type="file" size="lg" name="files" accept=".doc,.pdf" multiple required />
+                                    <Form.Control><input type="file" size="lg" name="files" accept=".doc,.docx,.pdf" multiple required /></Form.Control>
                                     <Form.Label style={{ color: "red" }}>Please Select maximum 5 files and Documents required for admin verification only.</Form.Label>
-                                </Form.Group>
+                                </Form.Group> */}
 
                                 <input type="submit" className="update-btn" value="Submit" />
                             </form>

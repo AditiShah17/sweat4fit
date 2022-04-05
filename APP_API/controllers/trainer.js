@@ -94,7 +94,7 @@ const trainersReadAll = function(req,res){
     else
     {
         trainerModel
-        .find()
+        .find({'approve': 'Yes'})
         .populate({'path':'user_id'})
         .exec((err,allTrainers)=>{
             

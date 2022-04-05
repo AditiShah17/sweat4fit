@@ -13,7 +13,8 @@ export default function Trainers(props) {
   const [alldata, setData] = useState([]);
 
   const api = 'http://localhost:5000/api/trainers/';
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDYyMmZiZTZmNGM0NmI2OGYyNDI5NiIsImlhdCI6MTY0ODc2NDk4MH0.J9OfvR43I0Iq4vESN39zGtqrvkr5oLFe6W59lOhd4oE';
+  const token = sessionStorage.getItem('userData');
+  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDYyMmZiZTZmNGM0NmI2OGYyNDI5NiIsImlhdCI6MTY0ODc2NDk4MH0.J9OfvR43I0Iq4vESN39zGtqrvkr5oLFe6W59lOhd4oE';
 
   console.log("$tokon= " + `${token}`);
 
@@ -23,7 +24,7 @@ export default function Trainers(props) {
     axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
       .then(res => {
 
-        console.log("data=", res.data);
+        console.log("data1111=", res.data);
 
         setData(res.data);
 

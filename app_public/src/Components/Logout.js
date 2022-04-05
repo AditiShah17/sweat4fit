@@ -9,7 +9,7 @@ export default function Logout() {
       localStorage.clear();
     }
 
-    window.location.reload();
+    // window.location.reload();
 
     history.push('/home');
   })

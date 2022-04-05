@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { Link,  useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 
@@ -26,20 +26,23 @@ export default function Login(props) {
                 email,
                 password
             }).then(res => {
-                if(res.data.token)
-                {
-                    alert("You have successfully login");
+                if (res.data.token) {
                     history.push('/home');
+                    alert("You have successfully login");
+                    
                     let responseJson = res.data.token;
-                    sessionStorage.setItem('userData',responseJson);
+                    sessionStorage.setItem('userData', responseJson);
 
                     window.location.reload();
+                    
                 }
 
-            }).catch(err =>history.push('/login'))
+            }).catch(err => history.push('/login'))
     }
     return (
         <>
+
+            <h2 className="page-title">Login</h2>
             <div className="login-div">
                 <div className="login-form">
                     <Form onSubmit={loginSuccess}>

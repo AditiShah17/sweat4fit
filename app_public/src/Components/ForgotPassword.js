@@ -2,12 +2,44 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function Login(props) {
+
+
+    const api = 'http://localhost:5000/api/forgotPassword';
+    const token = sessionStorage.getItem('userData');
+
+    const forgotpassword = (event) => {
+
+        var body = {
+            email: event.target.forgotemail.value
+        }
+
+        event.preventDefault();
+
+        axios({
+            method: 'post',
+            url: api,
+            data: body,
+            headers: { "Authorization": `Bearer ${token}` }
+        }).then(res => {
+
+            console.log("data=", res.data);
+            alert("Password has been sent on registered email");
+
+        }).catch((err) => {
+            console.log("in catch");
+            console.log(err)
+        });
+    }
+
+
+
     return (
         <>
             <div className="heroimage-div">
@@ -17,10 +49,10 @@ export default function Login(props) {
 
             <div className="login-div">
                 <div className="login-form">
-                    <Form>
+                    <Form onSubmit={forgotpassword}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Enter email to get password on email</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Control type="email" name="forgotemail" placeholder="Enter email" />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
                             </Form.Text>

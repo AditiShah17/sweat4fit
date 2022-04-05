@@ -21,7 +21,7 @@ export default function ContactUs(props) {
       </div>
 
       <div className="contactus-div">
-        <div className="contactus-form">
+        <div className="contactus-form-div">
           <Form onSubmit={popUp}>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>

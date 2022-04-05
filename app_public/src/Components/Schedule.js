@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Tabs from "react-bootstrap/Tabs";
 // import Tab from "react-bootstrap/Tab";
 import {
@@ -13,14 +13,48 @@ import {
   Container,
   Nav,
 } from "react-bootstrap";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 // import { Carousel } from "react-bootstrap";
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function Schedule(props) {
- 
+
+
+  const [schedulebyday, setScheduleByDay] = useState([]);
+
+  console.log('outside function');
+  // console.log("type==", typeof (schedulebyday));
+
+  function setdayidonclick(dayid) {
+
+
+    console.log('inside function');
+    console.log("dayid=", dayid);
+
+    const token = sessionStorage.getItem('userData');
+
+    const schedulebydaysapi = 'http://localhost:5000/api/schedule/' + dayid;
+
+    axios.get(schedulebydaysapi, { headers: { "Authorization": `Bearer ${token}` } })
+      .then(res => {
+
+
+        console.log("schedule by day data=", res.data);
+        setScheduleByDay(res.data);
+
+      }).catch((error) => {
+        console.log(error)
+      });
+
+
+  }
+
+  console.log("res data= ", schedulebyday);
 
   return (
+
+
     <>
       <div className="heroimage-div">
         <img src="../images/covers/schedule_main.jpeg" alt="" />
@@ -33,25 +67,25 @@ export default function Schedule(props) {
             <Col className="schedule-days-nav">
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f6f">MONDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f6f")}>MONDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f70">TUESDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f70")}>TUESDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f71">WEDNESDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f71")}>WEDNESDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f72">THURSDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f72")}>THURSDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f73">FRIDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f73")}>FRIDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f74">SATURDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f74")}>SATURDAY</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="6248d908713b62f7cd3b1f75">SUNDAY</Nav.Link>
+                  <Nav.Link onClick={() => setdayidonclick("6248d908713b62f7cd3b1f75")}>SUNDAY</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
@@ -59,233 +93,33 @@ export default function Schedule(props) {
             <Col className="schedule-content" sm={9}>
               <div className="schedule-content-div">
                 <Tab.Content>
-                  <Tab.Pane eventKey="monday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="tuesday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
+                  {Object.keys(schedulebyday).length > 0 ? (
+                    <>
+                      {console.log("inside if condition with cards")}
+                      {schedulebyday.schedule.map(data => (
+                        <div className="schedule-items">
+                          <Card>
+                            <Card.Header as="h5">{data.trainer_id.user_id.firstname} {data.trainer_id.user_id.lastname}</Card.Header>
+                            <Card.Body>
+                              <Card.Text>Availability</Card.Text>
+                              <Card.Text>{data.start_time} - {data.end_time}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                      ))}
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="wednesday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
+                    </>
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
+                  ) : (
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="thursday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
+                    <>
+                      {console.log("please select day")}
+                    </>
+                  )}
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
 
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="friday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="saturday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="sunday">
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-
-                    <div className="schedule-items">
-                      <Card>
-                        <Card.Header as="h5">Trainer Name</Card.Header>
-                        <Card.Body>
-                          <Card.Text>12:00PM - 03:00PM</Card.Text>
-                          
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Tab.Pane>
                 </Tab.Content>
               </div>
             </Col>

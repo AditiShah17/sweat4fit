@@ -15,27 +15,57 @@ export default function Register() {
     const gender = event.target.inlineRadioOptions.value;
     const role_id = event.target.role.value;
 
-  axios.post('http://localhost:5000/api/register', {
-    firstname: fName,
-    lastname: lName,
-    email: email,
-    mobile_no: mobile,
-    password: password,
-    gender: gender,
-    role_id: role_id
-  }).then(res => {
-    if (res.request.status == '201') {
-      alert("Successful registered");
-      history.push('/login');
-      console.log('posting data', res.request.status);
+    axios.post('http://localhost:5000/api/register', {
+      firstname: fName,
+      lastname: lName,
+      email: email,
+      mobile_no: mobile,
+      password: password,
+      gender: gender,
+      role_id: role_id
+    }).then(res => {
+      if (res.request.status == '201') {
+        alert("Successful registered");
+        history.push('/login');
+        console.log('posting data', res.request.status);
+
+        //header for authentication
+        const authObject = { 'Private-Key': '176c5eb2-ca45-470e-92de-2cdedd1b6827' }
+
+        // post request to create user
+        try {
+
+          console.log("traineee create chat user")
+          axios.post(
+            "https://api.chatengine.io/users/",
+            {
+              'username': fName,
+              'secret': password,
+              'email': email,
+              'first_name': fName,
+              'last_name': lName
+            }, // Body object
+            { 'headers': authObject } // Headers object
+          ).then(r => { console.log(r) })
+        } catch (error) {
+          console.log(error)
+        }
+
+      }
+
+    }).catch(err => {
+      alert("Email is already registered.");
+      document.getElementById("register-form").reset();
     }
 
-  }).catch(err => console.log("@@@@@@@@@@@@", err.Status));
+    );
   }
 
   return (
     <div className="container my-3">
-      <form onSubmit={getDetails}>
+
+      <h2 className="page-title">Register</h2>
+      <form id='register-form' onSubmit={getDetails}>
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input type="text" className="form-control" name="fName" required />

@@ -48,6 +48,23 @@ h2{
 
 
 /* expert trainers */
+.carousel-indicators{
+    display: none;
+}
+.carousel-control-prev{
+display: none;
+}
+
+.carousel-control-next{
+display: none;
+}
+
+.carousel-div{
+    display: flex;
+    justify-content: center;
+}
+
+
 .expert-trainers-div{
     text-align: center;
     margin: 5rem;

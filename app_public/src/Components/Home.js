@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import axios from "axios";
 
 // import Carousel from 'react-bootstrap/Carousel'
 
 export default function Home(props) {
+
   return (
     <>
       {/* carousel */}
@@ -62,7 +63,7 @@ export default function Home(props) {
             </b>
           </h2>
           <p>
-          Weightlifting, also called Olympic weightlifting, is an athletic discipline in the modern Olympic programme in which the athlete attempts a maximum-weight single lift of a barbell loaded with weight plates.
+            Weightlifting, also called Olympic weightlifting, is an athletic discipline in the modern Olympic programme in which the athlete attempts a maximum-weight single lift of a barbell loaded with weight plates.
           </p>
         </div>
         <div className="home-description_video">
@@ -159,130 +160,48 @@ export default function Home(props) {
         <h2 style={{ color: "#FF5656" }}>Expert Trainers</h2>
         <Carousel>
           <Carousel.Item>
-            <div className="expert-trainers-item">
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
+            <div className="carousel-div">
+              <div className="expert-trainers-item">
+                <div className="expert-trainers-card">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                    <Card.Body>
+                      <Card.Title>John Cena</Card.Title>
+                      <Card.Text>
+                        Some Trainer Details
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </div><div className="expert-trainers-item">
+                <div className="expert-trainers-card">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                    <Card.Body>
+                      <Card.Title>Undertaker</Card.Title>
+                      <Card.Text>
+                        Some Trainer Details
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
               </div>
 
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
+              <div className="expert-trainers-item">
+                <div className="expert-trainers-card">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                    <Card.Body>
+                      <Card.Title>Rock Johnson</Card.Title>
+                      <Card.Text>
+                        Some Trainer Details
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
               </div>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
-          <div className="expert-trainers-item">
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
 
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-          <div className="expert-trainers-item">
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
           </Carousel.Item>
         </Carousel>
       </div>
