@@ -175,123 +175,41 @@ export default function Home(props) {
             <div className="expert-trainers-item">
               <div>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                  <Card.Img variant="top" src="../images/trainers/inder.jpg" />
                   <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
+                    <Card.Title>Inderepreet Singh</Card.Title>
                     <Card.Text>
-                      Some Trainer Details
+                      Certified from Gold gym fitness institute with expertise in fat loss and nutrition.
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+
                   </Card.Body>
                 </Card>
               </div>
 
               <div>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                  <Card.Img variant="top" src="../images/trainers/abdalla.jpg" />
                   <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
+                    <Card.Title>Abdalla</Card.Title>
                     <Card.Text>
-                      Some Trainer Details
+                      Certified Nutrition and Fitness Consultantt with additional certifcation in Advanced Clinical
+                      Nutrition.
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+
                   </Card.Body>
                 </Card>
               </div>
 
               <div>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
+                  <Card.Img variant="top" src="../images/trainers/andrew.jpg" />
                   <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
+                    <Card.Title>Andrew</Card.Title>
                     <Card.Text>
-                      Some Trainer Details
+                      Specialise in fat loss, strength gains and physical conditioning I have also worked
+                      several cases in lifestyle related conditions such as Thyroid
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-          <div className="expert-trainers-item">
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
 
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-          <div className="expert-trainers-item">
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src="../images/trainers/1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Trainer Name</Card.Title>
-                    <Card.Text>
-                      Some Trainer Details
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
                 </Card>
               </div>
