@@ -8,6 +8,11 @@ var path = require('path');
 const mongoConfig = require('../models/db');
 var fs = require('fs');
 
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+  
+
 const file_storage = multer.diskStorage({
     destination: function (req, file, cb) {
         var userId = req.user;
@@ -20,6 +25,7 @@ const file_storage = multer.diskStorage({
     filename: function (req, file, cb) {
         const uniqueSuffix = '-' + Date.now() + '-'
         cb(null, file.originalname + uniqueSuffix + path.extname(file.originalname))
+
     }
   })
 

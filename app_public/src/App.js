@@ -20,6 +20,7 @@ import EditTrainerAvailability from "./Components/EditTrainerAvailability";
 import TrainerDetails from "./Components/TrainerDetails";
 
 import Chat from "./Components/Chat/Chat";
+import EditTrainerDetails from './Components/EditTrainerDetails';
 
 import Register from "./Components/Register";
 import Logout from "./Components/Logout";
@@ -98,7 +99,10 @@ function App() {
             <EditTrainerAvailability />
           </Route>
           <Route path="/trainerdetails">
-            <TrainerDetails />
+            <TrainerDetails/>
+          </Route>
+          <Route path="/edittrainer">
+            <EditTrainerDetails />
           </Route>
           <Route path="/chat">
             <Chat />

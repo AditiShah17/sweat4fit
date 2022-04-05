@@ -17,7 +17,7 @@ export default function EditTrainerAvailability(props) {
     console.log("$tokon= " + `${token}`);
 
 
-    const getavailabilityapi = 'http://localhost:5000/api/gettraineravailability';
+    const getavailabilityapi = '/api/gettraineravailability';
 
     const [traineravailability, setAvailability] = useState([]);
 

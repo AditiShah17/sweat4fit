@@ -17,25 +17,25 @@ export default function About(props) {
       <div className="about-description-div">
         <div className="about-decription-text">
           <div>
-            <h2>What Is Sweat4fit</h2>
+            <h2>What Is Sweat4fit ?</h2>
             <p>
-              Sweat4fit is the world's largest online fitness and nutrition community. The company started its journey as a small WhatsApp group that used to train a few people and help them get fit. Today, it is one of the most informative and engaging fitness communities with more than 2.5 million members.
+              Sweat4fit is the world's online fitness and nutrition community. The company started its journey as a final year Capstone project in Web Design and Development Program and decided to help those who struggle finding right Trainer and Nutritionist. Today, it is one of the most informative and engaging fitness communities where anyone from the world can conncet with our certified Trainers.
             </p>
             <p>
-              A software engineer who transformed himself while working a 12-hour/day IT job. He created the fundamental training methodology and shared it through his free book "Get Shredded" to prove that anyone can get fit with the knowledge of Quantified Nutrition. The fitness mantra underpinning Sweat4fit is to educate and empower the end-user to transform and inspire others to get fit.
+            An International Student who is passionate about fitness wants to create a collaborative environment for the General population to get them fit and adopt a good lifestyle. He always assists, guide, and share knowledge that could be helpful to any age on social media and WhatsApp.Hence, he decided to design an environment using the latest tech to give an excellent experience to his group members. You will wonder that all 3 of us are the only ones who did development, design, and Idea.
             </p>
             <p>
-              The Sweat4fit app serves as a one-stop solution for all health and fitness guidance and related needs. Through its freemium model, Sweat4fit offers free access to a host of industry-standard diet and training through trainers, a number of other cutting-edge features, and a community of fitness experts and enthusiasts. Users can get personalised guidance, customised plans and weekly follow-ups with one of Sweat4fit's 500+ certified coaches by paying a small premium.
+              The Sweat4fit web application serves as a one-stop solution for all health and fitness guidance and related needs. Through its freemium model, Sweat4fit offers free access to a host of industry-standard diet and training through trainers, a number of other cutting-edge features, and a community of fitness experts and enthusiasts. Users can get personalised guidance, customised plans and weekly follow-ups with one of Sweat4fit's 500+ certified coaches by paying a small premium.
             </p>
 
             <p>
-              At Sweat4fit, we provide a safe space that is free of judgement. Till date, we have helped transform the health and lifestyle of more than 200,000 people from across the globe and from all walks of life.
+              At Sweat4fit, we provide a safe space that is free of judgement. Till date, we have helped transform the health and lifestyle of more than ***** people from across the globe and from all walks of life.
             </p>
           </div>
 
         </div>
         <div className="about-decription-image">
-          <img src="../images/trainers/1.jpg" alt="" />
+          <img src="../images/covers/aboutpage.jpg" alt="aboutusImage" />
         </div>
       </div>
     </>

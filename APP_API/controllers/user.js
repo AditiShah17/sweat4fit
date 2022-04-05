@@ -4,10 +4,11 @@ const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const _ = require('passport-local-mongoose');
 const JWT_SECRET = 'sweat4FitAPI';
+const trainerModel = mongoose.model('trainerModel');
 const fetch = require('node-fetch');
 const fs = require('fs');
 var path = require('path');
-const trainerModel = mongoose.model('trainerModel');
+
 
 const userLogin = async function(req, res){
  
@@ -107,14 +108,23 @@ const userProfile = async function(req, res){
         }else{
             var filename = './public/images/profile.png';
         }      
+        
         const user = User.findById(userid)
+
         .select("-password")
+
         .exec((err, userdata) => {
+
             if(err){
+
                 res
+
                 .status(404)
+
                 .json(err);
+
                 return;
+
             } else {
                 trainerModel
                 .find({user_id: userid})
@@ -136,7 +146,9 @@ const userProfile = async function(req, res){
                     });
                 });
             }
+
         });
+    
     }
       
 }

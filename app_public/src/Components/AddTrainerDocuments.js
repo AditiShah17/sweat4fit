@@ -1,33 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function AddTrainerDocuments(props) {
 
+    let history = useHistory();
     const token = sessionStorage.getItem('userData');
-
-
-
-
-
-
 
     const location = useLocation();
 
-    const addtrainerdocumentapi = 'http://localhost:5000/api/trainers';
-    console.log("doc api=", addtrainerdocumentapi);
-
-
     const addtrainerdocuments = (event) => {
+
+        event.preventDefault();
+
 
         // const formData = new FormData();
 
@@ -45,33 +34,36 @@ export default function AddTrainerDocuments(props) {
         //         console.log("files array=", reqFiles);
         //         console.log(document_files);
 
+        var experience = event.target.experience.value;
+        var skills = event.target.skills.value;
+        var description = event.target.description.value;
+        var age = event.target.age.value;
 
+        var file = event.target.file.files[0];
 
-        var body = {
-            experience: event.target.experience.value,
-            skills: event.target.skills.value,
-            description: event.target.description.value,
-            age: event.target.age.value,
-            // document_file: document_files
+        const data = new FormData();
 
-        }
+        data.append("experience", experience);
+        data.append("skills", skills);
+        data.append("description", description)
+        data.append("age", age);
+        data.append("document_file", file);
 
-
-        event.preventDefault();
 
         axios({
-            method: 'put',
-            url: addtrainerdocumentapi,
-            data: body,
+            method: 'post',
+            url: 'http://localhost:5000/api/trainers',
+            data: data,
             headers: { "Authorization": `Bearer ${token}`, "Content-Type": "multipart/form-data" }
         }).then(res => {
 
-            console.log("trainer updat data=", res.data);
-            alert("Added Successfully");
+            console.log("data=", res);
+            history.push('/userprofile');
+
 
         }).catch((err) => {
-
-            console.log(err)
+            console.log("in catch");
+            console.log(err);
         });
     }
 
@@ -84,7 +76,7 @@ export default function AddTrainerDocuments(props) {
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Text>
-                            <form onSubmit={addtrainerdocuments}>
+                            <form onSubmit={addtrainerdocuments} >
 
                                 <p>Experience : - <span><input type="Number" id="experience" name="experience" placeholder="Enter Experience in number of years" required /></span></p>
 
@@ -94,11 +86,10 @@ export default function AddTrainerDocuments(props) {
 
                                 <p>Age : - <span><input type="Number" id="age" name="age" placeholder="Enter your Age" required /></span></p>
 
-                                {/* <input type="file" id="files" size="lg" name="files" accept=".doc,.docx,.pdf" multiple required /> */}
-
+                                <input type="file" name="file" accept=".pdf" multiple />
                                 {/* <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Document to upload : - </Form.Label>
-                                    <Form.Control><input type="file" size="lg" name="files" accept=".doc,.docx,.pdf" multiple required /></Form.Control>
+                                    <Form.Control type="file" size="lg" name="file" accept=".doc,.pdf" multiple required />
                                     <Form.Label style={{ color: "red" }}>Please Select maximum 5 files and Documents required for admin verification only.</Form.Label>
                                 </Form.Group> */}
 
