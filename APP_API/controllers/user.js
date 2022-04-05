@@ -7,6 +7,7 @@ const JWT_SECRET = 'sweat4FitAPI';
 const fetch = require('node-fetch');
 const fs = require('fs');
 var path = require('path');
+const trainerModel = mongoose.model('trainerModel');
 
 const userLogin = async function(req, res){
  
@@ -81,11 +82,10 @@ const userRegister = async function(req, res){
 
 
 const userProfile = async function(req, res){
-
+    var trainer_id;
     const userid = req.user;
-
     const baseUrl = "./public/data/uploads/"+userid+'/';
-
+    
     console.log(userid);
     if(!userid) {
         res
@@ -116,16 +116,27 @@ const userProfile = async function(req, res){
                 .json(err);
                 return;
             } else {
-                
-                res
-                .status(200)
-                .json({
-                    user: userdata,
-                    image_path: filename
+                trainerModel
+                .find({user_id: userid})
+                .exec((err,trainer)=>{
+                    if(trainer)
+                    {
+                        trainer_id  = trainer[0]._id.toString();
+                    }
+                    else
+                    {
+                        trainer_id = null;
+                    }
+                    res
+                    .status(200)
+                    .json({
+                        user: userdata,
+                        image_path: filename,
+                        trainer_id: trainer_id
+                    });
                 });
             }
         });
-        
     }
       
 }

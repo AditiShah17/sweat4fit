@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var authUser = require('../middleware/authUser')
 const multer = require('multer');
+// const GridFsStorage = require('multer-gridfs-storage').GridFsStorage;
+// const crypto = require('crypto');
 var path = require('path');
 const mongoConfig = require('../models/db');
 var fs = require('fs');
@@ -45,7 +47,6 @@ var ctrlUsers = require('../controllers/user');
 
 router.route('/register').post(ctrlUsers.userRegister);
 router.post('/login',ctrlUsers.userLogin);
-// router.post('/logout', authUser,  ctrlUsers.userLogout);
 
 router
     .route('/userprofile') 
