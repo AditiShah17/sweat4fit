@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var authUser = require('../middleware/authUser')
 const multer = require('multer');
-// const GridFsStorage = require('multer-gridfs-storage').GridFsStorage;
-// const crypto = require('crypto');
 var path = require('path');
 const mongoConfig = require('../models/db');
 var fs = require('fs');
@@ -67,7 +65,6 @@ router.put('/reset-password', authUser, ctrlUsers.resetPassword);
 
 // Trainer Routes and Controller
 var ctrlTrainers = require('../controllers/trainer');
-// router.post('/trainerUser',authUser, ctrlTrainers.userid);
 router
     .route('/trainers') // what request url is called
     .get(authUser, ctrlTrainers.trainersReadAll)

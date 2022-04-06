@@ -287,7 +287,6 @@ const approveTrainerProfile = function(req,res){
 
 module.exports=
 {
-    // userId,
     trainerCreate,
     trainersReadAll,
     trainersReadOne,
