@@ -10,7 +10,7 @@ export default function EditTrainerAvailability(props) {
     console.log("$tokon= " + `${token}`);
 
 
-    const getavailabilityapi = 'http://localhost:5000/api/gettraineravailability';
+    const getavailabilityapi = '/gettraineravailability';
 
     const [traineravailability, setAvailability] = useState([]);
 
@@ -27,7 +27,7 @@ export default function EditTrainerAvailability(props) {
 
     }, [])
 
-    const addavailabilityapi = 'http://localhost:5000/api/addtraineravailability';
+    const addavailabilityapi = '/addtraineravailability';
 
     const addavailability = (event) => {
 
@@ -55,7 +55,7 @@ export default function EditTrainerAvailability(props) {
 
 
     function deleteavailability(availabilityid) {
-        const deleteavailabilityapi = 'http://localhost:5000/api/deletetraineravailability/' + availabilityid;
+        const deleteavailabilityapi = '/deletetraineravailability/' + availabilityid;
 
         axios.delete(deleteavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
         .then(res => {

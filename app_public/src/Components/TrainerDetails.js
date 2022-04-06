@@ -23,7 +23,7 @@ export default function TrainerDetails(props) {
     }, [location]);
 
 
-    const api = '/api/trainers/' + location.id;
+    const api = '/trainers/' + location.id;
 
     const token = sessionStorage.getItem('userData');
 

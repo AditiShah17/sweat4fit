@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function ResetPassword(props) {
 
-    const resetpasswordapi = 'http://localhost:5000/api/reset-password';
+    const resetpasswordapi = '/reset-password';
     const token = sessionStorage.getItem('userData');
 
     const resetpassword = (event) => {
