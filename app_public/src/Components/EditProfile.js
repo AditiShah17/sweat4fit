@@ -13,6 +13,7 @@ export default function EditProfile(props) {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
+    const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState("");
 
     React.useEffect(() => {
@@ -21,6 +22,7 @@ export default function EditProfile(props) {
 
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
+                setGender(res.data.user.gender);
                 setMobile(res.data.user.mobile_no);
 
             }).catch((error) => {
@@ -37,12 +39,14 @@ export default function EditProfile(props) {
 
         var firstname = event.target.fname.value;
         var lastname = event.target.lname.value;
+        var gender = event.target.gender.value;
         var mobile_no = event.target.phone.value;
 
         const data = new FormData();
 
         data.append("firstname", firstname);
         data.append("lastname", lastname);
+        data.append("gender", gender)
         data.append("mobile_no", mobile_no);
         data.append("profileImage", profileImage);
 
@@ -83,9 +87,9 @@ export default function EditProfile(props) {
                                 <p>Gender : -
                                     <span>
                                         <input type="radio" id="male" name="gender" value="Male" required />
-                                        <label for="male">Male</label>
+                                        <label htmlFor="male">Male</label>
                                         <input type="radio" id="female" name="gender" value="Female" />
-                                        <label for="female">Female</label>
+                                        <label htmlFor="female">Female</label>
                                     </span></p>
                                 <p>Mobile number : -
                                     <span>

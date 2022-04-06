@@ -6,6 +6,11 @@ export default function Navbar(props) {
 
   let isauth = false;
 
+  //collapse nav bar on link click
+  function collapsenavbar(){
+    document.getElementById('navbarSupportedContent').classList.toggle("show");
+  }
+
   if (sessionStorage.getItem('userData')) {
     isauth = true;
   }
@@ -68,7 +73,7 @@ export default function Navbar(props) {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mb-2 mb-lg-0">
+            <ul onClick={collapsenavbar} className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
