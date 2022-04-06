@@ -15,6 +15,7 @@ export default function TrainerDetails(props) {
 
     const token = sessionStorage.getItem('userData');
 
+    const [image, setImage] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [skills, setSkills] = useState("");
@@ -27,8 +28,8 @@ export default function TrainerDetails(props) {
     React.useEffect(() => {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
-
-
+                
+                setImage(res.data.trainer.user_id.profileImage);
                 setFname(res.data.trainer.user_id.firstname);
                 setLname(res.data.trainer.user_id.lastname);
                 setSkills("" + res.data.trainer.skills);
@@ -50,7 +51,7 @@ export default function TrainerDetails(props) {
 
             <div className="trainerdetails-div">
                 <dir className="trainerdetails-image">
-                    <img src="../images/trainers/1.jpg" alt="" />
+                    <img src={image} style={{ backgroundImage: "url('../images/profile.png')", width: "20rem", height: "30rem", backgroundSize: 'cover', overflow: 'hidden' }} alt="user image" />
                 </dir>
                 <div className="trainerdetails-text">
                     <div>

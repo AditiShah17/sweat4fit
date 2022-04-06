@@ -37,11 +37,12 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="wrapper">
+        <div className="wrapper chat-login-div">
             <div className='form'>
                 <h1 className='title'> Sweat4Fit Chat Application</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder='Firstname' required />
+                    <p style={{ color: "red" }}>*username contains your firstname_lastname</p>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" placeholder='Password' required />
                     <div align="center">
                         <button type='submit' className='button' >
