@@ -5,8 +5,9 @@ const authUser = (req, res, next)=>{
     // Get the user from the JWT Token and add id to req object
 
     const authtoken = req.header('authorization');
-    const TokenSplit = authtoken.split(" ");
-    const token = TokenSplit[1];
+    const token = authtoken.replace('Bearer ','');
+    // const TokenSplit = authtoken.split(" ");
+    // const token = TokenSplit[1];
 
     console.log("token =" + token);
     if(!token){
