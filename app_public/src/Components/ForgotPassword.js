@@ -1,12 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function Login(props) {
 
@@ -29,16 +24,12 @@ export default function Login(props) {
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {
 
-            console.log("data=", res.data);
             alert("Password has been sent on registered email");
 
         }).catch((err) => {
-            console.log("in catch");
             console.log(err)
         });
     }
-
-
 
     return (
         <>
@@ -57,7 +48,6 @@ export default function Login(props) {
                                 We'll never share your email with anyone else.
                             </Form.Text>
                         </Form.Group>
-
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>

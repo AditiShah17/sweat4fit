@@ -24,7 +24,7 @@ export default function Trainers(props) {
     axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
       .then(res => {
 
-        console.log("data1111=", res.data);
+        console.log("trainers all data=", res.data);
 
         setData(res.data);
 
@@ -59,7 +59,7 @@ export default function Trainers(props) {
         {alldata.map(data => (
           <div className="trainer-item" onClick={() => trainerDescriptionFn(data._id)}>
             <Card style={{ width: "15rem" }}>
-              <Card.Img variant="top" src="../images/trainers/1.jpg" />
+              <Card.Img variant="top" src="" style={{backgroundImage: "url('../images/profile.png')", width: "100%", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}}/>
               <Card.Body>
                 <Card.Title>{data.user_id.email}</Card.Title>
                 <Card.Text>

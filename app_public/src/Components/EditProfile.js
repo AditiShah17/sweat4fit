@@ -1,32 +1,23 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
+import { useHistory } from "react-router-dom";
 
 export default function EditProfile(props) {
 
-
     const api = '/api/userprofile';
     const token = sessionStorage.getItem('userData');
+    let history = useHistory();
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState("");
 
-    console.log(gender);
-
     React.useEffect(() => {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
-
-                console.log("data=", res.data);
 
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
@@ -36,36 +27,41 @@ export default function EditProfile(props) {
             }).catch((error) => {
                 console.log(error)
             });
-        // this.setState({firstname: fname, lastname: lname, gender: gender, mobile_no: mobile});
     }, [])
 
 
     const updateClicked = (event) => {
 
-        var body = {
-            profileImage : event.target.imageselect.files,
-            firstname: event.target.fname.value,
-            lastname: event.target.lname.value,
-            gender: event.target.gender.value,
-            mobile_no: event.target.phone.value
-        }
-
-        console.log("login form data= ", body);
-
         event.preventDefault();
+
+        var profileImage = event.target.imageselect.files[0];
+
+        var firstname = event.target.fname.value;
+        var lastname = event.target.lname.value;
+        var gender = event.target.gender.value;
+        var mobile_no = event.target.phone.value;
+
+        const data = new FormData();
+
+        data.append("firstname", firstname);
+        data.append("lastname", lastname);
+        data.append("gender", gender)
+        data.append("mobile_no", mobile_no);
+        data.append("profileImage", profileImage);
 
         axios({
             method: 'post',
             url: api,
-            data: body,
-            headers: { "Authorization": `Bearer ${token}` }
+            data: data,
+            headers: { "Authorization": `Bearer ${token}`, "Content-Type": "multipart/form-data" }
         }).then(res => {
 
-            console.log("data=", res.data);
+            console.log("data=", res);
+            history.push('/userprofile');
 
         }).catch((err) => {
             console.log("in catch");
-            console.log(err)
+            console.log(err);
         });
     }
     return (
@@ -89,7 +85,7 @@ export default function EditProfile(props) {
                                 {/* <p>Email : - <span><input type="email" id="email" name="email" placeholder="Enter Email" /></span></p> */}
                                 <p>Gender : -
                                     <span>
-                                        <input type="radio" id="male" name="gender" value="Male" required/>
+                                        <input type="radio" id="male" name="gender" value="Male" required />
                                         <label for="male">Male</label>
                                         <input type="radio" id="female" name="gender" value="Female" />
                                         <label for="female">Female</label>

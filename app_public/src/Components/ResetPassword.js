@@ -1,13 +1,5 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
-
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function ResetPassword(props) {
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 export default function EditTrainerDetails(props) {
 
     let history = useHistory();
@@ -19,9 +18,6 @@ export default function EditTrainerDetails(props) {
         axios.get('http://localhost:5000/api/trainers/'+trainer_id, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("dataaaaaaaaaaaaaaaaaaaaaa=", res.data._id);
-
-
                 setExperience(res.data.trainer.experience);
                 setSkills(res.data.trainer.skills);
                 setDescription(res.data.trainer.description);
@@ -37,7 +33,6 @@ export default function EditTrainerDetails(props) {
 
         event.preventDefault();
 
-
         var data = {
 
             experience: event.target.experience.value,
@@ -45,8 +40,6 @@ export default function EditTrainerDetails(props) {
             description: event.target.description.value,
             age: event.target.age.value
         }
-
-       
 
         axios({
             method: 'put',

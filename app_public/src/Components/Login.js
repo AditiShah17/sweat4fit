@@ -1,19 +1,10 @@
-import React, { useDebugValue, useEffect, useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./Navbar";
-
-
-
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function Login(props) {
-
 
     let history = useHistory();
     const loginSuccess = (event) => {
@@ -22,14 +13,15 @@ export default function Login(props) {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-
         axios.post("http://localhost:5000/api/login",
             {
                 email,
                 password
             }).then(res => {
                 if (res.data.token) {
+
                     alert("You have successfully login");
+
                     history.push('/home');
 
                     let responseJson = res.data.token;
@@ -37,7 +29,7 @@ export default function Login(props) {
 
                 }
 
-            }).catch(err => history.push('/login'))
+            }).catch(err => alert("Wrong Username or Password"), history.push('/login'))
     }
     return (
         <>

@@ -6,7 +6,7 @@ export default function Register() {
   const history = useHistory();
   const getDetails = (event) => {
 
-    event.preventDefault();      //page will not be reload once clicked.
+    event.preventDefault();
     const fName = event.target.fName.value;
     const lName = event.target.lName.value;
     const email = event.target.email.value;
@@ -29,13 +29,11 @@ export default function Register() {
         history.push('/login');
         console.log('posting data', res.request.status);
 
-        //header for authentication
         const authObject = { 'Private-Key': '176c5eb2-ca45-470e-92de-2cdedd1b6827' }
 
         // post request to create user
         try {
 
-          console.log("traineee create chat user")
           axios.post(
             "https://api.chatengine.io/users/",
             {
@@ -50,14 +48,12 @@ export default function Register() {
         } catch (error) {
           console.log(error)
         }
-
       }
 
     }).catch(err => {
       alert("Email is already registered.");
       document.getElementById("register-form").reset();
     }
-
     );
   }
 

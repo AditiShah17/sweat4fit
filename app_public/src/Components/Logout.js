@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
 export default function Logout() {
@@ -9,11 +9,7 @@ export default function Logout() {
       sessionStorage.clear();
     }
     history.push('/login');
-   
-    
   })
-
-
   return (
     <>
 

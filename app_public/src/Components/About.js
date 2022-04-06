@@ -1,9 +1,4 @@
 import React from "react";
-import Figure from "react-bootstrap/Figure";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function About(props) {
   return (

@@ -1,21 +1,11 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
-
 export default function EditTrainerAvailability(props) {
 
-
     const token = sessionStorage.getItem('userData');
-
-    console.log("$tokon= " + `${token}`);
-
 
     const getavailabilityapi = '/api/gettraineravailability';
 
@@ -26,7 +16,6 @@ export default function EditTrainerAvailability(props) {
         axios.get(getavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("get availability data=", res.data);
                 setAvailability(res.data);
 
             }).catch((error) => {
@@ -34,9 +23,6 @@ export default function EditTrainerAvailability(props) {
             });
 
     }, [])
-
-
-
 
     const addavailabilityapi = 'http://localhost:5000/api/addtraineravailability';
 
@@ -57,12 +43,9 @@ export default function EditTrainerAvailability(props) {
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {
 
-            console.log("add availability data=", res.data);
             alert("Added Successfully");
-            // window.location.reload();
 
         }).catch((err) => {
-
             console.log(err)
         });
     }
@@ -70,13 +53,11 @@ export default function EditTrainerAvailability(props) {
 
     function deleteavailability(availabilityid) {
         const deleteavailabilityapi = 'http://localhost:5000/api/deletetraineravailability/' + availabilityid;
-        console.log("api= ",deleteavailabilityapi);
 
         axios.delete(deleteavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
         .then(res => {
 
             alert("Availability Deleted Successfully")
-            // window.location.reload();
 
         }).catch((error) => {
             console.log(error)

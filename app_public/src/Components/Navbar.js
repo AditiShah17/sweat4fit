@@ -1,27 +1,19 @@
-import { Button } from "bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 
 export default function Navbar(props) {
 
-
   let isauth = false;
 
   if (sessionStorage.getItem('userData')) {
     isauth = true;
-    // return (<Route {...rest} render={()=>isauth?(children):(<Redirect to={'/trainers'}/>)}/>);
-
   }
-
-  console.log("is auth=", isauth);
-
   const history = useHistory();
 
   function reload() {
 
   }
-
   return (
     <>
       <div className="navbar-topbar">

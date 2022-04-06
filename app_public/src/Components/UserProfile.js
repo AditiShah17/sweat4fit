@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
 import { Link,  useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function UserProfile(props) {
 
@@ -22,7 +16,7 @@ export default function UserProfile(props) {
 
     console.log("in userprofile function");
 
-    const api = '/api/userprofile';
+    const api = 'http://localhost:5000/api/userprofile';
     const token = sessionStorage.getItem('userData');
     
 
@@ -32,9 +26,10 @@ export default function UserProfile(props) {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("data====", res.data.trainer_id);
+                console.log("data====", res.data);
                 sessionStorage.setItem('trainerid',res.data.trainer_id);
-                // setImage(res.data.files[0].filename);
+
+                setImage(res.data.image_path);
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
                 setRole(res.data.user.role_id);
@@ -43,18 +38,20 @@ export default function UserProfile(props) {
                 setMobile(res.data.user.mobile_no);
                 setTrainerId(res.data.trainer_id);
                 setId(res.data.user._id);
+
             }).catch((error) => {
                 console.log(error)
             });
 
     }, [])
 
-    console.log("image==", image);
+    //to change path string 
+    var newImage = image.replace("public", "..");
+    console.log("image==", newImage);
 
     let history = useHistory();
 
     const [uderid, setId] = useState([]);
-
 
     return (
         <>
@@ -63,7 +60,7 @@ export default function UserProfile(props) {
             <div className="userprofile-div">
 
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={image} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
+                    <Card.Img variant="top" src={newImage} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
                     <hr />
                     <Card.Body>
                         <Card.Title>{fname} {lname}</Card.Title>

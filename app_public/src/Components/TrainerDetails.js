@@ -40,6 +40,7 @@ export default function TrainerDetails(props) {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
+
                 setFname(res.data.trainer.user_id.firstname);
                 setLname(res.data.trainer.user_id.lastname);
                 setSkills("" + res.data.trainer.skills);
@@ -48,6 +49,8 @@ export default function TrainerDetails(props) {
                 setDescription(res.data.trainer.description);
                 setEmail(res.data.trainer.user_id.email);
                 setMobile(res.data.trainer.user_id.mobile_no);
+
+                console.log("trainer details all data=", res.data);
 
             }).catch((error) => {
                 console.log(error)

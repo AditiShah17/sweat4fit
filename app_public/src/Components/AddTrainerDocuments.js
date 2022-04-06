@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-
-import { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 export default function AddTrainerDocuments(props) {
@@ -11,28 +8,9 @@ export default function AddTrainerDocuments(props) {
     let history = useHistory();
     const token = sessionStorage.getItem('userData');
 
-    const location = useLocation();
-
     const addtrainerdocuments = (event) => {
 
         event.preventDefault();
-
-
-        // const formData = new FormData();
-
-
-        const reqFiles = event.target.files.files;
-
-        const formData = new FormData();
-        const files = document.getElementById("files");
-        // const document_files = [];
-        //         for (const key of Object.keys(reqFiles)) {
-        //             console.log(reqFiles[key]);
-        //             document_files.push(reqFiles[key]);
-        //         }
-
-        //         console.log("files array=", reqFiles);
-        //         console.log(document_files);
 
         var experience = event.target.experience.value;
         var skills = event.target.skills.value;

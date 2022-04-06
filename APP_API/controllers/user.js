@@ -85,7 +85,7 @@ const userRegister = async function(req, res){
 const userProfile = async function(req, res){
     var trainer_id;
     const userid = req.user;
-    const baseUrl = "./public/data/uploads/"+userid+'/';
+    const baseUrl = "./public/data/uploads/"+userid+'/profileImage/';
     
     console.log(userid);
     if(!userid) {
@@ -98,7 +98,7 @@ const userProfile = async function(req, res){
     }
     else
     {
-        if(fs.existsSync(path)){
+        if(fs.existsSync(baseUrl)){
             var files=fs.readdirSync(baseUrl);
             if(files){
                 for(var i=0;i<files.length;i++){
@@ -183,6 +183,8 @@ const userProfileUpdate = function(req, res){
                 return;
             }else{
                 const profile_image = req.file;
+
+                console.log("jigar res=", profile_image);
                 
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
