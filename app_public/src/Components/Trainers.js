@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-import { Link,  useHistory } from "react-router-dom";
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
+import { useHistory } from "react-router-dom";
 
 export default function Trainers(props) {
 
@@ -14,17 +11,12 @@ export default function Trainers(props) {
 
   const api = 'http://localhost:5000/api/trainers/';
   const token = sessionStorage.getItem('userData');
-  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDYyMmZiZTZmNGM0NmI2OGYyNDI5NiIsImlhdCI6MTY0ODc2NDk4MH0.J9OfvR43I0Iq4vESN39zGtqrvkr5oLFe6W59lOhd4oE';
-
-  console.log("$tokon= " + `${token}`);
 
 
   React.useEffect(() => {
 
     axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
       .then(res => {
-
-        console.log("trainers all data=", res.data);
 
         setData(res.data);
 
@@ -34,16 +26,12 @@ export default function Trainers(props) {
 
   }, [])
 
-  console.log("alldata=", alldata);
 
   function trainerDescriptionFn(trainerid) {
-    console.log("Trainer id=", trainerid);
-
     history.push({
       pathname: '/trainerdetails',
       id: trainerid
     });
-
   }
 
 
@@ -59,7 +47,7 @@ export default function Trainers(props) {
         {alldata.map(data => (
           <div className="trainer-item" onClick={() => trainerDescriptionFn(data._id)}>
             <Card style={{ width: "15rem" }}>
-              <Card.Img variant="top" src="" style={{backgroundImage: "url('../images/profile.png')", width: "100%", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}}/>
+              <Card.Img variant="top" src="" style={{ backgroundImage: "url('../images/profile.png')", width: "100%", height: "15rem", backgroundSize: 'cover', overflow: 'hidden' }} />
               <Card.Body>
                 <Card.Title>{data.user_id.email}</Card.Title>
                 <Card.Text>

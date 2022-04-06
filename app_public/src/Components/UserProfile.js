@@ -14,19 +14,13 @@ export default function UserProfile(props) {
     const [mobile, setMobile] = useState("");
     const[trainer,setTrainerId]= useState("");
 
-    console.log("in userprofile function");
-
     const api = 'http://localhost:5000/api/userprofile';
     const token = sessionStorage.getItem('userData');
     
-
-    console.log("$tokon= " + `${token}`);
-
     React.useEffect(() => {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("data====", res.data);
                 sessionStorage.setItem('trainerid',res.data.trainer_id);
 
                 setImage(res.data.image_path);
@@ -45,10 +39,6 @@ export default function UserProfile(props) {
 
     }, [])
 
-    //to change path string 
-    var newImage = image.replace("public", "..");
-    console.log("image==", newImage);
-
     let history = useHistory();
 
     const [uderid, setId] = useState([]);
@@ -60,7 +50,7 @@ export default function UserProfile(props) {
             <div className="userprofile-div">
 
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={newImage} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
+                    <Card.Img variant="top" src={image} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
                     <hr />
                     <Card.Body>
                         <Card.Title>{fname} {lname}</Card.Title>

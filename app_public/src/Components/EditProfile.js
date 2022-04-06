@@ -13,7 +13,6 @@ export default function EditProfile(props) {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
-    const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState("");
 
     React.useEffect(() => {
@@ -22,7 +21,6 @@ export default function EditProfile(props) {
 
                 setFname(res.data.user.firstname);
                 setLname(res.data.user.lastname);
-                setGender(res.data.user.gender);
                 setMobile(res.data.user.mobile_no);
 
             }).catch((error) => {
@@ -39,14 +37,12 @@ export default function EditProfile(props) {
 
         var firstname = event.target.fname.value;
         var lastname = event.target.lname.value;
-        var gender = event.target.gender.value;
         var mobile_no = event.target.phone.value;
 
         const data = new FormData();
 
         data.append("firstname", firstname);
         data.append("lastname", lastname);
-        data.append("gender", gender)
         data.append("mobile_no", mobile_no);
         data.append("profileImage", profileImage);
 

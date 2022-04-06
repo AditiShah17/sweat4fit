@@ -8,6 +8,8 @@ export default function Logout() {
     if (sessionStorage.getItem('userData')) {
       sessionStorage.clear();
     }
+
+    window.location.reload();
     history.push('/login');
   })
   return (

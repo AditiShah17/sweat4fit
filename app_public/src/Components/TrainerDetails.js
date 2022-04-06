@@ -1,25 +1,13 @@
-
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function TrainerDetails(props) {
 
     const location = useLocation();
 
     useEffect(() => {
-        console.log("pathname= ", location.pathname);
-        console.log("id= ", location.id);
     }, [location]);
 
 
@@ -50,12 +38,9 @@ export default function TrainerDetails(props) {
                 setEmail(res.data.trainer.user_id.email);
                 setMobile(res.data.trainer.user_id.mobile_no);
 
-                console.log("trainer details all data=", res.data);
-
             }).catch((error) => {
                 console.log(error)
             });
-
     }, [])
 
 

@@ -20,8 +20,6 @@ export default function Navbar(props) {
         <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">(123)-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
         <div className="navbar-topbar-social">
 
-
-
           {isauth == true ? (
             <>
               <Link className="links" to="/userprofile">
@@ -43,10 +41,6 @@ export default function Navbar(props) {
               </Link>
             </>
           )}
-
-
-
-
 
           <a className="links" href="https://www.facebook.com/" target="_blank">
             <img src="../images/icons/fb.png" alt="" />
@@ -115,20 +109,6 @@ export default function Navbar(props) {
                 <></>
               )}
             </ul>
-            {/* <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <Link className="nav-link" to="/chat">
-                  Chat
-              </Link>
-              <button className="search-btn" type="submit">
-                Search
-              </button>
-            </form> */}
           </div>
         </div>
       </nav>

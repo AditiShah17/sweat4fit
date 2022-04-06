@@ -49,6 +49,7 @@ export default function EditTrainerDetails(props) {
         }).then(res => {
 
             console.log("Updating trainer details=", res);
+            alert("Details updated Successfully");
             history.push('/userprofile');
 
         }).catch((err) => {
