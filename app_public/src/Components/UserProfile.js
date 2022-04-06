@@ -38,7 +38,7 @@ export default function UserProfile(props) {
             });
 
     }, [])
-
+    console.log(trainer);
     let history = useHistory();
 
     const [uderid, setId] = useState([]);
@@ -71,24 +71,36 @@ export default function UserProfile(props) {
                         <Link className="nav-link" aria-current="page" to="/resetpassword">
                             Reset Password
                         </Link>
-                        {trainer == null ? (
+                        {role == 1 ? (
                             <>
-                                <Link className="nav-link" to="/addtrainerdocuments">
-                                    Add Trainer Details
-                                </Link>
+                                {trainer == null ? (
+                                    <>
+                                        <Link className="nav-link" to="/addtrainerdocuments">
+                                            Add Trainer Details
+                                        </Link>
+
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link className="nav-link" to="/edittrainer">
+                                            Edit Trainer Details
+                                        </Link>
+                                        <Link className="nav-link" aria-current="page" to="/edittraineravailability">
+                                            Edit Availability
+                                        </Link>
+                                    </>
+
+                                )}
 
                             </>
                         ) : (
                             <>
-                                <Link className="nav-link" to="/edittrainer">
-                                    Edit Trainer Details
-                                </Link>
-                                <Link className="nav-link" aria-current="page" to="/edittraineravailability">
-                                    Edit Availability
-                                </Link>
-                            </>
+                                                            </>
 
                         )}
+
+
+
 
 
                     </Card.Body>
