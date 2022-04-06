@@ -14,7 +14,7 @@ export default function UserProfile(props) {
     const [mobile, setMobile] = useState("");
     const [trainer, setTrainerId] = useState("");
 
-    const api = 'http://localhost:5000/api/userprofile';
+    const api = '/api/userprofile';
     const token = sessionStorage.getItem('userData');
 
     React.useEffect(() => {

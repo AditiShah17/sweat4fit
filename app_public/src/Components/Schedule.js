@@ -19,7 +19,7 @@ export default function Schedule(props) {
 
     const token = sessionStorage.getItem('userData');
 
-    const schedulebydaysapi = 'http://localhost:5000/api/schedule/' + dayid;
+    const schedulebydaysapi = '/api/schedule/' + dayid;
 
     axios.get(schedulebydaysapi, { headers: { "Authorization": `Bearer ${token}` } })
       .then(res => {

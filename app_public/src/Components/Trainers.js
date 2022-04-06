@@ -9,7 +9,7 @@ export default function Trainers(props) {
 
   const [alldata, setData] = useState([]);
 
-  const api = 'http://localhost:5000/api/trainers/';
+  const api = '/api/trainers/';
   const token = sessionStorage.getItem('userData');
 
 
