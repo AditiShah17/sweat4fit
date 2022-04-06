@@ -43,13 +43,13 @@ export default function Navbar(props) {
           )}
 
           <a className="links" href="https://www.facebook.com/" target="_blank">
-            <img src="../images/icons/fb.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/fb.png" alt="" />
           </a>
           <a className="links" href="https://twitter.com/login?lang=en" target="_blank">
-            <img src="../images/icons/tweet.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/tweet.png" alt="" />
           </a>
           <a className="links" href="https://www.instagram.com/?hl=en" target="_blank">
-            <img src="../images/icons/insta.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/insta.png" alt="" />
           </a>
         </div>
       </div>
