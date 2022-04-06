@@ -12,13 +12,9 @@ const trainerAvailabilitySchema = new mongoose.Schema({
     },
     start_time : {
         type: String,
-        // required: true
-        // default: Date.now
     },
     end_time : {
         type: String,
-        // required: true
-        // default: Date.now
     }
 });
 

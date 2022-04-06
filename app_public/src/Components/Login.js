@@ -21,8 +21,9 @@ export default function Login(props) {
                 if (res.data.token) {
 
                     alert("You have successfully login");
-
+                    
                     history.push('/home');
+                    window.location.reload();
 
                     let responseJson = res.data.token;
                     sessionStorage.setItem('userData', responseJson);

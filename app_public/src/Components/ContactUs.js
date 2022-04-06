@@ -12,7 +12,7 @@ export default function ContactUs(props) {
     <>
       <div className="heroimage-div">
         <img src="../images/covers/contactus_main.jpg" alt="" />
-        <div class="centered">CONTACT US</div>
+        <div className="centered">CONTACT US</div>
       </div>
 
       <div className="contactus-div">

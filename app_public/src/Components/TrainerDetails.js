@@ -1,25 +1,13 @@
-
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-// import { Link } from "react-router-dom";
-// import { Carousel } from "react-bootstrap";
-// import Carousel from 'react-bootstrap/Carousel'
 
 export default function TrainerDetails(props) {
 
     const location = useLocation();
 
     useEffect(() => {
-        console.log("pathname= ", location.pathname);
-        console.log("id= ", location.id);
     }, [location]);
 
 
@@ -27,6 +15,7 @@ export default function TrainerDetails(props) {
 
     const token = sessionStorage.getItem('userData');
 
+    const [image, setImage] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [skills, setSkills] = useState("");
@@ -39,8 +28,8 @@ export default function TrainerDetails(props) {
     React.useEffect(() => {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
-
-
+                
+                setImage(res.data.trainer.user_id.profileImage);
                 setFname(res.data.trainer.user_id.firstname);
                 setLname(res.data.trainer.user_id.lastname);
                 setSkills("" + res.data.trainer.skills);
@@ -50,12 +39,9 @@ export default function TrainerDetails(props) {
                 setEmail(res.data.trainer.user_id.email);
                 setMobile(res.data.trainer.user_id.mobile_no);
 
-                console.log("trainer details all data=", res.data);
-
             }).catch((error) => {
                 console.log(error)
             });
-
     }, [])
 
 
@@ -65,7 +51,7 @@ export default function TrainerDetails(props) {
 
             <div className="trainerdetails-div">
                 <dir className="trainerdetails-image">
-                    <img src="../images/trainers/1.jpg" alt="" />
+                    <img src={image} style={{ backgroundImage: "url('../images/profile.png')", width: "20rem", height: "30rem", backgroundSize: 'cover', overflow: 'hidden' }} alt="user image" />
                 </dir>
                 <div className="trainerdetails-text">
                     <div>

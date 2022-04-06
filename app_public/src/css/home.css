@@ -123,4 +123,8 @@ display: none;
     .expert-trainers-div{
         margin: 0;
     }
+
+    .expert-trainers-item .card:hover{
+        box-shadow: inset 40rem 0 0 0 #FF5656;;
+    }
 }

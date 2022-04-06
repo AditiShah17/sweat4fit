@@ -7,9 +7,6 @@ export default function EditTrainerAvailability(props) {
 
     const token = sessionStorage.getItem('userData');
 
-    console.log("$tokon= " + `${token}`);
-
-
     const getavailabilityapi = '/gettraineravailability';
 
     const [traineravailability, setAvailability] = useState([]);
@@ -46,7 +43,8 @@ export default function EditTrainerAvailability(props) {
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {
 
-            alert("Added Successfully");
+            alert("Your day slot is updated!!!!!");
+            window.location.reload(false);
 
         }).catch((err) => {
             console.log(err)
@@ -60,7 +58,9 @@ export default function EditTrainerAvailability(props) {
         axios.delete(deleteavailabilityapi, { headers: { "Authorization": `Bearer ${token}` } })
         .then(res => {
 
-            alert("Availability Deleted Successfully")
+            alert("Slot Deleted Successfully");
+            window.location.reload(false);
+
 
         }).catch((error) => {
             console.log(error)

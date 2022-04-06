@@ -7,6 +7,7 @@ export default function Register() {
   const getDetails = (event) => {
 
     event.preventDefault();
+    var lastName;
     const fName = event.target.fName.value;
     const lName = event.target.lName.value;
     const email = event.target.email.value;
@@ -33,15 +34,17 @@ export default function Register() {
 
         // post request to create user
         try {
-
+          if(role_id == 1){
+            lastName = lName+' -Trainer'
+          }
           axios.post(
             "https://api.chatengine.io/users/",
             {
-              'username': fName,
+              'username': fName+'_'+lName,
               'secret': password,
               'email': email,
               'first_name': fName,
-              'last_name': lName
+              'last_name': lastName
             }, // Body object
             { 'headers': authObject } // Headers object
           ).then(r => { console.log(r) })

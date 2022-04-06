@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function ResetPassword(props) {
 
     const resetpasswordapi = '/reset-password';
     const token = sessionStorage.getItem('userData');
+
+    let history = useHistory();
 
     const resetpassword = (event) => {
 
@@ -23,17 +26,14 @@ export default function ResetPassword(props) {
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {
 
-            console.log("data=", res.data);
             alert("Password Changed Successfully");
+            history.push('/userprofile');
 
         }).catch((err) => {
             alert("Password Does not match");
             document.getElementById("resetpassword-form").reset();
         });
     }
-
-
-
     return (
         <>
         <p className="resetpassword-heading">Reset Password</p>

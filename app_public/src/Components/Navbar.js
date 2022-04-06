@@ -6,28 +6,29 @@ export default function Navbar(props) {
 
   let isauth = false;
 
+  //collapse nav bar on link click
+  function collapsenavbar(){
+    document.getElementById('navbarSupportedContent').classList.toggle("show");
+  }
+
   if (sessionStorage.getItem('userData')) {
     isauth = true;
   }
   const history = useHistory();
 
-  function reload() {
-
-  }
+  
   return (
     <>
       <div className="navbar-topbar">
         <div className="navbar-topbar-phone"><a className="links" href="tel:123-456-7890">(123)-456-7890</a><a className="links" href="mailto:sweat4fit@gmail.com">sweat4fit@gmail.com</a></div>
         <div className="navbar-topbar-social">
 
-
-
           {isauth == true ? (
             <>
               <Link className="links" to="/userprofile">
                 My Account
               </Link>
-              <Link onClick={reload} className="links" to="/logout">
+              <Link onClick={() => window.location.reload(false)} className="links" to="/logout">
                 Logout
               </Link>
             </>
@@ -44,18 +45,14 @@ export default function Navbar(props) {
             </>
           )}
 
-
-
-
-
           <a className="links" href="https://www.facebook.com/" target="_blank">
-            <img src="../images/icons/fb.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/fb.png" alt="" />
           </a>
           <a className="links" href="https://twitter.com/login?lang=en" target="_blank">
-            <img src="../images/icons/tweet.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/tweet.png" alt="" />
           </a>
           <a className="links" href="https://www.instagram.com/?hl=en" target="_blank">
-            <img src="../images/icons/insta.png" alt="" />
+            <img rel="noreferrer" src="../images/icons/insta.png" alt="" />
           </a>
         </div>
       </div>
@@ -76,7 +73,7 @@ export default function Navbar(props) {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mb-2 mb-lg-0">
+            <ul onClick={collapsenavbar} className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
@@ -115,20 +112,6 @@ export default function Navbar(props) {
                 <></>
               )}
             </ul>
-            {/* <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <Link className="nav-link" to="/chat">
-                  Chat
-              </Link>
-              <button className="search-btn" type="submit">
-                Search
-              </button>
-            </form> */}
           </div>
         </div>
       </nav>
