@@ -3,27 +3,8 @@ const mongoose = require('mongoose');
 const trainerModel = mongoose.model('trainerModel');
 const mongoConfig = require('../models/db');
 const connect = mongoConfig.connect;
-
-// let gfs;
-// var filePath;
-
-// const userId = function(id){
-//     const userId = id;
-//     filePath = "uploads/"+ userId;  
-//     gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-//         bucketName: filePath
-//     });
-// }
-
-
-// connect.once('open', () => {
-//     console.log(filePath);
-//     // initialize stream
-//     gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-//         bucketName: filePath
-//     });
-// });
-
+const fs = require('fs');
+var path = require('path');
 
 const trainerCreate = async function(req,res)
 {
@@ -49,7 +30,12 @@ const trainerCreate = async function(req,res)
 
             // converting string into an array. 
             var getskills = req.body.skills;
-            var skills = getskills.split(",");
+            
+            if(getskills.indexOf(',') >= 0){
+                var skills = getskills.split(",");
+            }else{
+                var skills = getskills;
+            }
         
             trainerModel.create(
                     {
@@ -81,8 +67,8 @@ const trainerCreate = async function(req,res)
 
 
 const trainersReadAll = function(req,res){
-
     const userId = req.user;
+   
     if(!userId){
         res
         .status(404)
@@ -93,6 +79,7 @@ const trainersReadAll = function(req,res){
     }
     else
     {
+        
         trainerModel
         .find({'approve':'Yes'})
         .populate({'path':'user_id'})
@@ -107,8 +94,7 @@ const trainersReadAll = function(req,res){
             }
             else
             {
-                
-                  res
+                res
                   .status(200)
                   .json(allTrainers)
             }
@@ -118,18 +104,7 @@ const trainersReadAll = function(req,res){
 
 };
 const trainersReadOne = function(req,res){
-    // userId(req.user);
-    
-    // gfs.find().toArray((err, files) => {
-    
-    //     files.map(file => {
-    //         console.log(file);
-    //         if (file.contentType === 'pdf' || file.contentType === 'docx' || file.contentType === 'doc') {
-    //             file.isFile = true;
-    //         } else {
-    //             file.isFile = false;
-    //         }
-    //     });       
+        
         if(req.params.trainerid)
         {
             trainerModel
@@ -169,7 +144,6 @@ const trainersReadOne = function(req,res){
                 })
         }
 
-    // });
 };
 
 
@@ -198,7 +172,12 @@ const trainersUpdateOne = function(req,res){
             else
             {
                 var getskills = req.body.skills;
-                var skills = getskills.split(",");
+                
+                if(getskills.indexOf(',') >= 0){
+                    var skills = getskills.split(",");
+                }else{
+                    var skills = getskills;
+                }
 
                 trainer.experience=req.body.experience;
                 trainer.skills=skills;
