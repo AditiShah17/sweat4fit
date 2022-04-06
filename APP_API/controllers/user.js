@@ -8,7 +8,7 @@ const trainerModel = mongoose.model('trainerModel');
 const fetch = require('node-fetch');
 const fs = require('fs');
 var path = require('path');
-
+// var mail = require('./middleware/mail')
 
 const userLogin = async function(req, res){
  
@@ -83,11 +83,10 @@ const userRegister = async function(req, res){
 
 
 const userProfile = async function(req, res){
+    
     var trainer_id;
     const userid = req.user;
-    const baseUrl = "./public/data/uploads/"+userid+'/profileImage/';
     
-    console.log(userid);
     if(!userid) {
         res
         .status(404)
@@ -97,38 +96,21 @@ const userProfile = async function(req, res){
         return;
     }
     else
-    {
-        if(fs.existsSync(baseUrl)){
-            var files=fs.readdirSync(baseUrl);
-            if(files){
-                for(var i=0;i<files.length;i++){
-                    var filename=path.join(baseUrl,files[i]);
-                } 
-            }
-        }else{
-            var filename = './public/images/profile.png';
-        }      
-        
+    { 
         const user = User.findById(userid)
-
         .select("-password")
-
         .exec((err, userdata) => {
-
             if(err){
-
                 res
-
                 .status(404)
-
                 .json(err);
-
                 return;
 
             } else {
                 trainerModel
                 .find({user_id: userid})
                 .exec((err,trainer)=>{
+                   
                     if(trainer.length > 0)
                     {
                         trainer_id  = trainer[0]._id.toString();
@@ -141,7 +123,6 @@ const userProfile = async function(req, res){
                     .status(200)
                     .json({
                         user: userdata,
-                        image_path: filename,
                         trainer_id: trainer_id
                     });
                 });
@@ -182,14 +163,13 @@ const userProfileUpdate = function(req, res){
                 .json(err);
                 return;
             }else{
-                const profile_image = req.file;
-
-                console.log("jigar res=", profile_image);
-                
+                const profile_image = req.file.path;
+               
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
                 userdata.gender = req.body.gender;
                 userdata.mobile_no = req.body.mobile_no;
+                userdata.profileImage = profile_image;
                 userdata.save((err, userdata) => {
                         if(err){
                             res
