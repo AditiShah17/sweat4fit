@@ -6,11 +6,9 @@ export default function Navbar(props) {
 
   let isauth = false;
 
+  //collapse nav bar on link click
   function collapsenavbar(){
-
     document.getElementById('navbarSupportedContent').classList.toggle("show");
-
-    console.log("clicked");
   }
 
   if (sessionStorage.getItem('userData')) {

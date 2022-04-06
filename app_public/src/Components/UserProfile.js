@@ -21,8 +21,6 @@ export default function UserProfile(props) {
         axios.get(api, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
-                console.log("user profile all data=", res.data);
-
                 sessionStorage.setItem('trainerid', res.data.trainer_id);
 
                 setImage(res.data.user.profileImage);
@@ -44,8 +42,6 @@ export default function UserProfile(props) {
     let history = useHistory();
 
     const [uderid, setId] = useState([]);
-
-    console.log("user profile src=", image);
 
     return (
         <>
