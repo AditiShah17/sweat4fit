@@ -46,8 +46,8 @@ export default function UserProfile(props) {
     }, [])
 
     //to change path string 
-    var newImage = image.replace("public", "..");
-    console.log("image==", newImage);
+    // var newImage = image.replace("public", "..");
+    // console.log("image==", newImage);
 
     let history = useHistory();
 
@@ -60,7 +60,7 @@ export default function UserProfile(props) {
             <div className="userprofile-div">
 
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={newImage} style={{backgroundImage: "url('../images/profile.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} />
+                    {/* <Card.Img variant="top" src={newImage} style={{backgroundImage: "url('../images/icons/fb.png')", width: "15rem", height: "15rem", backgroundSize: 'cover', overflow: 'hidden'}} /> */}
                     <hr />
                     <Card.Body>
                         <Card.Title>{fname} {lname}</Card.Title>
