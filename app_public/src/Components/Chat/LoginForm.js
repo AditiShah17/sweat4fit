@@ -24,7 +24,7 @@ const LoginForm = () => {
             localStorage.setItem('username', username);
             localStorage.setItem('password', password);
 
-            // window.location.reload();
+            window.location.reload();
       
         } catch (error) {
             
@@ -41,7 +41,7 @@ const LoginForm = () => {
             <div className='form'>
                 <h1 className='title'> Sweat4Fit Chat Application</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder='Firstname' required />
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder='Username' required />
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" placeholder='Password' required />
                     <div align="center">
                         <button type='submit' className='button' >

@@ -11,9 +11,7 @@ export default function Navbar(props) {
   }
   const history = useHistory();
 
-  function reload() {
-
-  }
+  
   return (
     <>
       <div className="navbar-topbar">
@@ -25,7 +23,7 @@ export default function Navbar(props) {
               <Link className="links" to="/userprofile">
                 My Account
               </Link>
-              <Link onClick={reload} className="links" to="/logout">
+              <Link onClick={() => window.location.reload(false)} className="links" to="/logout">
                 Logout
               </Link>
             </>

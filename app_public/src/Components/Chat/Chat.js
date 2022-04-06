@@ -9,7 +9,7 @@ export default function Chat(props) {
   
   if(!localStorage.getItem('username')) return <LoginForm />
 
-console.log(localStorage.getItem('username'),localStorage.getItem('password'))
+
   return (
     <>
      <ChatEngine 

@@ -37,7 +37,7 @@ export default function Register() {
           axios.post(
             "https://api.chatengine.io/users/",
             {
-              'username': fName,
+              'username': fName+'_'+lName,
               'secret': password,
               'email': email,
               'first_name': fName,
