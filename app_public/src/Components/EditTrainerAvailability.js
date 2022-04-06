@@ -7,7 +7,10 @@ export default function EditTrainerAvailability(props) {
 
     const token = sessionStorage.getItem('userData');
 
-    const getavailabilityapi = '/api/gettraineravailability';
+    console.log("$tokon= " + `${token}`);
+
+
+    const getavailabilityapi = 'http://localhost:5000/api/gettraineravailability';
 
     const [traineravailability, setAvailability] = useState([]);
 

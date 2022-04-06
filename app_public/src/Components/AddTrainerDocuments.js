@@ -12,12 +12,18 @@ export default function AddTrainerDocuments(props) {
 
         event.preventDefault();
 
+        var file =[];
         var experience = event.target.experience.value;
         var skills = event.target.skills.value;
         var description = event.target.description.value;
         var age = event.target.age.value;
-
-        var file = event.target.file.files[0];
+        for(var i=0;i<event.target.file.files.length;i++)
+        {
+            
+            file.push(event.target.file.files[i]);
+        }
+        console.log("no of files1",file);
+      
 
         const data = new FormData();
 
@@ -25,7 +31,11 @@ export default function AddTrainerDocuments(props) {
         data.append("skills", skills);
         data.append("description", description)
         data.append("age", age);
-        data.append("document_file", file);
+        for(var i=0;i<file.length;i++)
+        {
+            data.append("document_file", file[i]);
+        }
+        
 
 
         axios({
@@ -64,7 +74,7 @@ export default function AddTrainerDocuments(props) {
 
                                 <p>Age : - <span><input type="Number" id="age" name="age" placeholder="Enter your Age" required /></span></p>
 
-                                <input type="file" name="file" accept=".pdf" multiple />
+                                <input type="file" name="file" accept=".pdf,.doc,.docx" multiple />
                                 {/* <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Document to upload : - </Form.Label>
                                     <Form.Control type="file" size="lg" name="file" accept=".doc,.pdf" multiple required />

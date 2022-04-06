@@ -129,7 +129,7 @@ const userProfile = async function(req, res){
                 trainerModel
                 .find({user_id: userid})
                 .exec((err,trainer)=>{
-                    if(trainer)
+                    if(trainer.length > 0)
                     {
                         trainer_id  = trainer[0]._id.toString();
                     }
@@ -252,7 +252,7 @@ const forgotPassword = async function(req, res){
 
     const email = req.body.email;
 
-     User.findOne({email}) 
+     User.find({'email': email}) 
     .exec((err, userdata) => {
         if(!userdata){
             res
