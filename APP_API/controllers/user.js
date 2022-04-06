@@ -164,12 +164,13 @@ const userProfileUpdate = function(req, res){
                 return;
             }else{
                 const profile_image = req.file.path;
-               
+                const image_path = profile_image.split('public')[1];
+                
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
                 userdata.gender = req.body.gender;
                 userdata.mobile_no = req.body.mobile_no;
-                userdata.profileImage = profile_image;
+                userdata.profileImage = image_path;
                 userdata.save((err, userdata) => {
                         if(err){
                             res

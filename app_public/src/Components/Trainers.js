@@ -44,17 +44,19 @@ export default function Trainers(props) {
 
       <div className="trainers-div">
 
-        {alldata.map(data => (
-          <div className="trainer-item" onClick={() => trainerDescriptionFn(data._id)}>
-            <Card style={{ width: "15rem" }}>
-              <Card.Img variant="top" src="" style={{ backgroundImage: "url('../images/profile.png')", width: "100%", height: "15rem", backgroundSize: 'cover', overflow: 'hidden' }} />
-              <Card.Body>
-                <Card.Title>{data.user_id.email}</Card.Title>
-                <Card.Text>
-                  {data.description}
-                </Card.Text>
-              </Card.Body>
-            </Card>
+        {alldata.map((data,index) => (
+          <div key={index}>
+            <div className="trainer-item" onClick={() => trainerDescriptionFn(data._id)}>
+              <Card style={{ width: "15rem" }}>
+                <Card.Img variant="top" src="" style={{ backgroundImage: "url('../images/profile.png')", width: "100%", height: "15rem", backgroundSize: 'cover', overflow: 'hidden' }} />
+                <Card.Body>
+                  <Card.Title>{data.user_id.email}</Card.Title>
+                  <Card.Text>
+                    {data.description}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         ))}
 

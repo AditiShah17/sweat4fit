@@ -5,7 +5,7 @@ export default function About(props) {
     <>
       <div className="heroimage-div">
         <img src="../images/covers/aboutus_main.jpg" alt="" />
-        <div class="centered">ABOUT US</div>
+        <div className="centered">ABOUT US</div>
       </div>
 
       {/* about us description */}
