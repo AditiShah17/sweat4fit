@@ -18,8 +18,6 @@ const authUser = (req, res, next)=>{
         console.log("inside try");
         const data = jwt.verify(token, JWT_SECRET)
         req.user = data.id;
-        // let payload = {_id: req.user}
-        // jwt.sign(payload, JWT_SECRET, {expiresIn: '1d'})
         next();
     }
     catch (error) {

@@ -45,8 +45,6 @@ export default function UserProfile(props) {
 
     const [uderid, setId] = useState([]);
 
-    console.log("user profile src=", image);
-
     return (
         <>
             <p className="userprofile-heading">Profile</p>

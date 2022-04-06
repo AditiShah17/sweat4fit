@@ -73,7 +73,7 @@ export default function EditProfile(props) {
                             <form onSubmit={updateClicked}>
                                 <Form.Group controlId="formFileLg" className="mb-3">
                                     <Form.Label>Please Select Profile Photo : - </Form.Label>
-                                    <Form.Control type="file" size="lg" name="imageselect" accept="image/*" required />
+                                    <Form.Control type="file" size="lg" name="imageselect" accept="image/*" />
                                 </Form.Group>
 
                                 <p>First Name : - <span><input type="Text" id="text" name="fname" placeholder="Enter First Name" defaultValue={fname} required /></span></p>

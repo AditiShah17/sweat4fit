@@ -8,7 +8,6 @@ const trainerModel = mongoose.model('trainerModel');
 const fetch = require('node-fetch');
 const fs = require('fs');
 var path = require('path');
-// var mail = require('./middleware/mail')
 
 const userLogin = async function(req, res){
  
@@ -137,7 +136,8 @@ const userProfile = async function(req, res){
 const userProfileUpdate = function(req, res){
    
     const userId = req.user;
-    console.log(userId);
+    var image_path;
+
     if(!userId) {
         res
         .status(404)
@@ -163,14 +163,16 @@ const userProfileUpdate = function(req, res){
                 .json(err);
                 return;
             }else{
-                const profile_image = req.file.path;
-                const image_path = profile_image.split('public')[1];
+                if(req.file != null){
+                    const profile_image = req.file.path;
+                    image_path = profile_image.split('public')[1];
+                    userdata.profileImage = image_path;
+                }
                 
                 userdata.firstname = req.body.firstname;
                 userdata.lastname= req.body.lastname;
                 userdata.gender = req.body.gender;
                 userdata.mobile_no = req.body.mobile_no;
-                userdata.profileImage = image_path;
                 userdata.save((err, userdata) => {
                         if(err){
                             res
