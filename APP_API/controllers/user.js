@@ -306,7 +306,7 @@ const resetPassword = async function(req, res){
 
     const user = User.findById(userId);
 
-    const url = '/userFetch/'+userId;
+    const url = '/api/userFetch/'+userId;
     const response = await fetch(url);
 
     if (!response.ok) {
