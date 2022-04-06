@@ -15,7 +15,7 @@ export default function EditTrainerDetails(props) {
 
     useEffect(() => {
         
-        axios.get('/api/trainers/'+trainer_id, { headers: { "Authorization": `Bearer ${token}` } })
+        axios.get('/trainers/'+trainer_id, { headers: { "Authorization": `Bearer ${token}` } })
             .then(res => {
 
                 setExperience(res.data.trainer.experience);
@@ -43,7 +43,7 @@ export default function EditTrainerDetails(props) {
 
         axios({
             method: 'put',
-            url: '/api/trainers/'+trainer_id,
+            url: '/trainers/'+trainer_id,
             data: data,
             headers: { "Authorization": `Bearer ${token}` }
         }).then(res => {

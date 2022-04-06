@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Login(props) {
 
 
-    const api = '/api/forgotPassword';
+    const api = '/forgotPassword';
     const token = sessionStorage.getItem('userData');
 
     const forgotpassword = (event) => {

@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 export default function EditProfile(props) {
 
 
-    const api = '/api/userprofile';
+    const api = '/userprofile';
     const token = sessionStorage.getItem('userData');
     let history = useHistory();
 

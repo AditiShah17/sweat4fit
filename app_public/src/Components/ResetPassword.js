@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 export default function ResetPassword(props) {
 
-    const resetpasswordapi = '/api/reset-password';
+    const resetpasswordapi = '/reset-password';
     const token = sessionStorage.getItem('userData');
 
     let history = useHistory();

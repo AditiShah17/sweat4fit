@@ -36,7 +36,7 @@ export default function AddTrainerDocuments(props) {
         
         axios({
             method: 'post',
-            url: '/api/trainers',
+            url: '/trainers',
             data: data,
             headers: { "Authorization": `Bearer ${token}`, "Content-Type": "multipart/form-data" }
         }).then(res => {
