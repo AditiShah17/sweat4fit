@@ -48,7 +48,7 @@ export default function Schedule(props) {
     <>
       <div className="heroimage-div">
         <img src="../images/covers/schedule_main.jpeg" alt="" />
-        <div class="centered">SCHEDULE</div>
+        <div className="centered">SCHEDULE</div>
       </div>
 
       <div className="schedule-div">
@@ -87,10 +87,9 @@ export default function Schedule(props) {
 
                   {Object.keys(schedulebyday).length > 0 ? (
                     <>
-                      {console.log("inside if condition with cards")}
                       <h2 className="day-name">{dayselecteed}</h2>
-                      {schedulebyday.schedule.map(data => (
-                        <>
+                      {schedulebyday.schedule.map((data,index) => (
+                        <div key={index}>
                           <div onClick={() => trainerDescriptionFn(data.trainer_id._id)} className="schedule-items">
                             <Card>
                               <Card.Header as="h5">{data.trainer_id.user_id.firstname} {data.trainer_id.user_id.lastname}</Card.Header>
@@ -100,7 +99,7 @@ export default function Schedule(props) {
                               </Card.Body>
                             </Card>
                           </div>
-                        </>
+                        </div>
                       ))}
 
                     </>

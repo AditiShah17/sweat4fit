@@ -7,9 +7,9 @@ export default function Logout() {
   useEffect(() => {
     if (sessionStorage.getItem('userData')) {
       sessionStorage.clear();
+      localStorage.clear();
     }
 
-    window.location.reload();
     history.push('/login');
   })
   return (
