@@ -59,14 +59,14 @@ export default function UserProfile(props) {
                     <Card.Body>
                         <Card.Title>{fname} {lname}</Card.Title>
                         <Card.Text>
-                            <p>Role : - <span> {role == 1 ? (
+                            <p>Role : -  {role == 1 ? (
                                 "Trainer"
                             ) : (
                                 "Trainee"
-                            )}</span></p>
-                            <p>Email : - <span>{email}</span></p>
-                            <p>Gender : - <span>{gender}</span></p>
-                            <p>Mobile number : - <span>{mobile}</span></p>
+                            )}</p>
+                            <p>Email : - {email}</p>
+                            <p>Gender : - {gender}</p>
+                            <p>Mobile number : - {mobile}</p>
                         </Card.Text>
 
                         <Link className="nav-link" aria-current="page" to="/editprofile">

@@ -88,11 +88,30 @@
     color: black;
 }
 
+.navbar-toggler{
+    border: 4px solid #FF5656 !important;
+}
+
 @media (max-width: 768px) {
     .navbar-topbar-phone{
         display: none;
     }
     .navbar-topbar-social{
         width: 100%;
+    }
+
+    .nav-item{
+        text-align: center;
+        justify-content: center;
+    }
+
+    .navbar-nav{
+       margin-right: 0;
+    }
+
+    .chat-btn{
+        margin-right: auto;
+        margin-left: auto;
+        width: 7rem;
     }
 }
