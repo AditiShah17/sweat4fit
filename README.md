@@ -1,9 +1,11 @@
-Project Documentation: Sweat4Fit
+**Project Documentation: Sweat4Fit**
 
-Situation
+Situation:
+
 Many fitness enthusiasts struggle to find a centralized, free, and reliable online platform for professional guidance. The challenge was to create an inclusive digital space to bridge the gap between users seeking credible fitness information and qualified trainers. Sweat4Fit was developed to address this need by providing an interactive, secure, and user-friendly web application that fosters a community culture around health and wellness, accessible to a global audience.
 
-Task
+Task:
+
 The primary goal was to design and develop a full-stack dynamic web application to serve as a hub for the fitness community.
 The key objectives and deliverables were:
 * Develop a community platform for users to connect with trainers for fitness and nutrition queries.
@@ -13,7 +15,8 @@ The key objectives and deliverables were:
 * Ensure the application is responsive and accessible to everyone.
 * Provide a platform that creates job opportunities for trainers, coaches, and yoga instructors.
 
-Action
+Action:
+
 To achieve these goals, the team executed a comprehensive development plan using modern technologies and collaborative methodologies.
 * Technology Stack (MERN): The application was built using the MERN stack.
 o MongoDB: Utilized as the NoSQL database to store application data in a document-based format.
@@ -29,7 +32,8 @@ o Database Relations: To create relationships in MongoDB, we implemented a refer
 o Third-Party Chat Integration: We successfully integrated a third-party chat engine into our React front-end, learning how to manage external services and user authentication flows within our application.
 o Code Collaboration: We adopted a feature-branch workflow in Git to manage code from multiple developers, which minimized conflicts and taught us best practices for team version control.
 
-Result
+Result:
+
 The project successfully culminated in the launch of the 
 Sweat4Fit dynamic web application, a fully functional and deployed platform available at its live URL.
 * Project Deliverables:
