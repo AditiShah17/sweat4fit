@@ -1,4 +1,4 @@
-**Project Documentation: Sweat4Fit**
+**Sweat4Fit**
 
 Situation:
 
