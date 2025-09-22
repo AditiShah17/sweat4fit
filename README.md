@@ -1,4 +1,4 @@
-**Sweat4Fit**
+**Sweat4Fit: Global Fitness & Nutrition Platform**
 
 Situation:
 
